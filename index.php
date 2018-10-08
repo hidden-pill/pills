@@ -16,10 +16,7 @@
 </head>
 
 <body>
-  <?php include 'test.php'; ?>
-
-
-
+salu
 
   <script src="assets/js/vendor/jquery.js"></script>
   <script src="assets/js/vendor/what-input.js"></script>

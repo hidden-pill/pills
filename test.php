@@ -1,19 +1,30 @@
-<nav>
-    <div class="row">
-    <div class="menu align-center">
-        <div class="input-group input-group-rounded">
-            <input class="input-group-field" type="search">
-            <div class="input-group-button">
-                <input type="submit" class="button secondary" value="Search">
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P I L L S</title>
+  <link rel="stylesheet" href="assets/css/test.css" />
+
+
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="one">Un</div>
+    <div class="two">Deux</div>
+    <div class="three">
+      <ul>
+        <li><a href="#">A la une</a></li>
+        <li><a href="#">Tendances</a></li>
+        <li><a href="#">Nouveaux</a></li>
+        <li><a href="#">Commentés</a></li>
+      </ul>
     </div>
-</div>
-    <div class="row hover-underline-menu" data-menu-underline-from-center>
-    <ul class="menu align-center">
-        <li class="columns small-3"><a href="#">A la une</a></li>
-        <li class="columns small-3"><a href="#">Tendances</a></li>
-        <li class="columns small-3"><a href="#">Nouveaux</a></li>
-        <li class="columns small-3"><a href="#">Commentés</a></li>
-    </ul>
-</nav>
+    <div class="four">Quatre</div>
+  </div>
+</body>
+
+</html>
