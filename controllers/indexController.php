@@ -4,20 +4,22 @@ $checkTrending = null;
 $checkHot = null;
 $checkCreated = null;
 $checkCommented = null;
+$class = 'class="active"';
 
 if(isset($_GET['filter'])){
     switch($_GET['filter']) {
     case 'trending':
-        $checkTrending = 'class="active"';
+        $checkTrending = $class;
         break;
     case 'hot':
-        $checkHot = 'class="active"';
+        $checkHot = $class;
         break;
     case 'created':
-        $checkCreated = 'class="active"';
+        $checkCreated = $class;
         break;
     case 'commented':
-        $checkCommented = 'class="active"';
+        $checkCommented = $class;
         break;
+    default;
     }
 }
