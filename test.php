@@ -1,3 +1,6 @@
+<?php
+$test = 1;
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
 
@@ -32,11 +35,23 @@
         <li><a href="test.php?filter=commented" <?=$_GET['filter']=='commented' ? 'class="active"' : '' ; ?>>Commentés</a></li>
       </ul>
     </div>
+
+
     <div class="four">
+    <?php if($test == 1){ ?>
       <ul class="logto">
         <li data-open="logIn" id="logInButton">Se Connecter</li>
         <li data-open="register" id="registerButton">S'inscrire</li>
       </ul>
+    <?php } else { ?>
+
+
+
+
+
+
+
+    <?php } ?>
     </div>
   </div>
 
@@ -57,7 +72,6 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div id="svgtest"></div>
 </body>
 <script src="assets/js/vendor/jquery.js"></script>
 <script src="assets/js/vendor/what-input.js"></script>
