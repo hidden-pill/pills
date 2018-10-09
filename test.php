@@ -44,11 +44,11 @@ $test = 1;
         <li data-open="register" id="registerButton">S'inscrire</li>
       </ul>
     <?php } else { ?>
+    <span title="Nom de l'utilisateur">
+      <div class="userImage"></div>
+    </span>
 
-
-
-
-
+      
 
 
     <?php } ?>
