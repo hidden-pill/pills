@@ -1,0 +1,9 @@
+<ifModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    RewriteRule ^([A-z]+)$ ?filter=$1
+
+    ErrorDocument 404     /404.php
+
+</ifModule>
