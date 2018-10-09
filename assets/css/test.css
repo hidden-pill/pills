@@ -1,8 +1,5 @@
-* {
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-
+body{
+    background-color:blue !important;
 }
 
 .wrapper,
@@ -10,35 +7,32 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(60px, auto);
+    background-color: #232323;
 }
 
 .one {
-    grid-column: 1 / 2;
+    grid-column: span 1;
     grid-row: 1 / 3;
-    background-color: rgba(21, 37, 48, 0.5);
 }
 
 .two {
-    grid-column: 2 / 4;
+    grid-column: span 2;
     grid-row: 1 / 2;
-    background-color: rgba(211, 37, 48, 0.5);
+    padding: 10px 10px 0 10px;
 }
 
 .four {
-    grid-column: 4 / 5;
+    grid-column: span 1;
     grid-row: 1 / 3;
-    background-color: rgba(23, 140, 218, 0.5);
 }
 
 .three {
-    grid-column: 2 / 4;
+    grid-column: span 2;
     grid-row: 2 / 3;
-    background-color: rgba(208, 255, 0, 0.5);
 }
 
-.three li {
-    grid-column: auto;
-    background-color: rgba(23, 140, 218, 0.5);
-    text-align: center;
-    padding-top: 20px; 
+img{
+    height: 20%;
+    width: 20%;
+    color: green;
 }

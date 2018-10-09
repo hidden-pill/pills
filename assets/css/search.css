@@ -1,0 +1,19 @@
+.input-group-rounded .input-group-field {
+    border-radius: 5000px 0 0 5000px;
+    padding-left: 1rem;
+}
+
+.input-group-rounded .input-group-button .button {
+    border-radius: 0 5000px 5000px 0;
+    font-size: 0.8rem;
+}
+
+.input-group-rounded .input-group-field:focus {
+    border: 1px dodgerblue solid;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.input-group-rounded .input-group-button .button:focus {
+    border: 2px 2px 2px 0 dodgerblue solid;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
