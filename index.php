@@ -1,6 +1,6 @@
 <?php
 include 'controllers/indexController.php';
-$test = 1;
+$test = null;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
