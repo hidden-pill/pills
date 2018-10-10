@@ -3,7 +3,22 @@
     padding: 0 15px;
 }
 
-input {
+label{
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+}
+input[type="text"],
+input[type="password"],
+input[type="mail"]{
     width: 100%;
     background-size: 9px 6px;
     padding-right: 1.5rem;
@@ -22,7 +37,10 @@ input {
     line-height: 1.5;
 }
 
-input:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="mail"]:focus,
+input[type="checkbox"]:focus,
 select:focus {
     box-shadow: 0 0 8px 0 dodgerBlue;
 }
@@ -33,11 +51,11 @@ select {
     appearance: none;
     text-indent: 1px;
     text-overflow: '';
-    padding: 2px 25px;
     color: rgba(0, 0, 0, 0);
     text-shadow: 0 0 0 #000;
     background-image: none;
 }
+
 
 select option {
     background: rgba(0, 0, 0, 0.603);
@@ -47,4 +65,16 @@ select option {
 
 select option:disabled {
     display: none;
+}
+
+#birthDate {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(60px, auto);
+}
+.birthDate{
+    grid-column: span 1;
+}
+.label{
+    grid-column: span 3;
 }
