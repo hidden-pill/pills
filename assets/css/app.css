@@ -1,20 +1,50 @@
+* {
+    outline: none;
+    padding: 0 15px;
+}
+
+input {
+    width: 100%;
+    background-size: 9px 6px;
+    padding-right: 1.5rem;
+    height: 2.4375rem;
+    margin: 0 0 1rem;
+    padding: 0.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #cacaca;
+    border-radius: 3px;
+    background-color: #fefefe;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+input:focus,
+select:focus {
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
+    appearance: none;
     text-indent: 1px;
     text-overflow: '';
     padding: 2px 25px;
+    color: rgba(0, 0, 0, 0);
+    text-shadow: 0 0 0 #000;
+    background-image: none;
 }
+
 select option {
     background: rgba(0, 0, 0, 0.603);
     color: #fff;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.575);
 }
+
 select option:disabled {
     display: none;
-}
-select option:checked {
-    background-color: red;
-}
-select option:hover {
 }

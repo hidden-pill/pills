@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="assets/css/foundation.css" />
+<link rel="stylesheet" href="assets/css/navbar.css" />
+<link href="assets/css/test.css" rel="stylesheet" />
 <link href="assets/css/app.css" rel="stylesheet" />
 <form method="POST" action="">
     <p>pseudo - password - email - secret answer - newsletter - birthdate</p>
@@ -31,10 +34,17 @@
     <label class="" for="">email</label>
     <input id="" class="" name="" placeholder="" type="" value="" />
 
+    <label class="" for="">secret question</label>
+    <select>
+        <option selected disabled>Choisir une question secrete</option>
+        <option value="1">Bidule?</option>
+        <option value="2">Truc?</option>
+    </select>
+
     <label class="" for="">secret answer</label>
     <input id="" class="" name="" placeholder="" type="" value="" />
 
     <label class="" for="">newsletter</label>
-    <input id="" class="" name="" placeholder="" type="" value="" />
+    <input id="" class="" name="" placeholder="" type="checkbox" value="" />
 
 </form>
