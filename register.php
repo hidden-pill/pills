@@ -49,14 +49,9 @@
     <label class="" for="secretAnswer">secret answer</label>
     <input id="secretAnswer" class="" name="secretAnswer" placeholder="Réponse secrete" type="text" value="" />
 
-    <label class="" for="newsletter">newsletter</label>
-    <input id="newsletter" class="" name="newsletter" type="checkbox" value="" />
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-        Quasi quas ab quia id alias, architecto quod nesciunt aliquid 
-        omnis inventore vero recusandae obcaecati pariatur facilis minus, 
-        cumque nobis voluptas aspernatur.
-    </p>
+    <label class="" for="newsletter">Newsletter</label>
+    <p><input id="newsletter" class="" name="newsletter" type="checkbox" /> S'inscrire à la newsletter</p>
+    <p>En appuyant sur le bouton "Créer un compte", vous acceptez notre <a>politique de confidencialité</a>.</p>
     <input id="submitRegister" class="button expanded" name="submitRegister" type="submit" value="Créer un compte" />
 
 </form>
