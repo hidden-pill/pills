@@ -4,14 +4,16 @@
 <link href="assets/css/register.css" rel="stylesheet" />
 
 <form method="POST" action="register.php">
-    <p>pseudo - password - email - secret answer - newsletter - birthdate</p>
+    <h1>Inscription</h1>
 
     
     <label class="" for="pseudo">pseudo</label>
     <input id="pseudo" class="" name="pseudo" placeholder="Pseudo" type="text" value="" />
 
-    <div id="birthDate">
-        <label class="label" for="day">birthdate</label>
+        <div id="birthDate">
+        <label class="label" for="day">Jour</label>
+        <label class="label" for="month">Mois</label>
+        <label class="label" for="year">Année</label>
         <input id="day" class="birthDate" name="day" placeholder="Jour" type="text" value="" />
         <select id="month" name="month">
             <option selected disabled>Mois</option>
@@ -49,5 +51,12 @@
 
     <label class="" for="newsletter">newsletter</label>
     <input id="newsletter" class="" name="newsletter" type="checkbox" value="" />
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        Quasi quas ab quia id alias, architecto quod nesciunt aliquid 
+        omnis inventore vero recusandae obcaecati pariatur facilis minus, 
+        cumque nobis voluptas aspernatur.
+    </p>
+    <input id="submitRegister" class="button expanded" name="submitRegister" type="submit" value="Créer un compte" />
 
 </form>

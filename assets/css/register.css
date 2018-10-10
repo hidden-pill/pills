@@ -1,6 +1,26 @@
-* {
+*{
     outline: none;
-    padding: 0 15px;
+}
+body{
+    padding-top: 15px;
+    background-image: url(../images/night-television-tv-theme-machines.jpg);
+    width:100%;
+    z-index:0;
+    height:100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+h1{
+    text-align: center;
+}
+form{
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: rgba(85, 85, 85, 0.733);
+    padding: 40px;
+    border-radius: 10px;
 }
 
 label{
@@ -15,7 +35,9 @@ label{
     -ms-user-select: none;
     /* Internet Explorer/Edge */
     user-select: none;
+    color: black !important;
 }
+
 input[type="text"],
 input[type="password"],
 input[type="mail"]{
@@ -25,9 +47,6 @@ input[type="mail"]{
     height: 2.4375rem;
     margin: 0 0 1rem;
     padding: 0.5rem;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     border: 1px solid #cacaca;
     border-radius: 3px;
     background-color: #fefefe;
@@ -35,6 +54,10 @@ input[type="mail"]{
     font-size: 1rem;
     font-weight: normal;
     line-height: 1.5;
+}
+
+input::placeholder{
+    color : grey;
 }
 
 input[type="text"]:focus,
@@ -70,11 +93,21 @@ select option:disabled {
 #birthDate {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: minmax(60px, auto);
+    grid-auto-rows: minmax(20px, auto);
 }
-.birthDate{
+.birthDate, .label{
     grid-column: span 1;
 }
+
 .label{
-    grid-column: span 3;
+    height: 20px;
+    background: none;
+}
+#submitRegister{
+    background-color: black;
+    border: solid black 2px;
+    color : white;
+}
+#submitRegister:hover{
+    background-color: rgb(34, 34, 34);
 }
