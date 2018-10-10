@@ -3,7 +3,6 @@
     RewriteEngine On
 
     RewriteRule ^([A-z]+)$ ?filter=$1
-    RewriteRule ^([A-z].com)$ pills/
     
 
     ErrorDocument 404     /404.php
