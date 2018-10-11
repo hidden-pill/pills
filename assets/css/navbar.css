@@ -82,10 +82,10 @@ a{
 
 .userImage{
   margin: 10px;
-  border-radius: 5000px 5000px 5000px 5000px;
+  border-radius: 5000px;
   border: white 2px solid;
   height: 100px;
-  width: 100px;
+  width: 160px;
   background: url("../images/profile-picture.jpg");
   background-size: cover;
   background-repeat: no-repeat;

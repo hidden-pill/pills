@@ -1,0 +1,106 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(60px, auto);
+    background-color: #444444;
+    height: 300px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px;
+    outline: none;
+}
+
+.linkPoster{
+    margin: 0 auto;
+    background: black;
+    padding: 5px;
+}
+
+.linkPoster p{
+    color: white;
+    background-color: #000;
+    text-align: center;
+    font-weight: bold;
+    height: 20px;
+}
+.poster{
+    grid-column: span 1;
+    height: 250px;
+}
+
+.contentText {
+    grid-column: span 4;
+    background-color: rgba(255, 255, 255, 0.274);
+    display: grid;
+    grid-template-rows: repeat(11, 1fr);
+}
+
+.contentText h3 {
+    grid-row: span 1;
+    color: white;
+    font-size: 1.5em;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.288);
+    margin: 0;
+}
+
+.contentText .tags {
+    margin: 0;
+    grid-row: span 1;
+    color: white;
+    font-size: 1.5rem;
+    background: rgba(0, 0, 0, 0.288);
+    padding: 0 0 2px 2px;
+}
+
+.contentText .tag {
+    outline: none !important;
+    background-color: #80808083;
+    padding: 2px 10px;
+    border-radius: 5000px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 0.7em;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+    supported by Chrome and Opera */
+    cursor: pointer;
+}
+
+.contentText .tag a {
+    outline: none !important;
+}
+
+.contentText .resume{
+    margin: 0;
+    grid-row: span 6;
+}
+
+.contentTextFooter {
+    margin: 0;
+    grid-row: span 3;
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr 1fr;
+}
+.contentTextFooter a{
+    margin: 0;
+}
+.contentTextFooter .userImage{
+    grid-column: span 1;
+    height: 40px;
+    width: 64px;
+}
+.username{
+    grid-column: span 1;
+    padding-top: 20px;
+}
