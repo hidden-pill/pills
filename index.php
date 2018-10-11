@@ -1,6 +1,6 @@
 <?php
 include 'controllers/indexController.php';
-$test = null;
+$test = 1;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
@@ -42,7 +42,7 @@ $test = null;
       <?php if($test == 1){ ?>
       <ul class="logto">
         <li data-open="logIn" id="logInButton">Se Connecter</li>
-        <li data-open="register" id="registerButton">S'inscrire</li>
+        <li data-open="register" id="registerButton"><a href="register.php">S'inscrire</a></li>
       </ul>
       <?php } else { ?>
       <span title="Nom de l'utilisateur">
@@ -65,14 +65,6 @@ $test = null;
     </button>
   </div>
 
-  <div class="reveal" id="register" data-reveal>
-    <h1>Inscription</h1>
-    <p class="lead">Your couch. It is mine.</p>
-    <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
-    <button class="close-button" data-close aria-label="Close modal" type="button">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 </body>
 <script src="assets/js/vendor/jquery.js"></script>
 <script src="assets/js/vendor/what-input.js"></script>
