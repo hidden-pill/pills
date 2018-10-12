@@ -4,7 +4,7 @@
     grid-auto-rows: minmax(60px, auto);
     background-color: #444444;
     height: 300px;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 10px;
     outline: none;
@@ -100,7 +100,14 @@
     height: 40px;
     width: 64px;
 }
-.username{
+.contentTextFooter .username{
     grid-column: span 1;
     padding-top: 20px;
+}
+
+.contentTextFooter .upvote{
+    text-align: end;
+    grid-column: span 1;
+    padding-top: 20px;
+    font-size: 20px;
 }

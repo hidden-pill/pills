@@ -11,7 +11,9 @@
     <p>9.9</p>
   </a>
   <div class="contentText">
-    <h3>Pourquoi Breaking bad est la meilleure série de tous les temps</h3>
+    <h3>
+      <a href="">Pourquoi Breaking bad est la meilleure série de tous les temps</a>
+    </h3>
     <div class="tags">
       <span class="tag"><a href="">#série</a></span>
     </div>
@@ -21,16 +23,13 @@
       perferendis commodi sint dolor consequuntur pariatur
       vero maiores rerum assumenda nisi consequatur, cum
       repellat sapiente voluptatibus!
+      <a href="">Afficher plus</a>
     </p>
     <div class="contentTextFooter">
-      <a href="">
-        <div class="userImage"></div>
-      </a>
-      <a href="">
-      <p class="username">Bidule <i class="far fa-clock"></i> Il y à 2 jours</p>
-
-</a>
+      <a href=""><div class="userImage"></div></a>
+      <p class="username"><a href="">Bidule</a> <i class="far fa-clock"></i> Il y à 2 jours</p>
       <div>
+        <div class="upvote"><i class="fas fa-plus-circle"></i> pill <i class="fas fa-minus-circle"></i></div>
 
       </div>
     </div>
