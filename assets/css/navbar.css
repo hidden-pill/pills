@@ -86,8 +86,5 @@ a{
   border: white 2px solid;
   height: 100px;
   width: 160px;
-  background: url("../images/profile-picture.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  object-fit: cover;
 }

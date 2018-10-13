@@ -46,7 +46,7 @@ $test = NULL;
       </ul>
       <?php } else { ?>
       <span title="Nom de l'utilisateur">
-        <div class="userImage"></div>
+        <img class="userImage" src="assets/images/profile-picture.jpg" alt="image utilisateur" />
       </span>
 <!-- 9/10 here -->
 
