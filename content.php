@@ -25,7 +25,7 @@
         <a href="">Pourquoi Breaking bad est la meilleure série de tous les temps</a>
       </h3>
       <div class="tags">
-        <span class="tag"><a href="">#série</a></span>
+        <a href="" class="tag">#série</a>
       </div>
       <p class="resume">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -37,13 +37,11 @@
       </p>
       <div class="contentTextFooter">
         <a href="">
-        <img class="userImage" src="assets/images/profile-picture.jpg" alt="image utilisateur" />
+          <img class="userImage" src="assets/images/profile-picture.jpg" alt="image utilisateur" />
         </a>
         <p class="username"><a href="">Bidule</a> <i class="far fa-clock"></i> Il y a 2 jours</p>
-        <div>
-          <div class="upvote"><i class="fas fa-plus-circle"></i> pill <i class="fas fa-minus-circle"></i></div>
-
-        </div>
+        <div class="upvote"><i class="fas fa-plus-circle"></i> pill <i class="fas fa-minus-circle"></i></div>
+        <div class="comment"><i class="fas fa-comment-alt"></i><p>999</p></div>
       </div>
     </div>
   </div>

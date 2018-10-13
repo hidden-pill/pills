@@ -1,0 +1,46 @@
+.reviewFooter {
+    margin: 0;
+    grid-row: span 3;
+    display: grid;
+    grid-template-columns: 80px 4fr 1fr 1fr;
+}
+
+.reviewFooter a{
+    margin: 0;
+}
+.reviewFooter .userImage{
+    grid-column: span 1;
+    height: 40px;
+    width: 64px;
+}
+.reviewFooter .username{
+    grid-column: span 1;
+    padding-top: 20px;
+}
+
+.reviewFooter a{
+    color: black;
+    font-weight: 600;
+}
+
+.reviewFooter .upvote{
+    text-align: end;
+    grid-column: span 1;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.reviewFooter .comment{
+    grid-column: span 1;
+    padding: 8px 0 0 20px;
+    font-size: 40px;
+}
+.reviewFooter .comment p{
+    color: white;
+    display: block;
+    position: static;
+    font-size: 20px;
+    text-align: center;
+    margin: -50px 0 0 -234px;
+    font-weight: 600;
+}

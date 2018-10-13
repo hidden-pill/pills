@@ -44,3 +44,7 @@ body{
 a{
     color: unset !important;
 }
+
+#logIn{
+    border: black 4px solid !important;
+}

@@ -90,7 +90,7 @@
     margin: 0;
     grid-row: span 3;
     display: grid;
-    grid-template-columns: 80px 1fr 1fr 1fr;
+    grid-template-columns: 80px 4fr 1fr 1fr;
 }
 .contentTextFooter a{
     margin: 0;
@@ -110,4 +110,19 @@
     grid-column: span 1;
     padding-top: 20px;
     font-size: 20px;
+}
+
+.contentTextFooter .comment{
+    grid-column: span 1;
+    padding: 8px 0 0 20px;
+    font-size: 40px;
+}
+.contentTextFooter .comment p{
+    color: white;
+    display: block;
+    position: static;
+    font-size: 20px;
+    text-align: center;
+    margin: -50px 0 0 -84px;
+    font-weight: 600;
 }
