@@ -46,5 +46,20 @@ a{
 }
 
 #logIn{
-    border: black 4px solid !important;
+    border: #black 4px solid !important;
+}
+.register {
+    border-top: solid #2B2A2A 4px;
+    padding-top: 20px
+}
+.register a{
+    background-color: black;
+    color: white !important;
+    font-weight: bold;
+    border: solid 2px black;
+}
+
+.register a:hover{
+    background-color: grey;
+    border: solid 2px black;
 }
