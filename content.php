@@ -17,7 +17,9 @@
 <body>
   <div class="content">
     <a href="" class="linkPoster">
-      <img class="poster" src="assets/images/bb-poster.jpg" alt="breaking bad poster" title="Breaking Bad" />
+      <object class="poster" data="assets/images/bb-poster.jpg" title="Breaking Bad">
+        <img src="" alt="poster">
+      </object>
       <p>9.9</p>
     </a>
     <div class="contentText">
@@ -46,5 +48,4 @@
     </div>
   </div>
 </body>
-
 </html>

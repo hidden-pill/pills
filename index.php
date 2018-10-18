@@ -36,8 +36,6 @@ $test = 1;
         <li><a href="commented" <?=$checkCommented; ?>>Commentés</a></li>
       </ul>
     </div>
-
-
     <div class="four">
       <?php if($test == 1){ ?>
       <ul class="logto">
@@ -57,6 +55,7 @@ $test = 1;
   </div>
 
 <?php include 'login.php'; ?>
+
 
 </body>
 <script src="assets/js/vendor/jquery.js"></script>
