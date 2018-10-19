@@ -1,6 +1,6 @@
 <?php
 include 'controllers/indexController.php';
-$test = 1;
+$test = 0;
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
@@ -20,7 +20,9 @@ $test = 1;
 
 <body>
   <div class="wrapper">
-    <div class="one">Un</div>
+    <div class="one">
+      <img id ="logo" src="assets/images/logopills.png" alt="logo" />
+    </div>
     <div class="two input-group input-group-rounded">
       <input class="input-group-field" type="search" placeholder="Recherche" />
       <div class="input-group-button">
