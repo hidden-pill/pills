@@ -1,4 +1,0 @@
-configuration.php -> racine log de la bd
-define('Constante', value);
-
-password_hash()

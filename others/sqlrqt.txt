@@ -1,0 +1,53 @@
+SELECT 
+    `rv`.`title`, 
+    `rv`.`review`, 
+    `rv`.`date`, 
+    `rvt`.`id_tags`, 
+    COUNT(IF(`up`.`upvote` = 1, 1, NULL)) 'upCount', 
+    COUNT(IF(`up`.`upvote` = 0, 1, NULL)) 'downCount', 
+    COUNT(`com`.`id`) AS `comCount`,
+    `co`.`image`,
+    `up`.`upvote`,
+    `us`.`pseudo`,
+    `us`.`image`
+        FROM `reviews` AS `rv`
+            JOIN `reviewsTags` AS `rvt`
+            JOIN `upvotes` AS `up`
+            JOIN `comments` AS `com`
+            JOIN `culturalObjects` AS `co`
+            JOIN `users` AS `us`
+        
+    ORDER BY `rv`.`date`
+
+    ORDER BY `comCount`
+    
+    ORDER BY `upCount`
+
+    ORDER BY `upCount` AND `rv`.`date`
+
+##########################################################
+
+INSERT INTO `users` 
+    (`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`) 
+    VALUES 
+    (:pseudo, :birthDate, :password, :email, :id_questions, :secretAnswer, :newsletter)
+
+##########################################################
+DELIMITER |
+INSERT INTO `reviews` 
+    (`title`, `review`, `date`, `image`, `id_users`, `id_culturalObjects`)
+    VALUES 
+    (:title, :review, :date, :image, :id_users, :id_culturalObjects);
+SELECT LAST_INSERT_ID() AS `last`;
+INSERT INTO `reviewsTags` 
+    (`id_reviews`, `id_tags`)
+    VALUES 
+    (`last`, :id_tags);
+DELIMITER ;
+
+##########################################################
+
+INSERT INTO `culturalObjects` 
+    (`name`, `releaseDate`, `synopsis`, `image`, `budget`, `id_articleTypes`, `id_validations`) 
+    VALUES 
+    (:name, :releaseDate, :synopsis, :image, :budget, :id_articleTypes, :id_validations)
