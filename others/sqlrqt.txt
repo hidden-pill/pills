@@ -51,3 +51,51 @@ INSERT INTO `culturalObjects`
     (`name`, `releaseDate`, `synopsis`, `image`, `budget`, `id_articleTypes`, `id_validations`) 
     VALUES 
     (:name, :releaseDate, :synopsis, :image, :budget, :id_articleTypes, :id_validations)
+
+##########################################################
+
+SELECT `id`, `country` FROM `countries`;
+SELECT `id`, `genre` FROM `genres`;
+SELECT `id`, `job` FROM `jobs`;
+SELECT `id`, `level` FROM `levels`;
+SELECT `id`, `reward` FROM `rewards`;
+SELECT `id`, `tag` FROM `tags`;
+SELECT `id`, `website` FROM `VOD`;
+SELECT `id`, `rank` FROM `ranks`;
+SELECT `id`, `question` FROM `questions`;
+
+##########################################################
+
+INSERT INTO `countries` (`country`) VALUES (:country);
+INSERT INTO `genres` (`genre`) VALUES (:genre);
+INSERT INTO `jobs` (`job`) VALUES (:job);
+INSERT INTO `levels` (`level`) VALUES (:level);
+INSERT INTO `rewards` (`reward`) VALUES (:reward);
+INSERT INTO `tags` (`tag`) VALUES (:tag);
+INSERT INTO `VOD` (`website`) VALUES (:website);
+INSERT INTO `ranks` (`rank`) VALUES (:rank);
+INSERT INTO `questions` (`question`) VALUES (:question);
+
+##########################################################
+
+UPDATE `countries` SET `country` = :country WHERE `id` = :id;
+UPDATE `genres` SET `genre` = :genre WHERE `id` = :id;
+UPDATE `jobs` SET `job` = :job WHERE `id` = :id;
+UPDATE `levels` SET `level` = :level WHERE `id` = :id;
+UPDATE `rewards` SET `reward` = :reward WHERE `id` = :id;
+UPDATE `tags` SET `tag` = :tag WHERE `id` = :id;
+UPDATE `VOD` SET `website` = :website WHERE `id` = :id;
+UPDATE `ranks` SET `rank` = :rank WHERE `id` = :id;
+UPDATE `questions` SET `question` = :question WHERE `id` = :id;
+
+##########################################################
+
+DELETE FROM `countries` WHERE `id` = :id
+DELETE FROM `genres` WHERE `id` = :id
+DELETE FROM `jobs` WHERE `id` = :id
+DELETE FROM `levels` WHERE `id` = :id
+DELETE FROM `rewards` WHERE `id` = :id
+DELETE FROM `tags` WHERE `id` = :id
+DELETE FROM `VOD` WHERE `id` = :id
+DELETE FROM `ranks` WHERE `id` = :id
+DELETE FROM `questions` WHERE `id` = :id
