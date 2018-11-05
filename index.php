@@ -1,6 +1,7 @@
 <?php
-include 'controllers/indexController.php';
-$test = 1;
+session_start();
+include_once 'config.php';
+include_once 'controllers/indexController.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
@@ -39,19 +40,19 @@ $test = 1;
       </ul>
     </div>
     <div class="four">
-      <?php if($test == 1){ ?>
+      <?php if(!isset($_SESSION['isConnect'])){ ?>
       <ul class="logto">
         <li data-open="logIn" id="logInButton">Se Connecter</li>
         <li id="registerButton"><a href="register.php">S'inscrire</a></li>
       </ul>
       <?php } else { ?>
-      <span title="Nom de l'utilisateur">
-        <img class="userImage" src="assets/images/profile-picture.jpg" alt="image utilisateur" />
+      <span title="<?= $_SESSION['pseudo']; ?>">
+        <img class="userImage" src="assets/images/<?= $_SESSION['image']; ?>" alt="image utilisateur" />
       </span>
-<!-- 9/10 here -->
-
-
-
+      <a href="?action=disconnect">Se déconnecter</a>
+        <?php if($_SESSION['rank'] > 1){?>
+          <a href="admin.php">Admin</a>
+        <?php } ?>
       <?php } ?>
     </div>
   </div>

@@ -18,7 +18,7 @@ class Users extends Database {
 
         public function userConnection() {
         $state = false;
-        $query = 'SELECT `pseudo`, `password`, `image` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
+        $query = 'SELECT `id`, `pseudo`, `password`, `image`, `id_ranks` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
         $result = $this->db->prepare($query);
         $result->bindValue(':identifier', $this->identifier, PDO::PARAM_STR);
         if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
@@ -28,14 +28,19 @@ class Users extends Database {
                 $this->pseudo = $selectResult->pseudo;
                 $this->password = $selectResult->password;
                 $this->image = $selectResult->image;
+                $this->id_ranks = $selectResult->id_ranks;
+                $this->id = $selectResult->id;
                 $state = true;
             }
         }
         return $state;
     }
 
-        public function userRegister() {
-        $query = '';
+        public function userInsert() {
+        $query = 'INSERT INTO `' .SALT. 'users`'
+               . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`, `creationDate`, `image`, `id_levels`, `id_ranks`)'
+               . 'VALUES '
+               . '(:pseudo, :birthDate, :password, :email, :secretQuestion, :secretAnswer, :newsletter, NOW(), \'default_profile.png\', 1, 1)';
         $result = $this->db->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);

@@ -32,6 +32,13 @@ INSERT INTO `users`
     VALUES 
     (:pseudo, :birthDate, :password, :email, :id_questions, :secretAnswer, :newsletter)
 
+###
+
+INSERT INTO `users` 
+    (`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`, `creationDate`, `image`, `id_levels`, `id_ranks`) 
+    VALUES 
+    ('ADMIN', '1994-12-02', '', 'emmanuel.galland117@gmail.com', '1', 'ouaf', '1', '2018-11-05', 'default.png', '1', '3');
+
 ##########################################################
 DELIMITER |
 INSERT INTO `reviews` 
