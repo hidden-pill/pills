@@ -11,6 +11,7 @@ class Users extends Database {
     public $birthDate = null;
     public $creationDate = null;
     public $image = null;
+    public $experience = null;
 
     public function __constructor() {
         parent::__construct();
@@ -38,9 +39,9 @@ class Users extends Database {
 
         public function userInsert() {
         $query = 'INSERT INTO `' .SALT. 'users`'
-               . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`, `creationDate`, `image`, `id_levels`, `id_ranks`)'
+               . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`)'
                . 'VALUES '
-               . '(:pseudo, :birthDate, :password, :email, :secretQuestion, :secretAnswer, :newsletter, NOW(), \'default_profile.png\', 1, 1)';
+               . '(:pseudo, :birthDate, :password, :email, :secretQuestion, :secretAnswer, :newsletter)';
         $result = $this->db->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);
@@ -52,15 +53,4 @@ class Users extends Database {
         return $result->execute();
     }
 
-    public function checkIfUserExist(){
-        $state = false;
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `pseudo` = :pseudo';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':pseudo', $this->login, PDO::PARAM_STR);
-        if ($result->execute()) {
-            $selectResult = $result->fetch(PDO::FETCH_OBJ);
-            $state = $selectResult->count;
-        }
-        return $state;
-    }
 }

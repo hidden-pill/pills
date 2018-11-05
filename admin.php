@@ -20,11 +20,14 @@ include_once 'controllers/adminController.php';
 }
 </style>
 </head>
+<body>
 <?php if($_SESSION['rank'] > 1){?>
-<a href="mod.php">Modération</a>
-<a href="settings.php" <?= $_SESSION['rank'] != 3? 'class="not-active"' : ''; ?>>Paramètres du site</a>
-<a href="/">Retour à l'accueil</a>
+<a href="settings.php?table=questions" <?= $_SESSION['rank'] != 3? 'class="not-active"' : ''; ?>>Accéder aux questions</a>
+<a href="settings.php?table=ranks" <?= $_SESSION['rank'] != 3? 'class="not-active"' : ''; ?>>Accéder aux rangs des utilisateurs</a>
+<a href="index.php">Retour à l'accueil</a>
 <?php } else { ?>
 <p>Vous n'avez pas accès à cette page</p>
 <a href="/">Retour à l'accueil</a>
 <?php } ?>
+</body>
+</html>
