@@ -14,6 +14,10 @@ if(isset($_GET['table'])){
         $question = new Questions();
         $contentList = $question->questionsSelect();
         break;
+    case 'levels':
+        $level = new Levels();
+        $contentList = $level->levelsSelect();
+        break;
     default;
     }
 
