@@ -2,23 +2,34 @@
 
 if(isset($_GET['table'])){
     $table = htmlspecialchars($_GET['table']);
-    $column = new Columns();
-    $columns = $column->columnsShow($table);
-
     switch($table) {
     case 'ranks':
         $rank = new Ranks();
-        $contentList = $rank->ranksSelect();
+        $contentList = $rank->selectRanks();
         break;
     case 'questions':
         $question = new Questions();
-        $contentList = $question->questionsSelect();
+        $contentList = $question->selectQuestions();
         break;
     case 'levels':
         $level = new Levels();
-        $contentList = $level->levelsSelect();
+        $contentList = $level->selectLevels();
         break;
-    default;
+    case 'nationalities':
+        $nationality = new Nationalities();
+        $contentList = $nationality->selectNationalities();
+        break;
+    case 'rewards':
+        $reward = new Rewards();
+        $contentList = $reward->selectRewards();
+        break;
+    case 'tags':
+        $tag = new Tags();
+        $contentList = $tag->selectTags();
+        break;
+    default:
+        header('location: admin.php');
     }
-
+    $column = new Columns();
+    $columns = $column->showColumns($table);
 }

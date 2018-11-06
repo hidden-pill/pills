@@ -12,4 +12,16 @@ class Artists extends Database {
     public function __constructor() {
         parent::__construct();
     }
+
+    public function selectArtists() {
+        $artist = [];
+        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `image` FROM `' .SALT. 'artists`';
+        $artist = $this->db->query($query);
+        if($artist->execute()){
+            if (is_object($artist)) {
+                $result = $artist->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
 }

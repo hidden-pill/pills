@@ -6,9 +6,9 @@ class Columns extends Database {
         parent::__construct();
     }
 
-    public function columnsShow($table) {
+    public function showColumns($table) {
         $column = [];
-        $query = 'SHOW COLUMNS FROM ' .$table;
+        $query = 'SHOW COLUMNS FROM  `' .SALT.$table. '`';
         $column = $this->db->prepare($query);
         if($column->execute()){
             if (is_object($column)) {

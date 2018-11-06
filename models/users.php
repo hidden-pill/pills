@@ -52,5 +52,16 @@ class Users extends Database {
         $result->bindValue(':birthDate', $this->birthDate, PDO::PARAM_STR);
         return $result->execute();
     }
-
+    
+    public function selectUsers() {
+        $user = [];
+        $query = 'SELECT `id`, `pseudo`, `birthdate`, `email`, `creationDate` FROM `' .SALT. 'users`';
+        $user = $this->db->query($query);
+        if($user->execute()){
+            if (is_object($user)) {
+                $result = $user->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }  
 }

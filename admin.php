@@ -27,6 +27,7 @@ if(isset($_SESSION['rank'])){
   <a href="settings.php?table=questions" <?= $_SESSION['rank'] != 3? 'class="not-active"' : ''; ?>>Accéder aux questions</a>
   <a href="settings.php?table=ranks" <?= $_SESSION['rank'] != 3? 'class="not-active"' : ''; ?>>Accéder aux rangs des utilisateurs</a>
   <a href="settings.php?table=levels" <?= $_SESSION['rank'] <= 1? 'class="not-active"' : ''; ?>>Accéder aux niveaux</a>
+  <a href="settings.php?table=users">users</a>
   <a href="index.php">Retour à l'accueil</a>
   <?php }} else { ?>
   <p>Vous n'avez pas accès à cette page</p>

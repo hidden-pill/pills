@@ -10,7 +10,7 @@ $secretAnswer = '';
 $newsletter = 0;
 
 $question = new Questions();
-$questionsList = $question->questionsSelect();
+$questionsList = $question->selectQuestions();
 
 
 $formError = [];

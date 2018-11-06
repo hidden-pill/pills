@@ -8,7 +8,7 @@ class Levels extends Database {
         parent::__construct();
     }
     
-    public function levelsSelect() {
+    public function selectLevels() {
         $level = [];
         $query = 'SELECT `id`, `level` FROM `levels`';
         $level = $this->db->query($query);

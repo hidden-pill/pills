@@ -9,9 +9,9 @@ class Questions extends Database {
         parent::__construct();
     }
 
-    public function questionsSelect() {
+    public function selectQuestions() {
         $question = [];
-        $query = 'SELECT `id`, `question` FROM `questions`';
+        $query = 'SELECT `id`, `question` FROM `' .SALT. 'questions`';
         $question = $this->db->query($query);
         if($question->execute()){
             if (is_object($question)) {
