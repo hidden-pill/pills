@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'config.php';
-include_once 'controllers/settingsController.php';
+include_once 'controllers/inspectController.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
@@ -23,8 +23,6 @@ if(isset($_SESSION['rank'])){
                 if($col->Field != 'id'){ ?>
                 <th><?= $col->Field; ?></th>
                 <?php }} ?>
-                <th>Voir/Modifier</th>
-                <th>Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -32,9 +30,9 @@ if(isset($_SESSION['rank'])){
                 <tr>
                     <?php foreach ($columns as $col) {
                     if($col->Field != 'id'){ ?>
-                    <td><?= $content->{$col->Field}; ?></td>
+                    <td><input value="<?= $content->{$col->Field}; ?>" /></td>
                     <?php }} ?>
-                    <td><a href="inspect.php?table=<?= $_GET['table']; ?>&show=<?= $content->id; ?>">Voir</a></td>
+                    <td><a href="<?= $_SERVER['REQUEST_URI']; ?>&modify=<?= $content->id; ?>">modifier</a></td>
                     <td><a href="<?= $_SERVER['REQUEST_URI']; ?>&del=<?= $content->id; ?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
