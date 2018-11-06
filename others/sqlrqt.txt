@@ -10,12 +10,12 @@ SELECT
     `up`.`upvote`,
     `us`.`pseudo`,
     `us`.`image`
-        FROM `reviews` AS `rv`
-            JOIN `reviewsTags` AS `rvt`
-            JOIN `upvotes` AS `up`
-            JOIN `comments` AS `com`
-            JOIN `culturalObjects` AS `co`
-            JOIN `users` AS `us`
+        FROM `' .SALT. 'reviews` AS `rv`
+            JOIN `' .SALT. 'reviewsTags` AS `rvt`
+            JOIN `' .SALT. 'upvotes` AS `up`
+            JOIN `' .SALT. 'comments` AS `com`
+            JOIN `' .SALT. 'culturalObjects` AS `co`
+            JOIN `' .SALT. 'users` AS `us`
         
     ORDER BY `rv`.`date`
 
@@ -27,19 +27,19 @@ SELECT
 
 ##########################################################
 
-INSERT INTO `users` 
+INSERT INTO `' .SALT. 'users` 
     (`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`) 
     VALUES 
     (:pseudo, :birthDate, :password, :email, :id_questions, :secretAnswer, :newsletter)
 
 ##########################################################
 DELIMITER |
-INSERT INTO `reviews` 
+INSERT INTO `' .SALT. 'reviews` 
     (`title`, `review`, `date`, `image`, `id_users`, `id_culturalObjects`)
     VALUES 
     (:title, :review, :date, :image, :id_users, :id_culturalObjects);
 SELECT LAST_INSERT_ID() AS `last`;
-INSERT INTO `reviewsTags` 
+INSERT INTO `' .SALT. 'reviewsTags` 
     (`id_reviews`, `id_tags`)
     VALUES 
     (`last`, :id_tags);
@@ -47,55 +47,55 @@ DELIMITER ;
 
 ##########################################################
 
-INSERT INTO `culturalObjects` 
+INSERT INTO `' .SALT. 'culturalObjects` 
     (`name`, `releaseDate`, `synopsis`, `image`, `budget`, `id_articleTypes`, `id_validations`) 
     VALUES 
     (:name, :releaseDate, :synopsis, :image, :budget, :id_articleTypes, :id_validations)
 
 ##########################################################
 
-SELECT `id`, `country` FROM `countries`;
-SELECT `id`, `genre` FROM `genres`;
-SELECT `id`, `job` FROM `jobs`;
-SELECT `id`, `level` FROM `levels`;
-SELECT `id`, `reward` FROM `rewards`;
-SELECT `id`, `tag` FROM `tags`;
-SELECT `id`, `website` FROM `VOD`;
-SELECT `id`, `rank` FROM `ranks`;
-SELECT `id`, `question` FROM `questions`;
+SELECT `id`, `country` FROM `' .SALT. 'countries`;
+SELECT `id`, `genre` FROM `' .SALT. 'genres`;
+SELECT `id`, `job` FROM `' .SALT. 'jobs`;
+SELECT `id`, `level` FROM `' .SALT. 'levels`;
+SELECT `id`, `reward` FROM `' .SALT. 'rewards`;
+SELECT `id`, `tag` FROM `' .SALT. 'tags`;
+SELECT `id`, `website` FROM `' .SALT. 'VOD`;
+SELECT `id`, `rank` FROM `' .SALT. 'ranks`;
+SELECT `id`, `question` FROM `' .SALT. 'questions`;
 
 ##########################################################
 
-INSERT INTO `countries` (`country`) VALUES (:country);
-INSERT INTO `genres` (`genre`) VALUES (:genre);
-INSERT INTO `jobs` (`job`) VALUES (:job);
-INSERT INTO `levels` (`level`) VALUES (:level);
-INSERT INTO `rewards` (`reward`) VALUES (:reward);
-INSERT INTO `tags` (`tag`) VALUES (:tag);
-INSERT INTO `VOD` (`website`) VALUES (:website);
-INSERT INTO `ranks` (`rank`) VALUES (:rank);
-INSERT INTO `questions` (`question`) VALUES (:question);
+INSERT INTO `' .SALT. 'countries` (`country`) VALUES (:country);
+INSERT INTO `' .SALT. 'genres` (`genre`) VALUES (:genre);
+INSERT INTO `' .SALT. 'jobs` (`job`) VALUES (:job);
+INSERT INTO `' .SALT. 'levels` (`level`) VALUES (:level);
+INSERT INTO `' .SALT. 'rewards` (`reward`) VALUES (:reward);
+INSERT INTO `' .SALT. 'tags` (`tag`) VALUES (:tag);
+INSERT INTO `' .SALT. 'VOD` (`website`) VALUES (:website);
+INSERT INTO `' .SALT. 'ranks` (`rank`) VALUES (:rank);
+INSERT INTO `' .SALT. 'questions` (`question`) VALUES (:question);
 
 ##########################################################
 
-UPDATE `countries` SET `country` = :country WHERE `id` = :id;
-UPDATE `genres` SET `genre` = :genre WHERE `id` = :id;
-UPDATE `jobs` SET `job` = :job WHERE `id` = :id;
-UPDATE `levels` SET `level` = :level WHERE `id` = :id;
-UPDATE `rewards` SET `reward` = :reward WHERE `id` = :id;
-UPDATE `tags` SET `tag` = :tag WHERE `id` = :id;
-UPDATE `VOD` SET `website` = :website WHERE `id` = :id;
-UPDATE `ranks` SET `rank` = :rank WHERE `id` = :id;
-UPDATE `questions` SET `question` = :question WHERE `id` = :id;
+UPDATE `' .SALT. 'countries` SET `country` = :country WHERE `id` = :id;
+UPDATE `' .SALT. 'genres` SET `genre` = :genre WHERE `id` = :id;
+UPDATE `' .SALT. 'jobs` SET `job` = :job WHERE `id` = :id;
+UPDATE `' .SALT. 'levels` SET `level` = :level WHERE `id` = :id;
+UPDATE `' .SALT. 'rewards` SET `reward` = :reward WHERE `id` = :id;
+UPDATE `' .SALT. 'tags` SET `tag` = :tag WHERE `id` = :id;
+UPDATE `' .SALT. 'VOD` SET `website` = :website WHERE `id` = :id;
+UPDATE `' .SALT. 'ranks` SET `rank` = :rank WHERE `id` = :id;
+UPDATE `' .SALT. 'questions` SET `question` = :question WHERE `id` = :id;
 
 ##########################################################
 
-DELETE FROM `countries` WHERE `id` = :id
-DELETE FROM `genres` WHERE `id` = :id
-DELETE FROM `jobs` WHERE `id` = :id
-DELETE FROM `levels` WHERE `id` = :id
-DELETE FROM `rewards` WHERE `id` = :id
-DELETE FROM `tags` WHERE `id` = :id
-DELETE FROM `VOD` WHERE `id` = :id
-DELETE FROM `ranks` WHERE `id` = :id
-DELETE FROM `questions` WHERE `id` = :id
+DELETE FROM `' .SALT. 'countries` WHERE `id` = :id
+DELETE FROM `' .SALT. 'genres` WHERE `id` = :id
+DELETE FROM `' .SALT. 'jobs` WHERE `id` = :id
+DELETE FROM `' .SALT. 'levels` WHERE `id` = :id
+DELETE FROM `' .SALT. 'rewards` WHERE `id` = :id
+DELETE FROM `' .SALT. 'tags` WHERE `id` = :id
+DELETE FROM `' .SALT. 'VOD` WHERE `id` = :id
+DELETE FROM `' .SALT. 'ranks` WHERE `id` = :id
+DELETE FROM `' .SALT. 'questions` WHERE `id` = :id
