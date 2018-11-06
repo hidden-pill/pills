@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'config.php';
-include_once 'controllers/adminController.php';
+include_once '../config.php';
+include_once '../controllers/adminController.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">
