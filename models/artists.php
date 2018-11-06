@@ -8,6 +8,7 @@ class Artists extends Database {
     public $deathDate = null;
     public $biography = null;
     public $image = null;
+    public $id_validations = null;
 
     public function __constructor() {
         parent::__construct();
@@ -15,7 +16,7 @@ class Artists extends Database {
 
     public function selectArtists() {
         $artist = [];
-        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `image` FROM `' .SALT. 'artists`';
+        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `image`, `id_validations` FROM `' .SALT. 'artists`';
         $artist = $this->db->query($query);
         if($artist->execute()){
             if (is_object($artist)) {

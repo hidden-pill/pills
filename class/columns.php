@@ -17,5 +17,17 @@ class Columns extends Database {
         }
         return $result;
     }
+
+    public function getAll($table) {
+        $column = [];
+        $query = 'SELECT * FROM  `' .SALT.$table. '`';
+        $column = $this->db->prepare($query);
+        if($column->execute()){
+            if (is_object($column)) {
+                $result = $column->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
     
 }

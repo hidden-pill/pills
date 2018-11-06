@@ -2,6 +2,7 @@
 
 if(isset($_GET['table'])){
     $table = htmlspecialchars($_GET['table']);
+    
     switch($table) {
     case 'ranks':
         $rank = new Ranks();
@@ -26,6 +27,38 @@ if(isset($_GET['table'])){
     case 'tags':
         $tag = new Tags();
         $contentList = $tag->selectTags();
+        break;
+    case 'VOD':
+        $website = new VOD();
+        $contentList = $website->selectVOD();
+        break;
+    case 'countries':
+        $country = new Countries();
+        $contentList = $country->selectCountries();
+        break;
+    case 'jobs':
+        $job = new Jobs();
+        $contentList = $job->selectJobs();
+        break;
+    case 'genres':
+        $genre = new Genres();
+        $contentList = $genre->selectGenres();
+        break;
+    case 'articleTypes':
+        $articleType = new ArticleTypes();
+        $contentList = $articleType->selectArticleTypes();
+        break;
+    case 'distributors':
+        $distributor = new Distributors();
+        $contentList = $distributor->selectDistributors();
+        break;
+    case 'artists':
+        $artist = new Artists();
+        $contentList = $artist->selectArtists();
+        break;
+    case 'culturalObjects':
+        $culturalObject = new CulturalObjects();
+        $contentList = $culturalObject->selectCulturalObjects();
         break;
     default:
         header('location: admin.php');

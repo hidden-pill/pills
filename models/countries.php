@@ -3,7 +3,7 @@
 class Countries extends Database {
 
     public $id = null;
-    public $country = null
+    public $country = null;
 
     public function __constructor() {
         parent::__construct();
