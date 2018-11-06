@@ -30,7 +30,7 @@ SELECT
 INSERT INTO `' .SALT. 'users` 
     (`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`) 
     VALUES 
-    (:pseudo, :birthDate, :password, :email, :id_questions, :secretAnswer, :newsletter)
+    (:pseudo, :birthDate, :password, :email, :id_questions, :secretAnswer, :newsletter);
 
 ##########################################################
 DELIMITER |

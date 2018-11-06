@@ -11,6 +11,7 @@ class Users extends Database {
     public $birthDate = null;
     public $creationDate = null;
     public $image = null;
+    public $experience = null;
 
     public function __constructor() {
         parent::__construct();
@@ -18,7 +19,7 @@ class Users extends Database {
 
         public function userConnection() {
         $state = false;
-        $query = 'SELECT `pseudo`, `password`, `image` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
+        $query = 'SELECT `id`, `pseudo`, `password`, `image`, `id_ranks` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
         $result = $this->db->prepare($query);
         $result->bindValue(':identifier', $this->identifier, PDO::PARAM_STR);
         if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
@@ -28,14 +29,19 @@ class Users extends Database {
                 $this->pseudo = $selectResult->pseudo;
                 $this->password = $selectResult->password;
                 $this->image = $selectResult->image;
+                $this->id_ranks = $selectResult->id_ranks;
+                $this->id = $selectResult->id;
                 $state = true;
             }
         }
         return $state;
     }
 
-        public function userRegister() {
-        $query = '';
+        public function userInsert() {
+        $query = 'INSERT INTO `' .SALT. 'users`'
+               . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`)'
+               . 'VALUES '
+               . '(:pseudo, :birthDate, :password, :email, :secretQuestion, :secretAnswer, :newsletter)';
         $result = $this->db->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);
@@ -47,15 +53,4 @@ class Users extends Database {
         return $result->execute();
     }
 
-    public function checkIfUserExist(){
-        $state = false;
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `pseudo` = :pseudo';
-        $result = $this->db->prepare($query);
-        $result->bindValue(':pseudo', $this->login, PDO::PARAM_STR);
-        if ($result->execute()) {
-            $selectResult = $result->fetch(PDO::FETCH_OBJ);
-            $state = $selectResult->count;
-        }
-        return $state;
-    }
 }

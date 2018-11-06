@@ -25,7 +25,8 @@ class Database {
         $this->password = PASSWORD;
 
         try {
-            $this->db = new PDO('mysql:host=' .$this->host. ';port=' .$this->port. ';dbname=' .$this->dbname. ';charset=' .$this->charset. ';' .$this->account, $this->password);
+            $this->db = new PDO('mysql:host=' .$this->host. ';port=' .$this->port. ';dbname=' .$this->dbname. ';charset=' .$this->charset. ';', $this->account, $this->password);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //TODO REMOVE TO AVOID DISPLAYING SQL ERROR
         } catch (Exception $e) { //si la connection echoue on affiche le message d'erreur
             die('Erreur : ' . $e->getMessage());
         }

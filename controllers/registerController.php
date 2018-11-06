@@ -1,65 +1,80 @@
 <?php
 
+$pseudo = '';
+$day = '';
+$month = '';
+$year = '';
+$email = '';
+$secretQuestion = '';
+$secretAnswer = '';
+$newsletter = 0;
+
+$question = new Questions();
+$questionsList = $question->questionsSelect();
+
+
 $formError = [];
 
-if (isset($_POST['submitRegister'])) {
+if(isset($_POST['submitRegister'])){
 
     if (!empty($_POST['pseudo'])) {
-        $pseudo = htmlspecialchars(ucwords(strtolower($_POST['pseudo'])));
-        if (preg_match(Regex::PSEUDO, $pseudo)) {
-            $formError['pseudo'] = ERROR_REGEX_PSEUDO;            
-        }
+        $pseudo = htmlspecialchars($_POST['pseudo']);
     } else {
-        $formError['pseudo'] = ERROR_EMPTY_PSEUDO;
+        $formError['pseudo'] = 'Champs obligatoire.';
     }
 
-    if (!empty($_POST['email'])) {
-        $email = htmlspecialchars(strtolower($_POST['email'])));
-        if (!FILTER_VAR($mail, FILTER_VALIDATE_EMAIL)) {
-            $formError['email'] = ERROR_FILTER_EMAIL;            
-        }
+    if (!empty($_POST['day'] && $_POST['month'] && $_POST['year'])) {
+        $day = htmlspecialchars($_POST['day']);
+        $month = htmlspecialchars($_POST['month']);
+        $year = htmlspecialchars($_POST['year']);
+        $birthDate = $year. '-' .$month. '-' .$day;
     } else {
-        $formError['email'] = ERROR_EMPTY_EMAIL;
+        $formError['birthDate'] = 'Champs obligatoire.';
     }
 
-    if (!empty($_POST['password']) {
+    if (!empty($_POST['password'])){
         $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     } else {
-        $errorList['password'] = ERROR_EMPTY_PASSWORD;
+        $formError['password'] = 'Champs obligatoire.';
+    }
+
+    if (!empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $email = htmlspecialchars($_POST['email']);
+    } else {
+        $formError['email'] = 'Champs obligatoire.';
     }
 
     if (!empty($_POST['secretQuestion'])) {
-        $secretQuestion = htmlspecialchars($_POST['secretQuestion']));
-        if (is_nan($secretQuestion)) {
-            $formError['secretQuestion'] = ERROR_NAN_SECRETQUESTION;       
-        }
+        $secretQuestion = htmlspecialchars($_POST['secretQuestion']);
     } else {
-        $formError['secretQuestion'] = ERROR_EMPTY_SECRETQUESTION;
+        $formError['secretQuestion'] = 'Champs obligatoire.';
     }
 
+    if (!empty($_POST['secretAnswer'])) {
+        $secretAnswer = htmlspecialchars($_POST['secretAnswer']);
+    } else {
+        $formError['secretAnswer'] = 'Champs obligatoire.';
+    }
 
+    if (!empty($_POST['newsletter'])) {
+        $newsletter = htmlspecialchars($_POST['newsletter']);
+    } else {
+        $newsletter = 0;
+    }
 
-
-
-
-
+    var_dump($formError);
 
     if (count($formError) == 0) {
-        $user->birthDate = $year . '-' . $month . '-' . $day;
-        $checkUser = $user->checkIfUsersExist();
-        $checkSecretQuestion = $user->checkifSecretQuestionExist();
-        if($checkSecretQuestion === '0'){
-            if ($checkUser === '0') {
-                if (!$user->addUser()) {
-                    $formError['submit'] = ERROR_SUBMIT_SQL;
-                }
-            } elseif ($check === FALSE) {
-                $formError['submit'] = ERROR_SUBMIT_SQL;
-            }
-            else {
-                $formError['submit'] = ERROR_SUBMIT_ALLREADY_EXISTS;
-            }
+        $user = new Users();
+        $user->pseudo = $pseudo;
+        $user->birthDate = $birthDate;
+        $user->password = $password;
+        $user->email = $email;
+        $user->secretQuestion = $secretQuestion;
+        $user->secretAnswer = $secretAnswer;
+        $user->newsletter = $newsletter;
+        if(!$user->userInsert()){
+            echo 'raté';
         }
     }
-
 }
