@@ -460,3 +460,12 @@ INSERT INTO `ranks` (`rank`) VALUES ('mod');
 INSERT INTO `ranks` (`rank`) VALUES ('admin');
 
 INSERT INTO `questions` (`question`) VALUES ('Quel est le nom de votre premier animal de compagnie?');
+
+#------------------------------------------------------------
+# ALTER
+#------------------------------------------------------------
+
+
+ALTER TABLE `users` ADD UNIQUE( `pseudo`, `email`);
+
+ALTER TABLE `users` CHANGE `creationDate` `creationDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, CHANGE `image` `image` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default_profile.png', CHANGE `experience` `experience` INT(11) NOT NULL DEFAULT '0', CHANGE `id_ranks` `id_ranks` INT(11) NOT NULL DEFAULT '1';

@@ -34,7 +34,7 @@ if(isset($_SESSION['rank'])){
                     if($col->Field != 'id'){ ?>
                     <td><?= $content->{$col->Field}; ?></td>
                     <?php }} ?>
-                    <td><a href="<?= $_SERVER['REQUEST_URI']; ?>&show=<?= $content->id; ?>">Voir la fiche du patient</a></td>
+                    <td><a href="<?= $_SERVER['REQUEST_URI']; ?>&show=<?= $content->id; ?>">Voir</a></td>
                     <td><a href="<?= $_SERVER['REQUEST_URI']; ?>&del=<?= $content->id; ?>">Supprimer</a></td>
                 </tr>
             <?php } ?>
