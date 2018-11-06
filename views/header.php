@@ -16,18 +16,24 @@ if ($_SERVER['PHP_SELF'] == '/pills/index.php'){
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>P I L L S</title>
+  <?php if ($_SERVER['PHP_SELF'] == '/pills/index.php'){ ?>
   <link rel="stylesheet" href="assets/css/foundation.css" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
   <link rel="stylesheet" href="assets/css/search.css" />
   <link rel="stylesheet" href="assets/css/test.css" />
-
+  <?php } else {?>
+  <link rel="stylesheet" href="../assets/css/foundation.css" />
+  <link rel="stylesheet" href="../assets/css/navbar.css" />
+  <link rel="stylesheet" href="../assets/css/search.css" />
+  <link rel="stylesheet" href="../assets/css/test.css" />
+  <?php } ?>
 
 </head>
 
 <body>
   <div class="wrapper">
     <div class="one">
-      <img id ="logo" src="assets/images/pillslogodef.png" alt="logo" />
+      <img id ="logo" src="<?= $_SERVER['PHP_SELF'] != '/pills/index.php'? '../': '' ?>assets/images/pillslogodef.png" alt="logo" />
     </div>
     <div class="two input-group input-group-rounded">
       <input class="input-group-field" type="search" placeholder="Recherche" />
@@ -38,10 +44,10 @@ if ($_SERVER['PHP_SELF'] == '/pills/index.php'){
     </div>
     <div class="three hover-underline-menu" data-menu-underline-from-center>
       <ul class="menu align-center">
-        <li><a href="trending" <?=$checkTrending; ?>>A la une</a></li>
-        <li><a href="hot" <?=$checkHot; ?>>Tendances</a></li>
-        <li><a href="created" <?=$checkCreated; ?>>Nouveaux</a></li>
-        <li><a href="commented" <?=$checkCommented; ?>>Commentés</a></li>
+        <li><a href="/pills/trending" <?=$checkTrending; ?>>A la une</a></li>
+        <li><a href="/pills/hot" <?=$checkHot; ?>>Tendances</a></li>
+        <li><a href="/pills/created" <?=$checkCreated; ?>>Nouveaux</a></li>
+        <li><a href="/pills/commented" <?=$checkCommented; ?>>Commentés</a></li>
       </ul>
     </div>
     <div class="four">
@@ -52,8 +58,9 @@ if ($_SERVER['PHP_SELF'] == '/pills/index.php'){
       </ul>
       <?php } else { ?>
       <span title="<?= $_SESSION['pseudo']; ?>">
-        <img class="userImage" src="assets/images/<?= $_SESSION['image']; ?>" alt="image utilisateur" />
+        <img class="userImage" src="<?= $_SERVER['PHP_SELF'] != '/pills/index.php'? '../': '' ?>assets/images/<?= $_SESSION['image']; ?>" alt="image utilisateur" />
       </span>
+      <a href="views/addReview.php">Créer une critique</a>
       <a href="?action=disconnect">Se déconnecter</a>
         <?php if($_SESSION['rank'] > 1){?>
           <a href="views/admin.php">Admin</a>

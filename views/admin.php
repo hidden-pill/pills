@@ -25,7 +25,7 @@ include_once '../controllers/adminController.php';
   <?php if(isset($_SESSION['rank'])){
   if($_SESSION['rank'] > 1){?>
   <ul class="vertical menu align-center">
-    <li><a href="index.php">Retour à l'accueil</a></li>
+    <li><a href="/pills">Retour à l'accueil</a></li>
     <?php foreach ($tables as $link) {?>
     <li><a href="settings.php?table=<?= $link->Tables_in_pills; ?>"><?= $link->Tables_in_pills; ?></li>
     <?php } ?>
@@ -33,7 +33,7 @@ include_once '../controllers/adminController.php';
   <?php } 
   } else { ?>
   <p>Vous n'avez pas accès à cette page</p>
-  <a href="index.php">Retour à l'accueil</a>
+  <a href="/pills">Retour à l'accueil</a>
   <?php } ?>
 </body>
 
