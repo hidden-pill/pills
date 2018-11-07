@@ -447,6 +447,14 @@ ALTER TABLE `users`
         CHANGE `experience` `experience` INT(11) NOT NULL DEFAULT '0', 
         CHANGE `id_ranks` `id_ranks` INT(11) NOT NULL DEFAULT '1';
 
+ALTER TABLE `culturalobjects` 
+        CHANGE `budget` `budget` INT(11) NULL DEFAULT NULL,
+        CHANGE `image` `image` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default_poster.png', 
+        CHANGE `validation` `validation` TINYINT(1) NOT NULL DEFAULT '0';
+
+ALTER TABLE `reviews` CHANGE `date` `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+
 ALTER TABLE `aco` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `aconationalities` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `aoccountries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;

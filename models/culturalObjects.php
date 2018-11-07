@@ -17,7 +17,7 @@ class CulturalObjects extends Database {
 
     public function selectCulturalObjects() {
         $culturalObject = [];
-        $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `image`, `budget`, `id_articleTypes`, `id_validations` FROM `' .SALT. 'culturalobjects`';
+        $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `image`, `budget`, `id_articleTypes`, `validation` FROM `' .SALT. 'culturalobjects`';
         $culturalObject = $this->db->query($query);
         if($culturalObject->execute()){
             if (is_object($culturalObject)) {

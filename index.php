@@ -1,9 +1,8 @@
 <?php include_once 'views/header.php'; ?>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="assets/js/materialize.min.js"></script>
+  <script src="assets/js/app.js"></script>
 </body>
-<script src="assets/js/vendor/jquery.js"></script>
-<script src="assets/js/vendor/what-input.js"></script>
-<script src="assets/js/vendor/foundation.min.js"></script>
-<script src="assets/js/test.js"></script>
-<script src="assets/js/app.js"></script>
 
 </html>
