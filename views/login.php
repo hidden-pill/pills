@@ -13,7 +13,4 @@
         <a class="button" href="register.php">Créer un compte</a>
     </div>
     </form>
-    <button class="close-button"  type="button">
-        <span class="modal-close">&times;</span>
-    </button>
 </div>

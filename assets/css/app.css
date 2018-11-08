@@ -1,0 +1,75 @@
+
+.nav-extended{
+    background-color: #000000cc;
+}
+.navbar-fixed {
+    height: 112px;
+    z-index: 100000;
+
+}
+.tabs{
+    display: flex;
+    justify-content: center;
+}
+#logo{
+    position: relative;
+    padding-left: 20px;
+}
+#logo img{
+    position: absolute;
+    height: 112px;
+}
+#logo img:last-child{
+    height: 50px;
+    top: 36px;
+    left: 30px;
+}
+#logo img:last-child:hover{
+    transform: scale(1.1);
+}
+
+.autocomplete-content{
+    position: absolute;
+}
+.new-wrapper{
+    width: 100%;
+}
+.card {
+
+    position: relative;
+    margin: .5rem 0 1rem 0;
+    background-color: #fff;
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 5000px;
+
+}
+#autocomplete-input {
+
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 45px 0 15px;
+    border: 0;
+
+}
+#nav-mobile li.search .search-wrapper i.material-icons {
+
+    position: absolute;
+    top: -8px;
+    right: 10px;
+    cursor: pointer;
+    color:#3c3c3c;
+    z-index: 10000;
+
+}
+.autocomplete-content{
+    width: 251.667px;
+}

@@ -2780,8 +2780,8 @@ if (Vel) {
           // Update indicator
           animateIndicator(prev_index);
 
-          // Prevent the anchor's default click action
-          e.preventDefault();
+          /* Prevent the anchor's default click action
+          e.preventDefault();*/
         });
       });
     },
