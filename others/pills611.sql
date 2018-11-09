@@ -485,6 +485,11 @@ ALTER TABLE `upvotes` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `vod` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `upvotes` 
+        CHANGE `id_proposals` `id_proposals` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_comments` `id_comments` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_reviews` `id_reviews` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_users` `id_users` INT(11) NULL DEFAULT NULL;
 
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
