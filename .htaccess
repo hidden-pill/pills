@@ -2,7 +2,7 @@
 
     RewriteEngine On
 
-    RewriteRule ^([A-z]+)$ ?filter=$1    
+    RewriteRule ^([A-z]+)$ ?order=$1    
 
     ErrorDocument 404     /404.php
 

@@ -4,6 +4,6 @@
  */
 class Regex {
 
-    define('PSEUDO', '');
+    //define('PSEUDO', '');
     
 }

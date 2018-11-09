@@ -1,29 +1,32 @@
 SELECT 
-    `rv`.`title`, 
-    `rv`.`review`, 
-    `rv`.`date`, 
-    `rvt`.`id_tags`, 
-    COUNT(IF(`up`.`upvote` = 1, 1, NULL)) 'upCount', 
-    COUNT(IF(`up`.`upvote` = 0, 1, NULL)) 'downCount', 
-    COUNT(`com`.`id`) AS `comCount`,
-    `co`.`image`,
-    `up`.`upvote`,
+	`rv`.`id`,
+	`rv`.`title`,
+	`rv`.`review`,
+	`rv`.`date`,
     `us`.`pseudo`,
-    `us`.`image`
-        FROM `' .SALT. 'reviews` AS `rv`
-            JOIN `' .SALT. 'reviewsTags` AS `rvt`
-            JOIN `' .SALT. 'upvotes` AS `up`
-            JOIN `' .SALT. 'comments` AS `com`
-            JOIN `' .SALT. 'culturalObjects` AS `co`
-            JOIN `' .SALT. 'users` AS `us`
-        
-    ORDER BY `rv`.`date`
+    `co`.`name`,
+    `co`.`image`,
+    `t`.`tag`, 
+	COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, 
+    COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,
+    COUNT(`com`.`id`) AS `comCount`
+FROM `reviews` AS `rv`
+	JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`
+    JOIN `culturalobjects` AS `co` ON `rv`.`id_culturalobjects` = `co`.`id`
+    LEFT JOIN `reviewsTags` AS `rvt` ON `rvt`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `tags` AS `t` ON `t`.`id` = `rvt`.`id_tags`
+	LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`
+GROUP BY `rv`.`id`
+ORDER BY `rv`.`date` DESC;
+
+    ORDER BY `rv`.`date DESC`
 
     ORDER BY `comCount`
     
     ORDER BY `upCount`
 
-    ORDER BY `upCount` AND `rv`.`date`
+    ORDER BY `upCount`, `rv`.`date` DESC;
 
 ##########################################################
 
@@ -110,15 +113,44 @@ SELECT
 	`rv`.`id`,
 	`rv`.`title`,
 	`rv`.`review`,
+	`rv`.`date`,
     `us`.`pseudo`,
     `co`.`name`,
     `co`.`image`,
+    `rvt`.`id_tags`, 
 	COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, 
     COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,
     COUNT(`com`.`id`) AS `comCount`
 FROM `reviews` AS `rv`
 	JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`
     JOIN `culturalobjects` AS `co` ON `rv`.`id_culturalobjects` = `co`.`id`
+    JOIN `reviewsTags` AS `rvt`
 	LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`
     LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`
-GROUP BY `rv`.`id`;
+GROUP BY `rv`.`id`
+ORDER BY `rv`.`date` DESC;
+
+
+##########################HOT############################
+
+SELECT 
+	`rv`.`id`,
+	`rv`.`title`,
+	`rv`.`review`,
+	`rv`.`date`,
+    `us`.`pseudo`,
+    `co`.`name`,
+    `co`.`image`,
+    `t`.`tag`, 
+	COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, 
+    COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,
+    COUNT(`com`.`id`) AS `comCount`
+FROM `reviews` AS `rv`
+	JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`
+    JOIN `culturalobjects` AS `co` ON `rv`.`id_culturalobjects` = `co`.`id`
+    LEFT JOIN `reviewsTags` AS `rvt` ON `rvt`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `tags` AS `t` ON `t`.`id` = `rvt`.`id_tags`
+	LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`
+GROUP BY `rv`.`id`
+ORDER BY `upCount`, `rv`.`date` DESC;

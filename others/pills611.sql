@@ -502,21 +502,32 @@ INSERT INTO `ranks` (`rank`) VALUES ('admin');
 
 INSERT INTO `questions` (`question`) VALUES ('Quel est le nom de votre premier animal de compagnie?');
 
-INSERT INTO `jobs` (`job`) VALUE ('Non renseigné');
-INSERT INTO `nationalities` (`nationality`) VALUE ('Non renseigné');
-INSERT INTO `countries` (`country`) VALUE ('Non renseigné');
-INSERT INTO `genres` (`genre`) VALUE ('Non renseigné');
-INSERT INTO `VOD` (`website`) VALUE ('Non renseigné');
-INSERT INTO `artists` (`name`) VALUE ('Non renseigné');
+INSERT INTO `jobs` (`job`) VALUES ('Non renseigné');
+INSERT INTO `nationalities` (`nationality`) VALUES ('Non renseigné');
+INSERT INTO `countries` (`country`) VALUES ('Non renseigné');
+INSERT INTO `genres` (`genre`) VALUES ('Non renseigné');
+INSERT INTO `VOD` (`website`) VALUES ('Non renseigné');
+INSERT INTO `artists` (`name`) VALUES ('Non renseigné');
 
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Film');
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Série');
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Documentaire');
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Vidéo');
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Livre');
-INSERT INTO `articleTypes` (`articleType`) VALUE ('Comics');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Film');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Série');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Documentaire');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Vidéo');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Livre');
+INSERT INTO `articleTypes` (`articleType`) VALUES ('Comics');
 
 INSERT INTO `users` 
         (`pseudo`, `password`, `email`, `secretAnswer`, `newsletter`, `birthDate`, `creationDate`, `image`, `experience`, `id_questions`, `id_ranks`) 
-        VALUE 
+        VALUES
         ('ADMIN', '$2y$10$VC.Qnv3QniLISGGiztaI0uxP7CAtQ9CdqpVlkSgtuUUitpLsU7vla', 'emmanuel.galland117@gmail.com', 'oslo', '1', '1994-02-12', '2018-11-05 20:20:53', 'default_profile.png', '0', '1', '3');
+
+INSERT INTO `culturalobjects`
+                (`name`, 
+                `releaseDate`, 
+                `synopsis`, 
+                `id_articleTypes`) 
+        VALUES 
+                ('Matrix', 
+                '1999-06-23', 
+                'Thomas A. Anderson (Keanu Reeves), un jeune informaticien connu dans le monde du hacking sous le pseudonyme de Neo16, est contacté via son ordinateur par ce qu’il pense être un groupe de hackers. Ils lui font découvrir que le monde dans lequel il vit n’est qu’un monde virtuel dans lequel les êtres humains sont gardés inconsciemment sous contrôle.', 
+                1 );

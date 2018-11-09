@@ -1,3 +1,8 @@
+*,
+::before,
+::after {
+    box-sizing: content-box;
+}
 .nav-extended{
     background-color: #000000cc;
 }
@@ -104,4 +109,36 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     border-bottom: 1px solid #26a69a00;
     -webkit-box-shadow: 0 1px 0 0 #26a69a00;
     box-shadow: 0 1px 0 0 #26a69a00;
+}
+
+.review{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: repeat(4, 1fr);
+    height: 300px;
+    margin-top: 20px;
+    background-color: #0000008e;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #3c3c3c;
+}
+.reviewImage{
+    grid-row: span 4;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.reviewImage p{
+    position: relative;
+    top: -44px;
+    background-color: black;
+    color: white;
+}
+.reviewTitle{
+    grid-row: span 1;
+}
+.reviewContent{
+    grid-row: span 2;
+}
+.reviewFooter{
+    grid-row: span 1;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="fr">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8" />
@@ -7,17 +7,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/foundation.css" />
-  <link rel="stylesheet" href="assets/css/navbar.css" />
-  <link rel="stylesheet" href="assets/css/search.css" />
-  <link rel="stylesheet" href="assets/css/test.css" />
-  <link rel="stylesheet" href="assets/css/content.css" />
+
+  <link rel="stylesheet" href="../assets/css/content.css" />
 </head>
 
 <body>
   <div class="content">
     <a href="" class="linkPoster">
-      <object class="poster" data="assets/images/bb-poster.jpg" title="Breaking Bad">
+      <object class="poster" data="../assets/images/bb-poster.jpg" title="Breaking Bad">
         <img src="" alt="poster">
       </object>
       <p>9.9</p>
@@ -39,7 +36,7 @@
       </p>
       <div class="contentTextFooter">
         <a href="">
-          <img class="userImage" src="assets/images/profile-picture.jpg" alt="image utilisateur" />
+          <img class="userImage" src="../assets/images/profile-picture.jpg" alt="image utilisateur" />
         </a>
         <p class="username"><a href="">Bidule</a> <i class="far fa-clock"></i> Il y a 2 jours</p>
         <div class="upvote"><i class="fas fa-plus-circle"></i> pill <i class="fas fa-minus-circle"></i></div>

@@ -15,8 +15,6 @@ include_once $path.'controllers/headerController.php';
   <link rel="stylesheet" href="<?= $path; ?>assets/materialize/css/materialize.min.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="<?= $path; ?>assets/css/app.css" />
-
-
 </head>
 
 <body>
