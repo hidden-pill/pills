@@ -1,29 +1,5 @@
 <?php
 
-$checkTrending = null;
-$checkHot = null;
-$checkCreated = null;
-$checkCommented = null;
-$class = 'class="active"';
-
-if(isset($_GET['filter'])){
-    switch($_GET['filter']) {
-    case 'trending':
-        $checkTrending = $class;
-        break;
-    case 'hot':
-        $checkHot = $class;
-        break;
-    case 'created':
-        $checkCreated = $class;
-        break;
-    case 'commented':
-        $checkCommented = $class;
-        break;
-    default;
-    }
-}
-
 $identifier = '';
 $errorList = array();
 $message='';
@@ -68,6 +44,6 @@ if (isset($_GET['action'])) {
         //destruction de la session
         session_destroy();
         //redirection de la page vers l'index
-        header('location:index.php');
+        header('location:' .$path. 'index.php');
     }
 }
