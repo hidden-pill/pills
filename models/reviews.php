@@ -39,6 +39,8 @@ class Reviews extends Database {
                     . '`t`.`tag`,'
                     . 'COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, '
                     . 'COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,'
+                    . 'IF(COUNT(`up`.`upvote`) > 0, (ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) - COUNT(IF(`up`.`upvote` = 1, 1, NULL)))), 1000) AS `upvoteStdDev`,'
+                    . 'COUNT(`up`.`upvote`) AS `upvoteCount`,'
                     . 'COUNT(`com`.`id`) AS `comCount`'
                 . 'FROM `reviews` AS `rv`'
                     . 'JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`'
