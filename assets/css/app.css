@@ -132,13 +132,67 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     top: -44px;
     background-color: black;
     color: white;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
 }
 .reviewTitle{
     grid-row: span 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 12px;
+}
+.reviewTitle h2 {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+.pillIcon {
+    width: 100px;
+    height: 40px;
+    border-radius: 20000px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-self: auto;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.1em;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+}
+.pillIcon p{
+    text-shadow: 0 0 4px white;
+    cursor: default;
+}
+.pillIcon i {
+    cursor: pointer;
+    color: grey;
 }
 .reviewContent{
     grid-row: span 2;
+    text-overflow: ellipsis;
 }
 .reviewFooter{
     grid-row: span 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.reviewFooter img{
+        height: 50px;
+
 }

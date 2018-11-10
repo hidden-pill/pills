@@ -156,7 +156,6 @@ FROM `reviews` AS `rv`
 GROUP BY `rv`.`id`
 ORDER BY `upCount`, `rv`.`date` DESC;
 
-# jsépo
 SELECT 
 	`rv`.`id`,
 	`rv`.`title`,
@@ -169,7 +168,8 @@ SELECT
 	COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, 
     COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,
     COUNT(`up`.`upvote`) AS `upvoteCount`,
-	COUNT(IF(`up`.`upvote` = 0, 1, NULL)) * COUNT(IF(`up`.`upvote` = 1, 1, NULL)) / COUNT(`up`.`upvote`),
+	IF(COUNT(`up`.`upvote`) > 0, (ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) - COUNT(IF(`up`.`upvote` = 1, 1, NULL)))), 10000) AS `upvoteStdDev`,
+    IF(DATEDIFF(NOW(), `rv`.`date`) = 0, ABS(DATE_FORMAT(NOW(), '%T') - DATE_FORMAT(`rv`.`date`, '%T')), DATEDIFF(NOW(), `rv`.`date`)) AS `reviewPastTime`,
     COUNT(`com`.`id`) AS `comCount`
 FROM `reviews` AS `rv`
 	JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`
@@ -179,4 +179,31 @@ FROM `reviews` AS `rv`
 	LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`
     LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`
 GROUP BY `rv`.`id`
-ORDER BY `upvoteCount` DESC;
+ORDER BY `upvoteStdDev` ASC, `upvoteCount` ASC;
+
+SELECT 
+	`rv`.`id`,
+	`rv`.`title`,
+	`rv`.`review`,
+	`rv`.`date`,
+    `us`.`pseudo`,
+    `co`.`name`,
+    `co`.`image`,
+    `t`.`tag`, 
+	COUNT(IF(`up`.`upvote` = 1, 1, NULL)) AS `upCount`, 
+    COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `downCount`,
+    COUNT(`up`.`upvote`) AS `upvoteCount`,
+	IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) - COUNT(IF(`up`.`upvote` = 1, 1, NULL))), 10000) AS `upvoteStdDev`,
+    IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 1, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 1, 1, NULL)) > COUNT(IF(`up`.`upvote` = 0, 1, NULL)), +10, -10)) , 0) AS `red`,
+    IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) > COUNT(IF(`up`.`upvote` = 1, 1, NULL)), +10, -10)) , 0) AS `blue`,
+    IF(DATEDIFF(NOW(), `rv`.`date`) = 0,  CONCAT(ABS(DATE_FORMAT(NOW(), '%T') - DATE_FORMAT(`rv`.`date`, '%T')), 'h') , DATEDIFF(NOW(), `rv`.`date`)) AS `reviewPastTime`,
+    COUNT(`com`.`id`) AS `comCount`
+FROM `reviews` AS `rv`
+	JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`
+    JOIN `culturalobjects` AS `co` ON `rv`.`id_culturalobjects` = `co`.`id`
+    LEFT JOIN `reviewsTags` AS `rvt` ON `rvt`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `tags` AS `t` ON `t`.`id` = `rvt`.`id_tags`
+	LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`
+    LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`
+GROUP BY `rv`.`id`
+ORDER BY  `upvoteStdDev` ASC,`upvoteCount` DESC;

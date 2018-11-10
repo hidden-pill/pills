@@ -74,3 +74,5 @@
       </div>
     </nav>
   </div>
+
+  <?= $review->pillColor < 0? 255 + $review->pillColor: 255; ?>

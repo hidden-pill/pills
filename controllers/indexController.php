@@ -11,12 +11,13 @@ if(isset($_GET['order'])){
             $order = '`rv`.`date` DESC';
             break;        
         case 'top':
-            $order = '`upCount`';
+            $order = '`upCount` DESC';
             break;        
         case 'controversial':
-            $order = '`upvoteStdDev` ASC, `upvoteCount` ASC';
+            $order = '`upvoteStdDev` ASC, `upvoteCount` DESC';
             break;
     }
 }
 $reviews = new Reviews();
 $reviewsList = $reviews->selectReviews($order);
+
