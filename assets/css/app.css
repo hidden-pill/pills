@@ -126,6 +126,9 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     border-radius: 2px;
     box-shadow: 0 0 10px #3c3c3c;
 }
+.review:hover{
+    box-shadow: 0 0 10px black;
+}
 .reviewImage{
     grid-row: span 4;
     height: 100%;
@@ -154,9 +157,15 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     align-items: center;
     margin-right: 12px;
 }
+.titleTags{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
 .reviewTitle h2 {
     font-size: 1.2em;
     font-weight: 700;
+    padding-right: 4px; 
 }
 .pillIcon {
     width: 100px;
@@ -197,7 +206,7 @@ transform: scale(1.2);
 .reviewContent{
     grid-row: span 2;
     text-overflow: "..";
-    overflow: hidden visible;
+    overflow: hidden;
 }
 .reviewFooter{
     grid-row: span 1;

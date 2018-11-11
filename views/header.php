@@ -24,7 +24,7 @@ include_once $path.'controllers/headerController.php';
     <li><a href="#!"><i class="material-icons">settings</i>Mes paramètres</a></li>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
-    <li><a href="#!"><i class="material-icons">add_circle_outline</i>Ajouter un artist</a></li>
+    <li><a href="#!"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
     <li><a href="#!"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
     <?php if($_SESSION['rank'] > 1){?>
     <li class="divider"></li>
