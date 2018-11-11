@@ -75,7 +75,7 @@ class Reviews extends Database {
                         . ') `sc` ON `sc`.`scid_culturalObjects` = `rv`.`id_culturalObjects`'
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
                 . 'GROUP BY `rv`.`id`'
-                . 'ORDER BY'.$order;
+                . 'ORDER BY' .$order;
         $reviews = $this->db->prepare($query);
         if($reviews->execute()){
             if (is_object($reviews)) {
