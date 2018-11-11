@@ -12,7 +12,7 @@
     <div class="reviewTitle">
         <h2><?= $review->title; ?></h2>
 <span class="pillIcon" <?php if($review->red != 0 && $review->blue != 0){?> style="background-color: rgb(<?= $review->red > $review->blue? $review->red : 0; ?>, 0, <?= $review->blue > $review->red? $review->blue : 0; ?>)"<?php } ?>>
-    <i class="material-icons">add_circle</i>
+    <i class="material-icons voted">add_circle</i>
     <p>
     <?php if(($review->upCount + $review->downCount) != 0){
         if($review->upCount >= $review->downCount){
@@ -30,11 +30,11 @@
     <pre class="reviewContent"><?= $review->review; ?></pre>
     <div class="reviewFooter">
         <a href="<?= $review->pseudo; ?>">
-            <img src="assets/images/<?= $review->imageUs; ?>" />
-            <?= $review->pseudo; ?>
+            <img class="userImage" src="assets/images/<?= $review->imageUs; ?>" />
+            <p><?= $review->pseudo; ?></p>
         </a>
         <a class="btn waves-effect waves-light black">
-            <?= $review->comCount; ?><?= $review->pseudo; ?><?= $review->reviewPastTime; ?><i class="material-icons right">send</i>
+            Voir la critique<i class="material-icons right">send</i>
         </a>
 
     </div>

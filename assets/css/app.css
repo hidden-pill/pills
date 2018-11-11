@@ -3,6 +3,12 @@
 ::after {
     box-sizing: content-box;
 }
+.container{
+    width: 100%;
+}
+a{
+    color: white;
+}
 .nav-extended{
     background-color: #000000cc;
 }
@@ -15,6 +21,7 @@
     display: flex;
     justify-content: center;
 }
+
 #logo{
     position: relative;
     padding-left: 20px;
@@ -31,7 +38,6 @@
 #logo img:last-child:hover{
     transform: scale(1.1);
 }
-
 .autocomplete-content{
     position: absolute;
 }
@@ -39,7 +45,6 @@
     width: 100%;
 }
 .card {
-
     position: relative;
     margin: .5rem 0 1rem 0;
     background-color: #fff;
@@ -48,7 +53,6 @@
     transition: box-shadow .25s;
     transition: box-shadow .25s, -webkit-box-shadow .25s;
     border-radius: 5000px;
-
 }
 #autocomplete-input {
 
@@ -115,7 +119,8 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: repeat(4, 1fr);
-    height: 300px;
+    height: 50vh;
+    max-height: 300px;
     margin-top: 20px;
     background-color: #0000008e;
     border-radius: 2px;
@@ -174,16 +179,25 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     /* Likely future */
 }
 .pillIcon p{
-    text-shadow: 0 0 4px white;
+    text-shadow: 0 0 6px white;
     cursor: default;
 }
 .pillIcon i {
     cursor: pointer;
     color: grey;
 }
+.pillIcon i:hover {
+transform: scale(1.2);
+}
+.voted{
+    transform: scale(1.2);
+    color: black !important;
+    text-shadow: 0 0 1px grey;
+}
 .reviewContent{
     grid-row: span 2;
-    text-overflow: ellipsis;
+    text-overflow: "..";
+    overflow: hidden visible;
 }
 .reviewFooter{
     grid-row: span 1;
@@ -192,7 +206,41 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     justify-content: space-between;
     align-items: center;
 }
-.reviewFooter img{
-        height: 50px;
+.reviewFooter a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: scale(1.1);
+    font-size: 0.7rem;
+    padding-left: 4px; 
+}
+.reviewFooter a:nth-child(2) {
+    transform: scale(1.1);
+}
+.reviewFooter a:hover {
+    transform: scale(1);
+}
+.reviewFooter p {
+    padding: 12px 0 0 4px;
+}
+.reviewFooter .userImage{
+    width: 2rem;
+    height: 2rem;
+}
 
+@media (max-width: 992px) {
+    #logo img:first-child {
+        display: none;
+    }
+
+    #logo img:last-child {
+        top: 0;
+        left: -45px;
+    }
+    .reviewFooter a:nth-child(2) {
+        transform: scale(1);
+    }
+    .reviewFooter a:nth-child(2):hover {
+        transform: scale(0.9) translate(10px);
+    }
 }
