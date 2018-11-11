@@ -7,15 +7,15 @@
       <object class="reviewImage" data="assets/images/<?= $review->image; ?>" title="<?= $review->name; ?>">
         <img class="reviewImage" src="assets/images/default-poster.png" alt="default-poster">
       </object>
-      <p><?= $review->id; ?></p>
+      <p><?= $review->scoreAVG; ?></p>
     </a>
     <div class="reviewTitle">
         <div class="titleTags">
             <a href=""><h2><?= $review->title; ?></h2></a>
             <a href="test"><span class="new badge" data-badge-caption="#<?= $review->tag; ?>"></span></a>
         </div>
-        <span class="pillIcon" <?php if($review->red != 0 && $review->blue != 0){?> style="background-color: rgb(<?= $review->red > $review->blue? $review->red : 0; ?>, 0, <?= $review->blue > $review->red? $review->blue : 0; ?>)"<?php } ?>>
-    <i class="material-icons voted">add_circle</i>
+        <span class="pillIcon" <?php if(($review->red + $review->blue) != 0){?> style="background-color: rgb(<?= $review->red > $review->blue? $review->red : 0; ?>, 0, <?= $review->blue > $review->red? $review->blue : 0; ?>)"<?php } ?>>
+    <i class="material-icons">add_circle</i>
     <p>
     <?php if(($review->upCount + $review->downCount) != 0){
         if($review->upCount >= $review->downCount){

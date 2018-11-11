@@ -9,8 +9,12 @@
 a{
     color: white;
 }
+#sidenav-overlay{
+    z-index: 99;
+}
 .nav-extended{
-    background-color: #000000cc;
+    background-color: #000000ef;
+    box-shadow: 0 0 10px black;
 }
 .navbar-fixed {
     height: 112px;
@@ -20,6 +24,7 @@ a{
 .tabs{
     display: flex;
     justify-content: center;
+    z-index: 98;
 }
 
 #logo{
@@ -44,19 +49,14 @@ a{
 .new-wrapper{
     width: 100%;
 }
-.card {
-    position: relative;
-    margin: .5rem 0 1rem 0;
-    background-color: #fff;
-    -webkit-transition: -webkit-box-shadow .25s;
-    transition: -webkit-box-shadow .25s;
-    transition: box-shadow .25s;
-    transition: box-shadow .25s, -webkit-box-shadow .25s;
-    border-radius: 5000px;
+.search{
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
 }
 #autocomplete-input {
-
-    display: block;
+    background-color: #fff;
+    border-radius: 500px;
     font-size: 16px;
     font-weight: 300;
     width: 100%;
@@ -64,23 +64,19 @@ a{
     margin: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 0 45px 0 15px;
     border: 0;
 
 }
-#nav-mobile li.search .search-wrapper i.material-icons {
 
-    position: absolute;
-    top: -8px;
-    right: 10px;
+.search .material-icons {
     cursor: pointer;
     color:#3c3c3c;
     z-index: 901;
-
 }
 .autocomplete-content{
     width: 251.667px;
 }
+
 .userImage{
     border-radius: 5000px;
     border: white 2px solid;
@@ -200,8 +196,13 @@ transform: scale(1.2);
 }
 .voted{
     transform: scale(1.2);
-    color: black !important;
-    text-shadow: 0 0 1px grey;
+    text-shadow: 0 0 1px white;
+}
+.up{
+    color: red !important;
+}
+.down{
+    color: blue !important;
 }
 .reviewContent{
     grid-row: span 2;

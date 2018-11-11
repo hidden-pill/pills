@@ -24,8 +24,8 @@ include_once $path.'controllers/headerController.php';
     <li><a href="#!"><i class="material-icons">settings</i>Mes paramètres</a></li>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
-    <li><a href="#!"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
-    <li><a href="#!"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
+    <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
+    <li><a href="<?= $path; ?>views/addArtwork.php"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
     <?php if($_SESSION['rank'] > 1){?>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/admin.php"><i class="material-icons">settings</i>Admin</a></li>
@@ -44,10 +44,8 @@ include_once $path.'controllers/headerController.php';
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="search">
-            <div class="search-wrapper card">
-              <input type="text" id="autocomplete-input" class="autocomplete" />
-              <i class="material-icons">search</i>
-            </div>
+            <input type="text" id="autocomplete-input" class="autocomplete" />
+            <i class="material-icons">search</i>
           </li>
           <?php if(!isset($_SESSION['isConnect'])){ ?>
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
@@ -63,9 +61,29 @@ include_once $path.'controllers/headerController.php';
           <?php } ?>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
+          <li class="search">
+            <div class="search-wrapper card">
+              <input type="text" id="autocomplete-input" class="autocomplete" />
+              <i class="material-icons">search</i>
+            </div>
+          </li>
+          <?php if(!isset($_SESSION['isConnect'])){ ?>
+          <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
+          <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>
+          <?php } else { ?>
+          <li><a href=""><i class="material-icons">face</i>Ma page</a></li>
+          <li><a href=""><i class="material-icons">settings</i>Mes paramètres</a></li>
+          <li class="divider"></li>
+          <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
+          <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
+          <li><a href="<?= $path; ?>views/addArtwork.php"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
+          <?php if($_SESSION['rank'] > 1){?>
+          <li class="divider"></li>
+          <li><a href="<?= $path; ?>views/admin.php"><i class="material-icons">settings</i>Admin</a></li>
+          <?php } ?>
+          <li class="divider"></li>
+          <li><a href="?action=disconnect"><i class="material-icons">exit_to_app</i>Se déconnecter</a></li>
+          <?php } ?>
         </ul>
       </div>
       <div>

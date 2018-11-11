@@ -491,6 +491,10 @@ ALTER TABLE `upvotes`
         CHANGE `id_reviews` `id_reviews` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_users` `id_users` INT(11) NULL DEFAULT NULL;
 
+ALTER TABLE `scores` 
+        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL;
+
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
 # INSERT
