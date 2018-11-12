@@ -27,7 +27,6 @@ if(isset($_POST['submitLogin'])){
                 //On rempli la session avec les attributs de l'objet issus de l'hydratation
                 $_SESSION['pseudo'] = $user->pseudo;
                 $_SESSION['id'] = $user->id;
-                $_SESSION['image'] = $user->image;
                 $_SESSION['rank'] = $user->id_ranks;
                 $_SESSION['isConnect'] = true;
             }else{

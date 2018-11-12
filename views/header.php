@@ -53,7 +53,7 @@ include_once $path.'controllers/headerController.php';
           <?php } else { ?>
           <li>
             <a class="dropdown-button" href="#!" data-activates="dropdown1">
-              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/<?= $_SESSION['image']; ?>" alt="image utilisateur" />
+              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/users/<?= $_SESSION['id']; ?>.png" alt="image utilisateur" onerror="this.onerror=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';"  onabort="this.onabort=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';" />
               <span><?= $_SESSION['pseudo']; ?></span>
               <i class="material-icons right">arrow_drop_down</i>
             </a>

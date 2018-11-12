@@ -6,7 +6,6 @@ class Reviews extends Database {
     public $title = null;
     public $review = null;
     public $date = null;
-    public $image = null;
 
     public function __constructor() {
         parent::__construct();
@@ -14,13 +13,12 @@ class Reviews extends Database {
 
     public function insertReview() {
         $query = 'INSERT INTO `' .SALT. 'reviews`'
-                    . '(`title`, `review`, `image`, `id_users`, `id_culturalObjects`)'
+                    . '(`title`, `review`, `id_users`, `id_culturalObjects`)'
                 . 'VALUES '
-                    . '(:title, :review, :image, :id_users, :id_culturalObjects)';
+                    . '(:title, :review, :id_users, :id_culturalObjects)';
         $result = $this->db->prepare($query);
         $result->bindValue(':title', $this->title, PDO::PARAM_STR);
         $result->bindValue(':review', $this->review, PDO::PARAM_STR);
-        $result->bindValue(':image', $this->image, PDO::PARAM_STR);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
         $result->bindValue(':id_culturalObjects', $this->id_culturalObjects, PDO::PARAM_INT);
         return $result->execute();
@@ -31,16 +29,14 @@ class Reviews extends Database {
         $query = 'SELECT'
                     . '`rv`.`id`,'
                     . '`rv`.`title`,'
-                    . '`rv`.`review`,'
+                    . 'SUBSTRING(`rv`.`review`, 1, 800) AS `review`,'
                     . '`us`.`id` AS `idUs`,'
                     . '`us`.`pseudo`,'
-                    . '`us`.`image` AS `imageUs`,'
                     . '`co`.`name`,'
-                    . '`co`.`image`,'
                     . '`t`.`tag`,'
-                    . '	IF(DATEDIFF(NOW(), `rv`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`rv`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `rv`.`date`), \'j\')) AS `reviewPastTime`,'
+                    . 'IF(DATEDIFF(NOW(), `rv`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`rv`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `rv`.`date`), \'j\')) AS `reviewPastTime`,'
                     . 'COUNT(`com`.`id`) AS `comCount`,'
-                    . '`scoreAVG`,'
+                    . 'IF(AVG(`sc`.`score`) < 0, \'null\', TRUNCATE(AVG(`sc`.`score`), 2)) AS `scoreAVG`,'
                     . 'IF(`red` > 0, `red`, 0) AS `red`,'
                     . 'IF(`blue` > 0, `blue`, 0) AS `blue`,'
                     . 'IF(`upvoteCount` > 0, `upvoteCount`, 0) AS `upvoteCount`,'
@@ -65,14 +61,7 @@ class Reviews extends Database {
                             . 'LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`'
                             . 'GROUP BY `rv`.`id`'
                         . ') `up` ON `up`.`upid_reviews` = `rv`.`id`'
-                    . 'LEFT JOIN ('
-                        . 'SELECT'
-                            . '`sc`.`id_culturalObjects` AS `scid_culturalObjects`,'
-                            . 'TRUNCATE(AVG(`sc`.`score`), 2) AS `scoreAVG`'
-                        . 'FROM `reviews` AS `rv`'
-                            . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_culturalObjects` = `rv`.`id`'
-                            . 'GROUP BY `rv`.`id`'
-                        . ') `sc` ON `sc`.`scid_culturalObjects` = `rv`.`id_culturalObjects`'
+                    . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_culturalObjects` = `rv`.`id_culturalobjects`'
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
                 . 'GROUP BY `rv`.`id`'
                 . 'ORDER BY' .$order;

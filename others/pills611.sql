@@ -45,7 +45,6 @@ CREATE TABLE culturalObjects(
         name            Varchar (100) NOT NULL ,
         releaseDate     Date NOT NULL ,
         synopsis        Text NOT NULL ,
-        image           Varchar (100) NOT NULL ,
         budget          Int NOT NULL ,
         validation      Bool NOT NULL ,
         id_articleTypes Int NOT NULL
@@ -109,7 +108,6 @@ CREATE TABLE artists(
         birthDate  Date NOT NULL ,
         deathDate  Date NOT NULL ,
         biography  Text NOT NULL ,
-        image      Varchar (100) NOT NULL ,
         validation Bool NOT NULL
 	,CONSTRAINT artists_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
@@ -139,7 +137,6 @@ CREATE TABLE users(
         newsletter   Bool NOT NULL ,
         birthDate    Date NOT NULL ,
         creationDate Date NOT NULL ,
-        image        Varchar (100) NOT NULL ,
         experience   Int NOT NULL ,
         id_questions Int NOT NULL ,
         id_ranks     Int NOT NULL
@@ -434,6 +431,7 @@ CREATE TABLE ACO(
 
 
 
+
 #------------------------------------------------------------
 # ALTER
 #------------------------------------------------------------
@@ -443,13 +441,11 @@ ALTER TABLE `users` ADD UNIQUE( `pseudo`, `email`);
 
 ALTER TABLE `users` 
         CHANGE `creationDate` `creationDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, 
-        CHANGE `image` `image` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default_profile.png', 
         CHANGE `experience` `experience` INT(11) NOT NULL DEFAULT '0', 
         CHANGE `id_ranks` `id_ranks` INT(11) NOT NULL DEFAULT '1';
 
 ALTER TABLE `culturalobjects` 
         CHANGE `budget` `budget` INT(11) NULL DEFAULT NULL,
-        CHANGE `image` `image` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'default_poster.png', 
         CHANGE `validation` `validation` TINYINT(1) NOT NULL DEFAULT '0';
 
 ALTER TABLE `reviews` CHANGE `date` `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
@@ -521,9 +517,9 @@ INSERT INTO `articleTypes` (`articleType`) VALUES ('Livre');
 INSERT INTO `articleTypes` (`articleType`) VALUES ('Comics');
 
 INSERT INTO `users` 
-        (`pseudo`, `password`, `email`, `secretAnswer`, `newsletter`, `birthDate`, `creationDate`, `image`, `experience`, `id_questions`, `id_ranks`) 
+        (`pseudo`, `password`, `email`, `secretAnswer`, `newsletter`, `birthDate`, `creationDate`, `experience`, `id_questions`, `id_ranks`) 
         VALUES
-        ('ADMIN', '$2y$10$VC.Qnv3QniLISGGiztaI0uxP7CAtQ9CdqpVlkSgtuUUitpLsU7vla', 'emmanuel.galland117@gmail.com', 'oslo', '1', '1994-02-12', '2018-11-05 20:20:53', 'default_profile.png', '0', '1', '3');
+        ('ADMIN', '$2y$10$VC.Qnv3QniLISGGiztaI0uxP7CAtQ9CdqpVlkSgtuUUitpLsU7vla', 'emmanuel.galland117@gmail.com', 'oslo', '1', '1994-02-12', '2018-11-05 20:20:53',  '0', '1', '3');
 
 INSERT INTO `culturalobjects`
                 (`name`, 

@@ -31,6 +31,19 @@ class Database {
             die('Erreur : ' . $e->getMessage());
         }
     }
+
+    public function getLastInsertId() {
+        $result = 0;
+        $query = 'SELECT LAST_INSERT_ID() AS `id`';
+        $result = $this->db->prepare($query);
+        if($result->execute()){
+            if (is_object($result)) {
+                $result = $result->fetch(PDO::FETCH_COLUMN);
+            }
+        }
+        return $result;
+    }
+
     /**
      * __destruct de la connection à la db
      */

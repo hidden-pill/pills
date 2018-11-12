@@ -73,7 +73,7 @@ if(isset($_POST['submitRegister'])){
         $user->secretQuestion = $secretQuestion;
         $user->secretAnswer = $secretAnswer;
         $user->newsletter = $newsletter;
-        if(!$user->insertReview()){
+        if(!$user->userInsert()){
             echo 'raté';
         }
     }
