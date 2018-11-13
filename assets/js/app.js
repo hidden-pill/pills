@@ -21,4 +21,6 @@ $(document).ready(function () {
   $('.dropdown-button').dropdown({
     constrainWidth: false // Does not change width of dropdown to that of the activator
   });
+  
+  $('#textarea1').trigger('autoresize');
 });

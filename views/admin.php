@@ -31,8 +31,6 @@ include_once '../controllers/adminController.php';
       <?php } ?>
     </ul>
     <?php } ?>
-    <p>Vous n'avez pas accès à cette page</p>
-    <a href="/pills">Retour à l'accueil</a>
     <?php } else { ?>
     <p>Vous n'avez pas accès à cette page</p>
     <a href="/pills">Retour à l'accueil</a>

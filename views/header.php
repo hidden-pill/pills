@@ -1,6 +1,6 @@
 <?php
 session_start();
-$path = $_SERVER['PHP_SELF'] != '/pills/index.php'? '../': '';
+$path = $_SERVER['PHP_SELF'] != '/index.php'? '../': '';
 include_once $path.'config.php';
 include_once $path.'controllers/headerController.php';
 ?>
@@ -88,10 +88,10 @@ include_once $path.'controllers/headerController.php';
       </div>
       <div>
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/pills/trending' ? 'class="active"' : '' ; ?>href="/pills/trending">Tendances</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/pills/new' ? 'class="active"' : '' ; ?>href="/pills/new">Nouveaux</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/pills/top' ? 'class="active"' : '' ; ?>href="/pills/top">Top</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/pills/controversial' ? 'class="active"' : '' ; ?>href="/pills/controversial">Contesté</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/trending' ? 'class="active"' : '' ; ?>href="/trending">Tendances</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/new' ? 'class="active"' : '' ; ?>href="/new">Nouveaux</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/top' ? 'class="active"' : '' ; ?>href="/top">Top</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/controversial' ? 'class="active"' : '' ; ?>href="/controversial">Contesté</a></li>
         </ul>
       </div>
     </nav>
