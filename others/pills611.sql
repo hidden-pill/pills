@@ -37,24 +37,6 @@ CREATE TABLE articleTypes(
 
 
 #------------------------------------------------------------
-# Table: culturalObjects
-#------------------------------------------------------------
-
-CREATE TABLE culturalObjects(
-        id              Int NOT NULL ,
-        name            Varchar (100) NOT NULL ,
-        releaseDate     Date NOT NULL ,
-        synopsis        Text NOT NULL ,
-        budget          Int NOT NULL ,
-        validation      Bool NOT NULL ,
-        id_articleTypes Int NOT NULL
-	,CONSTRAINT culturalObjects_PK PRIMARY KEY (id)
-
-	,CONSTRAINT culturalObjects_articleTypes_FK FOREIGN KEY (id_articleTypes) REFERENCES articleTypes(id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: nationalities
 #------------------------------------------------------------
 
@@ -148,6 +130,64 @@ CREATE TABLE users(
 
 
 #------------------------------------------------------------
+# Table: proposals
+#------------------------------------------------------------
+
+CREATE TABLE proposals(
+        id       Int NOT NULL ,
+        proposal Text NOT NULL ,
+        date     Date NOT NULL ,
+        id_users Int NOT NULL
+	,CONSTRAINT proposals_PK PRIMARY KEY (id)
+
+	,CONSTRAINT proposals_users_FK FOREIGN KEY (id_users) REFERENCES users(id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: levels
+#------------------------------------------------------------
+
+CREATE TABLE levels(
+        id      Int NOT NULL ,
+        level   Int NOT NULL ,
+        reachXp Int NOT NULL
+	,CONSTRAINT levels_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: distributors
+#------------------------------------------------------------
+
+CREATE TABLE distributors(
+        id          Int NOT NULL ,
+        distributor Varchar (50) NOT NULL
+	,CONSTRAINT distributors_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: culturalObjects
+#------------------------------------------------------------
+
+CREATE TABLE culturalObjects(
+        id              Int NOT NULL ,
+        name            Varchar (100) NOT NULL ,
+        releaseDate     Date NOT NULL ,
+        synopsis        Text NOT NULL ,
+        budget          Int NOT NULL ,
+        validation      Bool NOT NULL ,
+        id_articleTypes Int NOT NULL ,
+        id_distributors Int NOT NULL
+	,CONSTRAINT culturalObjects_PK PRIMARY KEY (id)
+
+	,CONSTRAINT culturalObjects_articleTypes_FK FOREIGN KEY (id_articleTypes) REFERENCES articleTypes(id)
+	,CONSTRAINT culturalObjects_distributors0_FK FOREIGN KEY (id_distributors) REFERENCES distributors(id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
 # Table: reviews
 #------------------------------------------------------------
 
@@ -162,21 +202,6 @@ CREATE TABLE reviews(
 
 	,CONSTRAINT reviews_users_FK FOREIGN KEY (id_users) REFERENCES users(id)
 	,CONSTRAINT reviews_culturalObjects0_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: proposals
-#------------------------------------------------------------
-
-CREATE TABLE proposals(
-        id       Int NOT NULL ,
-        proposal Text NOT NULL ,
-        date     Date NOT NULL ,
-        id_users Int NOT NULL
-	,CONSTRAINT proposals_PK PRIMARY KEY (id)
-
-	,CONSTRAINT proposals_users_FK FOREIGN KEY (id_users) REFERENCES users(id)
 )ENGINE=InnoDB;
 
 
@@ -242,32 +267,6 @@ CREATE TABLE scores(
 
 
 #------------------------------------------------------------
-# Table: levels
-#------------------------------------------------------------
-
-CREATE TABLE levels(
-        id      Int NOT NULL ,
-        level   Int NOT NULL ,
-        reachXp Int NOT NULL
-	,CONSTRAINT levels_PK PRIMARY KEY (id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
-# Table: distributors
-#------------------------------------------------------------
-
-CREATE TABLE distributors(
-        id                 Int NOT NULL ,
-        distributor        Varchar (50) NOT NULL ,
-        id_culturalObjects Int
-	,CONSTRAINT distributors_PK PRIMARY KEY (id)
-
-	,CONSTRAINT distributors_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: rewards
 #------------------------------------------------------------
 
@@ -296,19 +295,19 @@ CREATE TABLE ACONationalities(
 
 
 #------------------------------------------------------------
-# Table: AOCCountries
+# Table: ACOCountries
 #------------------------------------------------------------
 
-CREATE TABLE AOCCountries(
+CREATE TABLE ACOCountries(
         id                 Int NOT NULL ,
         id_culturalObjects Int NOT NULL ,
         id_artists         Int NOT NULL ,
         id_countries       Int NOT NULL
-	,CONSTRAINT AOCCountries_PK PRIMARY KEY (id)
+	,CONSTRAINT ACOCountries_PK PRIMARY KEY (id)
 
-	,CONSTRAINT AOCCountries_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-	,CONSTRAINT AOCCountries_artists0_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
-	,CONSTRAINT AOCCountries_countries1_FK FOREIGN KEY (id_countries) REFERENCES countries(id)
+	,CONSTRAINT ACOCountries_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
+	,CONSTRAINT ACOCountries_artists0_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
+	,CONSTRAINT ACOCountries_countries1_FK FOREIGN KEY (id_countries) REFERENCES countries(id)
 )ENGINE=InnoDB;
 
 
@@ -365,7 +364,7 @@ CREATE TABLE COGenres(
 CREATE TABLE trailers(
         id                 Int NOT NULL ,
         trailer            Varchar (100) NOT NULL ,
-        id_culturalObjects Int
+        id_culturalObjects Int NOT NULL
 	,CONSTRAINT trailers_PK PRIMARY KEY (id)
 
 	,CONSTRAINT trailers_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
@@ -431,7 +430,6 @@ CREATE TABLE ACO(
 
 
 
-
 #------------------------------------------------------------
 # ALTER
 #------------------------------------------------------------
@@ -453,7 +451,7 @@ ALTER TABLE `reviews` CHANGE `date` `date` DATETIME NOT NULL DEFAULT CURRENT_TIM
 
 ALTER TABLE `aco` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `aconationalities` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `aoccountries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `acocountries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `articletypes` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `artists` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `artistsjobs` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
@@ -495,7 +493,7 @@ ALTER TABLE `aconationalities`
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL; 
 
-ALTER TABLE `aoccountries` 
+ALTER TABLE `acocountries` 
         CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL; 
 
@@ -529,16 +527,6 @@ INSERT INTO `users`
         VALUES
         ('ADMIN', '$2y$10$VC.Qnv3QniLISGGiztaI0uxP7CAtQ9CdqpVlkSgtuUUitpLsU7vla', 'emmanuel.galland117@gmail.com', 'oslo', '1', '1994-02-12', '2018-11-05 20:20:53',  '0', '1', '3');
 
-INSERT INTO `culturalobjects`
-                (`name`, 
-                `releaseDate`, 
-                `synopsis`, 
-                `id_articleTypes`) 
-        VALUES 
-                ('Matrix', 
-                '1999-06-23', 
-                'Thomas A. Anderson (Keanu Reeves), un jeune informaticien connu dans le monde du hacking sous le pseudonyme de Neo16, est contacté via son ordinateur par ce qu’il pense être un groupe de hackers. Ils lui font découvrir que le monde dans lequel il vit n’est qu’un monde virtuel dans lequel les êtres humains sont gardés inconsciemment sous contrôle.', 
-                1 );
 
 INSERT INTO `countries` (`country`) VALUES ('Afghanistan');
 INSERT INTO `countries` (`country`) VALUES ('Afrique du Sud');
