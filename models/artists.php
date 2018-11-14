@@ -11,7 +11,7 @@ class Artists extends Database {
 
     public function selectArtists() {
         $artist = [];
-        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `id_validations` FROM `' .SALT. 'artists`';
+        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `validation` FROM `' .SALT. 'artists`';
         $artist = Database::getInstance()->query($query);
         if($artist->execute()){
             if (is_object($artist)) {
