@@ -17,7 +17,7 @@ class Artists extends Database {
     public function selectArtists() {
         $artist = [];
         $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `image`, `id_validations` FROM `' .SALT. 'artists`';
-        $artist = $this->db->query($query);
+        $artist = Database::getInstance()->query($query);
         if($artist->execute()){
             if (is_object($artist)) {
                 $result = $artist->fetchAll(PDO::FETCH_OBJ);

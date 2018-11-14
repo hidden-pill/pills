@@ -11,14 +11,11 @@ class CulturalObjects extends Database {
     public $id_articleTypes	= null;
     public $id_validations = null;
 
-    public function __constructor() {
-        parent::__construct();
-    }
 
     public function selectCulturalObjects() {
         $culturalObject = [];
         $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `budget`, `id_articleTypes`, `validation` FROM `' .SALT. 'culturalobjects`';
-        $culturalObject = $this->db->query($query);
+        $culturalObject = Database::getInstance()->query($query);
         if($culturalObject->execute()){
             if (is_object($culturalObject)) {
                 $result = $culturalObject->fetchAll(PDO::FETCH_OBJ);

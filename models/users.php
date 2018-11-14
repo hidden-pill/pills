@@ -12,14 +12,11 @@ class Users extends Database {
     public $creationDate = null;
     public $experience = null;
 
-    public function __constructor() {
-        parent::__construct();
-    }
 
         public function userConnection() {
         $state = false;
         $query = 'SELECT `id`, `pseudo`, `password`, `id_ranks` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
-        $result = $this->db->prepare($query);
+        $result = Database::getInstance()->prepare($query);
         $result->bindValue(':identifier', $this->identifier, PDO::PARAM_STR);
         if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
             $selectResult = $result->fetch(PDO::FETCH_OBJ);
@@ -40,7 +37,7 @@ class Users extends Database {
                . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`)'
                . 'VALUES '
                . '(:pseudo, :birthDate, :password, :email, :secretQuestion, :secretAnswer, :newsletter)';
-        $result = $this->db->prepare($query);
+        $result = Database::getInstance()->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $result->bindValue(':password', $this->password, PDO::PARAM_STR);
         $result->bindValue(':email', $this->email, PDO::PARAM_STR);
@@ -54,7 +51,7 @@ class Users extends Database {
     public function selectUsers() {
         $user = [];
         $query = 'SELECT `id`, `pseudo`, `birthdate`, `email`, `creationDate` FROM `' .SALT. 'users`';
-        $user = $this->db->query($query);
+        $user = Database::getInstance()->query($query);
         if($user->execute()){
             if (is_object($user)) {
                 $result = $user->fetchAll(PDO::FETCH_OBJ);

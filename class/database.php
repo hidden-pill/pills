@@ -4,38 +4,28 @@
  */
 class Database {
     
-    protected $db;
-    private $host = '';
-    private $port = '';
-    private $dbname = '';
-    private $charset = '';
-    private $account = '';
-    private $password = '';
+    private static $_db;
 
     /**
-     * __construct lorsqu'on veut se connecter à la bdd
+     *  connect to database with singleton
      */
-    public function __construct() {
-        // essai de connection à la bdd
-        $this->host = HOST;
-        $this->port = PORT;
-        $this->dbname = DBNAME;
-        $this->charset = CHARSET;
-        $this->account = ACCOUNT;
-        $this->password = PASSWORD;
+    public static function getInstance() {
 
-        try {
-            $this->db = new PDO('mysql:host=' .$this->host. ';port=' .$this->port. ';dbname=' .$this->dbname. ';charset=' .$this->charset. ';', $this->account, $this->password);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //TODO REMOVE TO AVOID DISPLAYING SQL ERROR
-        } catch (Exception $e) { //si la connection echoue on affiche le message d'erreur
-            die('Erreur : ' . $e->getMessage());
+        if(is_null(self::$_db)){
+            try {
+                self::$_db = new PDO('mysql:host=' .HOST. ';port=' .PORT. ';dbname=' .DBNAME. ';charset=' .CHARSET. ';', ACCOUNT, PASSWORD);
+                self::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //TODO REMOVE TO AVOID DISPLAYING SQL ERROR
+            } catch (Exception $e) { // catch error message
+                die('Erreur : ' . $e->getMessage());
+            }
         }
+        return self::$_db;
     }
 
     public function getLastInsertId() {
         $result = 0;
         $query = 'SELECT LAST_INSERT_ID() AS `id`';
-        $result = $this->db->prepare($query);
+        $result = self::getInstance()->prepare($query);
         if($result->execute()){
             if (is_object($result)) {
                 $result = $result->fetch(PDO::FETCH_COLUMN);

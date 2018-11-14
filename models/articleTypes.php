@@ -12,7 +12,7 @@ class ArticleTypes extends Database {
     public function selectArticleTypes() {
         $articleType = [];
         $query = 'SELECT `id`, `articleType` FROM `' .SALT. 'articletypes`';
-        $articleType = $this->db->query($query);
+        $articleType = Database::getInstance()->query($query);
         if($articleType->execute()){
             if (is_object($articleType)) {
                 $result = $articleType->fetchAll(PDO::FETCH_OBJ);

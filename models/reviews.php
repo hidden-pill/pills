@@ -7,16 +7,13 @@ class Reviews extends Database {
     public $review = null;
     public $date = null;
 
-    public function __constructor() {
-        parent::__construct();
-    }
 
     public function insertReview() {
         $query = 'INSERT INTO `' .SALT. 'reviews`'
                     . '(`title`, `review`, `id_users`, `id_culturalObjects`)'
                 . 'VALUES '
                     . '(:title, :review, :id_users, :id_culturalObjects)';
-        $result = $this->db->prepare($query);
+        $result = Database::getInstance()->prepare($query);
         $result->bindValue(':title', $this->title, PDO::PARAM_STR);
         $result->bindValue(':review', $this->review, PDO::PARAM_STR);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
@@ -65,7 +62,7 @@ class Reviews extends Database {
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
                 . 'GROUP BY `rv`.`id`'
                 . 'ORDER BY' .$order;
-        $reviews = $this->db->prepare($query);
+        $reviews = Database::getInstance()->prepare($query);
         if($reviews->execute()){
             if (is_object($reviews)) {
                 $result = $reviews->fetchAll(PDO::FETCH_OBJ);
