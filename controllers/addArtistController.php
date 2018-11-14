@@ -6,6 +6,7 @@ $name = '';
 $jobsArray = [];
 $nationalitiesArray = [];
 $countriesArray = [];
+$culturalObjectsArray = [];
 $birthDate = '0000-00-00';
 $deathDate = '0000-00-00';
 $bio = '';
@@ -35,7 +36,9 @@ if(isset($_POST['submitArtist'])){
                 $jobsArray[] += $job;
             }
         }
-    } 
+    } else {
+        $errorArtistForm['jobs'] = 'ERROR_JOBS';
+    }
 
     if(!empty($_POST['nationalities'])){
         foreach($_POST['nationalities'] as $nationality){
@@ -53,6 +56,16 @@ if(isset($_POST['submitArtist'])){
                 $errorArtistForm['countries'] = 'ERROR_COUNTRIES';
             } else {
                 $countriesArray[] += $country;
+            }
+        }
+    } 
+
+    if(!empty($_POST['culturalObjects'])){
+        foreach($_POST['culturalObjects'] as $culturalObject){
+            if(!is_numeric($culturalObject)){
+                $errorArtistForm['culturalObjects'] = 'ERROR_CO';
+            } else {
+                $culturalObjectsArray[] += $culturalObject;
             }
         }
     } 
@@ -79,26 +92,50 @@ if(isset($_POST['submitArtist'])){
     }
     
 
-    if(count($errorArtistForm) == 10000){
+    if(count($errorArtistForm) == 0){
         $newArtist = new Artists();
         $newArtist->name = $name;
         $newArtist->birthDate = $birthDate;
         $newArtist->deathDate = $deathDate;
         $newArtist->bio = $bio;
         $newArtistJobs = new ArtistsJobs();
-        $newArtistJobs->jobsArray = $jobsArray;
         $newArtistNationalities = new ACONationalities();
-        $newArtistNationalities->nationalitiesArray = $nationalitiesArray;
         $newArtistCountries = new ACOCountries();
-        $newArtistCountries->countriesArray = $countriesArray;
-        if(1 == 1){
-            echo 'raté';
-        } else{
-            $first_path = $image['tmp_name'];
-            $end_path = '../assets/images/artworks/' .$newReview->getLastInsertId(). '.png';
-            if (!move_uploaded_file($first_path, $end_path)) {
-                echo 'yee';
+        $newArtistCO = new ACO();
+
+        try {
+            Database::getInstance()->beginTransaction();
+            $newArtist->insertArtist();
+            $artistID = $newArtist->getLastInsertId();
+            foreach ($jobsArray as $job) {
+                $newArtistJobs->job = $job;
+                $newArtistJobs->artistID = $artistID;
+                $newArtistJobs->insertArtistsJobs();
             }
+            foreach ($nationalitiesArray as $nationality) {
+                $newArtistNationalities->nationality = $nationality;
+                $newArtistNationalities->artistID = $artistID;
+                $newArtistNationalities->insertArtistNationalities();
+            }
+            foreach ($countriesArray as $country) {
+                $newArtistCountries->country = $country;
+                $newArtistCountries->artistID = $artistID;
+                $newArtistCountries->insertArtistCountries();
+            }
+            foreach ($culturalObjectsArray as $co) {
+                $newArtistCO->co = $co;
+                $newArtistCO->artistID = $artistID;
+                $newArtistCO->insertArtistCO();
+            }
+            if(isset($image)){
+                $first_path = $image['tmp_name'];
+                $end_path = '../assets/images/artists/' .$artistID. '.png';
+                move_uploaded_file($first_path, $end_path);
+            }
+            Database::getInstance()->commit();
+        } catch (Exception $e) { // catch error message
+            Database::getInstance()->rollback();
+            die('Erreur : ' . $e->getMessage());
         }
     }
 }

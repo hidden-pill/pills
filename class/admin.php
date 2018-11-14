@@ -2,13 +2,11 @@
 
 class Admin extends Database {
 
-    public function __constructor() {
-        parent::__construct();
-    }
+
     public function showTables(){
         $column = [];
         $query = 'SHOW TABLES';
-        $column = $this->db->prepare($query);
+        $column = Database::getInstance()->prepare($query);
         if($column->execute()){
             if (is_object($column)) {
                 $result = $column->fetchAll(PDO::FETCH_OBJ);
@@ -19,7 +17,7 @@ class Admin extends Database {
     public function showColumns($table) {
         $column = [];
         $query = 'SHOW COLUMNS FROM  `' .SALT.$table. '`';
-        $column = $this->db->prepare($query);
+        $column = Database::getInstance()->prepare($query);
         if($column->execute()){
             if (is_object($column)) {
                 $result = $column->fetchAll(PDO::FETCH_OBJ);
@@ -31,7 +29,7 @@ class Admin extends Database {
     public function getAllInTable($table) {
         $all = [];
         $query = 'SELECT * FROM  `' .SALT.$table. '`';
-        $all = $this->db->prepare($query);
+        $all = Database::getInstance()->prepare($query);
         if($all->execute()){
             if (is_object($all)) {
                 $result = $all->fetchAll(PDO::FETCH_OBJ);
@@ -43,7 +41,7 @@ class Admin extends Database {
     public function deleteInTable($table) {
         $delete = [];
         $query = 'DELETE FROM  `' .SALT.$table. '` WHERE `id` = :id';
-        $delete = $this->db->prepare($query);
+        $delete = Database::getInstance()->prepare($query);
         $delete->bindValue(':id', $this->id, PDO::PARAM_STR);
         return $delete->execute();
     }

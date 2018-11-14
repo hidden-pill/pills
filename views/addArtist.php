@@ -6,9 +6,9 @@ include_once '../controllers/addArtistController.php';
     <input name="name" type="text" />
     <div class="input-field">
         <select multiple name="jobs[]" id="jobs">
-            <option value="1" disabled selected>Métier</option>
+            <option disabled selected>Métier</option>
             <?php foreach ($jobsList as $job) { ?>
-            <?php if($job->id != 1){ ?><option value="<?= $job->id; ?>" <?= $job == $job->id? 'selected': '';?>><?= $job->job; ?></option><?php } ?>
+            <option value="<?= $job->id; ?>" <?= $job == $job->id? 'selected': '';?>><?= $job->job; ?></option>
             <?php } ?>
         </select>
         <label for="jobs">Choix du/des métier(s)</label>
@@ -26,7 +26,7 @@ include_once '../controllers/addArtistController.php';
         <select multiple name="countries[]" id="countries">
             <option disabled selected>Pays</option>
             <?php foreach ($countriesList as $country) { ?>
-            <option value="<?= $country->id; ?>" <?= $country == $country->id? 'selected': '';?>><?= $country->country; ?></option>
+            <option value="<?= $country->id; ?>" <?= $country == $country->id? 'selected': '';?>><?= $country->country; ?>
             <?php } ?>
         </select>
         <label for="countries">Choix du/des pays</label>
@@ -46,7 +46,7 @@ include_once '../controllers/addArtistController.php';
     <label for="textarea1">Textarea</label>
     <div class="file-field input-field">
       <div class="btn">
-        <span>PHoto (.png)</span>
+        <span>image.png</span>
         <input type="file" name="image">
       </div>
       <div class="file-path-wrapper">

@@ -7,16 +7,11 @@ class Artists extends Database {
     public $birthDate = null;
     public $deathDate = null;
     public $biography = null;
-    public $image = null;
     public $id_validations = null;
-
-    public function __constructor() {
-        parent::__construct();
-    }
 
     public function selectArtists() {
         $artist = [];
-        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `image`, `id_validations` FROM `' .SALT. 'artists`';
+        $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `id_validations` FROM `' .SALT. 'artists`';
         $artist = Database::getInstance()->query($query);
         if($artist->execute()){
             if (is_object($artist)) {
@@ -24,5 +19,18 @@ class Artists extends Database {
             }
         }
         return $result;
+    }
+
+    public function insertArtist(){
+        $query = 'INSERT INTO `' .SALT. 'artists`'
+        . '(`name`, `birthDate`, `deathDate`, `biography`)'
+        . 'VALUES '
+        . '(:name, :birthDate, :deathDate, :biography)';
+        $artist = Database::getInstance()->prepare($query);
+        $artist->bindValue(':name', $this->name, PDO::PARAM_STR);
+        $artist->bindValue(':birthDate', $this->birthDate, PDO::PARAM_STR);
+        $artist->bindValue(':deathDate', $this->deathDate, PDO::PARAM_STR);
+        $artist->bindValue(':biography', $this->bio, PDO::PARAM_STR);
+        return $artist->execute();
     }
 }

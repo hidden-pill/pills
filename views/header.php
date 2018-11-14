@@ -35,7 +35,7 @@ include_once $path.'controllers/headerController.php';
   </ul>
     <nav class="nav-extended">
       <div class="nav-wrapper">
-        <a href="/pills" class="brand-logo">
+        <a href="/" class="brand-logo">
           <div id="logo">
             <img src="<?= $path; ?>assets/images/pillsolo.png" />
             <img src="<?= $path; ?>assets/images/pilltxtsolo90.png" />

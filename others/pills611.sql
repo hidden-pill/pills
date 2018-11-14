@@ -491,6 +491,14 @@ ALTER TABLE `scores`
         CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL;
 
+ALTER TABLE `aconationalities` 
+        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL; 
+
+ALTER TABLE `aoccountries` 
+        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL; 
+
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
 # INSERT
