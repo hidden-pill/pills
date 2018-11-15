@@ -91,7 +91,6 @@ if(isset($_POST['submitArtist'])){
         }
     }
     
-
     if(count($errorArtistForm) == 0){
         $newArtist = new Artists();
         $newArtist->name = $name;
@@ -137,5 +136,7 @@ if(isset($_POST['submitArtist'])){
             Database::getInstance()->rollback();
             die('Erreur : ' . $e->getMessage());
         }
+    } else {
+        var_dump($errorArtistForm);
     }
 }

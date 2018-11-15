@@ -4,7 +4,7 @@
 <?php foreach ($reviewsList as $review){ ?>
 <div class="review">
     <a href="" class="reviewImage">
-      <object class="reviewImage" data="assets/images/<?= $review->id; ?>" title="<?= $review->name; ?>" onerror="this.onerror=null;this.src='assets/images/artworks/default_poster.png';"  onabort="this.onabort=null;this.src='assets/images/artworks/default_default_posterprofile.png';"">
+      <object class="reviewImage" data="assets/images/artworks/<?= $review->artworkID; ?>.png" title="<?= $review->name; ?>" onerror="this.onerror=null;this.src='assets/images/artworks/default_poster.png';"  onabort="this.onabort=null;this.src='assets/images/artworks/default_default_posterprofile.png';"">
         <img class="reviewImage" src="assets/images/artworks/default_poster.png" alt="default-poster">
       </object>
       <p><?= $review->scoreAVG; ?></p>

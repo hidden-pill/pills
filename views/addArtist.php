@@ -26,7 +26,7 @@ include_once '../controllers/addArtistController.php';
         <select multiple name="countries[]" id="countries">
             <option disabled selected>Pays</option>
             <?php foreach ($countriesList as $country) { ?>
-            <option value="<?= $country->id; ?>" <?= $country == $country->id? 'selected': '';?>><?= $country->country; ?>
+            <option value="<?= $country->id; ?>" <?= $country == $country->id? 'selected': '';?>><?= $country->country; ?></option>
             <?php } ?>
         </select>
         <label for="countries">Choix du/des pays</label>

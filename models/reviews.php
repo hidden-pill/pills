@@ -17,7 +17,7 @@ class Reviews extends Database {
         $result->bindValue(':title', $this->title, PDO::PARAM_STR);
         $result->bindValue(':review', $this->review, PDO::PARAM_STR);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
-        $result->bindValue(':id_artworks', $this->artworks, PDO::PARAM_INT);
+        $result->bindValue(':id_artworks', $this->id_artworks, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -29,6 +29,7 @@ class Reviews extends Database {
                     . 'SUBSTRING(`rv`.`review`, 1, 800) AS `review`,'
                     . '`us`.`id` AS `idUs`,'
                     . '`us`.`pseudo`,'
+                    . '`a`.`id` AS `artworkID`,' 
                     . '`a`.`name`,'
                     . '`t`.`tag`,'
                     . 'IF(DATEDIFF(NOW(), `rv`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`rv`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `rv`.`date`), \'j\')) AS `reviewPastTime`,'
