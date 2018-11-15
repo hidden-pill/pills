@@ -24,8 +24,8 @@ $countries = new Countries();
 $countriesList = $countries->selectCountries();
 $artists = new Artists();
 $artistsList = $artists->selectArtists();
-$plateforms = new VOD();
-$plateformsList = $plateforms->selectVOD();
+$plateforms = new Plateforms();
+$plateformsList = $plateforms->selectPlateforms();
 
 if(isset($_POST['submitArtwork'])){
 
@@ -105,7 +105,7 @@ if(isset($_POST['submitArtwork'])){
         }
     } 
 
-    if(count($errorArtworkForm) == 0){
+    if(count($errorArtworkForm) == 10000){
         $newArtwork = new Artworks();
         $newArtwork->name = $name;
 

@@ -3,11 +3,11 @@ include_once 'header.php';
 include_once '../controllers/addReviewController.php';
 ?>
 <form action="addReview.php" method="POST" enctype="multipart/form-data">
-    <label class="" for="culturalObject">Choix de l'oeuvre culturel</label>
-    <select id="culturalObject" name="culturalObject">
+    <label class="" for="artwork">Choix de l'oeuvre</label>
+    <select id="artwork" name="artwork">
     <option selected disabled>Choisir une oeuvre</option>
-    <?php foreach ($coList as $co) { ?>
-    <option value="<?= $co->id; ?>" <?= $culturalObject == $co->id? 'selected': '';?>><?= $co->name; ?></option>
+    <?php foreach ($artworksList as $artwork) { ?>
+    <option value="<?= $artwork->id; ?>" <?= $artwork == $artwork->id? 'selected': '';?>><?= $artwork->name; ?></option>
     <?php } ?>
     </select>
 

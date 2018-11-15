@@ -6,7 +6,7 @@ $name = '';
 $jobsArray = [];
 $nationalitiesArray = [];
 $countriesArray = [];
-$culturalObjectsArray = [];
+$artworksArray = [];
 $birthDate = '0000-00-00';
 $deathDate = '0000-00-00';
 $bio = '';
@@ -17,8 +17,8 @@ $nationalities = new Nationalities();
 $nationalitiesList = $nationalities->selectNationalities();
 $countries = new Countries();
 $countriesList = $countries->selectCountries();
-$culturalObject = new CulturalObjects();
-$coList = $culturalObject->selectCulturalObjects();
+$artwork = new Artworks();
+$artworksList = $artwork->selectArtworks();
 
 if(isset($_POST['submitArtist'])){
 
@@ -60,12 +60,12 @@ if(isset($_POST['submitArtist'])){
         }
     } 
 
-    if(!empty($_POST['culturalObjects'])){
-        foreach($_POST['culturalObjects'] as $culturalObject){
-            if(!is_numeric($culturalObject)){
-                $errorArtistForm['culturalObjects'] = 'ERROR_CO';
+    if(!empty($_POST['artworks'])){
+        foreach($_POST['artworks'] as $artwork){
+            if(!is_numeric($artwork)){
+                $errorArtistForm['artworks'] = 'ERROR_ARTWORKS';
             } else {
-                $culturalObjectsArray[] += $culturalObject;
+                $artworksArray[] += $artwork;
             }
         }
     } 
@@ -99,9 +99,9 @@ if(isset($_POST['submitArtist'])){
         $newArtist->deathDate = $deathDate;
         $newArtist->bio = $bio;
         $newArtistJobs = new ArtistsJobs();
-        $newArtistNationalities = new ACONationalities();
-        $newArtistCountries = new ACOCountries();
-        $newArtistCO = new ACO();
+        $newArtistNationalities = new AANationalities();
+        $newArtistCountries = new AACountries();
+        $newArtistArtwork = new AA();
 
         try {
             Database::getInstance()->beginTransaction();
@@ -122,10 +122,10 @@ if(isset($_POST['submitArtist'])){
                 $newArtistCountries->artistID = $artistID;
                 $newArtistCountries->insertArtistCountries();
             }
-            foreach ($culturalObjectsArray as $co) {
-                $newArtistCO->co = $co;
-                $newArtistCO->artistID = $artistID;
-                $newArtistCO->insertArtistCO();
+            foreach ($artworksArray as $artwork) {
+                $newArtistArtwork->artwork = $artwork;
+                $newArtistArtwork->artistID = $artistID;
+                $newArtistArtwork->insertArtistCO();
             }
             if(isset($image)){
                 $first_path = $image['tmp_name'];

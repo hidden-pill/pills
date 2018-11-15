@@ -10,14 +10,14 @@ class Reviews extends Database {
 
     public function insertReview() {
         $query = 'INSERT INTO `' .SALT. 'reviews`'
-                    . '(`title`, `review`, `id_users`, `id_culturalObjects`)'
+                    . '(`title`, `review`, `id_users`, `id_artworks`)'
                 . 'VALUES '
-                    . '(:title, :review, :id_users, :id_culturalObjects)';
+                    . '(:title, :review, :id_users, :id_artworks)';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':title', $this->title, PDO::PARAM_STR);
         $result->bindValue(':review', $this->review, PDO::PARAM_STR);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
-        $result->bindValue(':id_culturalObjects', $this->id_culturalObjects, PDO::PARAM_INT);
+        $result->bindValue(':id_artworks', $this->artworks, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -29,7 +29,7 @@ class Reviews extends Database {
                     . 'SUBSTRING(`rv`.`review`, 1, 800) AS `review`,'
                     . '`us`.`id` AS `idUs`,'
                     . '`us`.`pseudo`,'
-                    . '`co`.`name`,'
+                    . '`a`.`name`,'
                     . '`t`.`tag`,'
                     . 'IF(DATEDIFF(NOW(), `rv`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`rv`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `rv`.`date`), \'j\')) AS `reviewPastTime`,'
                     . 'COUNT(`com`.`id`) AS `comCount`,'
@@ -42,7 +42,7 @@ class Reviews extends Database {
                     . 'IF(`upvoteStdDev` > 0, `upvoteStdDev`, 0) AS `upvoteStdDev`'
                 . 'FROM `reviews` AS `rv`'
                     . 'JOIN `users` AS `us` ON `rv`.`id_users` = `us`.`id`'
-                    . 'JOIN `culturalobjects` AS `co` ON `rv`.`id_culturalobjects` = `co`.`id`'
+                    . 'JOIN `artworks` AS `a` ON `rv`.`id_artworks` = `a`.`id`'
                     . 'LEFT JOIN `reviewsTags` AS `rvt` ON `rvt`.`id_reviews` = `rv`.`id`'
                     . 'LEFT JOIN `tags` AS `t` ON `t`.`id` = `rvt`.`id_tags`'
                     . 'LEFT JOIN ('
@@ -58,7 +58,7 @@ class Reviews extends Database {
                             . 'LEFT JOIN `upvotes` AS `up` ON `up`.`id_reviews` = `rv`.`id`'
                             . 'GROUP BY `rv`.`id`'
                         . ') `up` ON `up`.`upid_reviews` = `rv`.`id`'
-                    . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_culturalObjects` = `rv`.`id_culturalobjects`'
+                    . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `rv`.`id_artworks`'
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
                 . 'GROUP BY `rv`.`id`'
                 . 'ORDER BY' .$order;

@@ -1,14 +1,14 @@
 <?php
 
-class ACOCountries extends Database {
+class AACountries extends Database {
 
     public $id = null;
-    public $id_culturalObjects = null;
+    public $id_countries = null;
     public $id_artists = null;
 
 
     public function insertArtistCountries(){
-        $query = 'INSERT INTO `' .SALT. 'AOCCountries`'
+        $query = 'INSERT INTO `' .SALT. 'AACountries`'
         . '(`id_artists`, `id_countries`)'
         . 'VALUES'
         . '(:id_artists, :id_countries)';

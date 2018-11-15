@@ -168,10 +168,10 @@ CREATE TABLE distributors(
 
 
 #------------------------------------------------------------
-# Table: culturalObjects
+# Table: artworks
 #------------------------------------------------------------
 
-CREATE TABLE culturalObjects(
+CREATE TABLE artworks(
         id              Int NOT NULL ,
         name            Varchar (100) NOT NULL ,
         releaseDate     Date NOT NULL ,
@@ -180,10 +180,11 @@ CREATE TABLE culturalObjects(
         validation      Bool NOT NULL ,
         id_articleTypes Int NOT NULL ,
         id_distributors Int NOT NULL
-	,CONSTRAINT culturalObjects_PK PRIMARY KEY (id)
+	,CONSTRAINT artworks_PK PRIMARY KEY (id)
 
-	,CONSTRAINT culturalObjects_articleTypes_FK FOREIGN KEY (id_articleTypes) REFERENCES articleTypes(id)
-	,CONSTRAINT culturalObjects_distributors0_FK FOREIGN KEY (id_distributors) REFERENCES distributors(id)
+	,CONSTRAINT artworks_articleTypes_FK FOREIGN KEY (id_articleTypes) REFERENCES articleTypes(id)
+	,CONSTRAINT artworks_distributors0_FK FOREIGN KEY (id_distributors) REFERENCES distributors(id)
+	,CONSTRAINT artworks_distributors_AK UNIQUE (id_distributors)
 )ENGINE=InnoDB;
 
 
@@ -192,16 +193,16 @@ CREATE TABLE culturalObjects(
 #------------------------------------------------------------
 
 CREATE TABLE reviews(
-        id                 Int NOT NULL ,
-        title              Varchar (255) NOT NULL ,
-        review             Text NOT NULL ,
-        date               Date NOT NULL ,
-        id_users           Int NOT NULL ,
-        id_culturalObjects Int NOT NULL
+        id          Int NOT NULL ,
+        title       Varchar (255) NOT NULL ,
+        review      Text NOT NULL ,
+        date        Date NOT NULL ,
+        id_users    Int NOT NULL ,
+        id_artworks Int NOT NULL
 	,CONSTRAINT reviews_PK PRIMARY KEY (id)
 
 	,CONSTRAINT reviews_users_FK FOREIGN KEY (id_users) REFERENCES users(id)
-	,CONSTRAINT reviews_culturalObjects0_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
+	,CONSTRAINT reviews_artworks0_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 )ENGINE=InnoDB;
 
 
@@ -253,14 +254,14 @@ CREATE TABLE upvotes(
 #------------------------------------------------------------
 
 CREATE TABLE scores(
-        id                 Int NOT NULL ,
-        score              Int NOT NULL ,
-        id_culturalObjects Int NOT NULL ,
-        id_artists         Int NOT NULL ,
-        id_users           Int
+        id          Int NOT NULL ,
+        score       Int NOT NULL ,
+        id_artworks Int NOT NULL ,
+        id_artists  Int NOT NULL ,
+        id_users    Int
 	,CONSTRAINT scores_PK PRIMARY KEY (id)
 
-	,CONSTRAINT scores_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
+	,CONSTRAINT scores_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 	,CONSTRAINT scores_artists0_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
 	,CONSTRAINT scores_users1_FK FOREIGN KEY (id_users) REFERENCES users(id)
 )ENGINE=InnoDB;
@@ -278,36 +279,36 @@ CREATE TABLE rewards(
 
 
 #------------------------------------------------------------
-# Table: ACONationalities
+# Table: AANationalities
 #------------------------------------------------------------
 
-CREATE TABLE ACONationalities(
-        id                 Int NOT NULL ,
-        id_artists         Int NOT NULL ,
-        id_culturalObjects Int NOT NULL ,
-        id_nationalities   Int NOT NULL
-	,CONSTRAINT ACONationalities_PK PRIMARY KEY (id)
+CREATE TABLE AANationalities(
+        id               Int NOT NULL ,
+        id_artists       Int NOT NULL ,
+        id_artworks      Int NOT NULL ,
+        id_nationalities Int NOT NULL
+	,CONSTRAINT AANationalities_PK PRIMARY KEY (id)
 
-	,CONSTRAINT ACONationalities_artists_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
-	,CONSTRAINT ACONationalities_culturalObjects0_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-	,CONSTRAINT ACONationalities_nationalities1_FK FOREIGN KEY (id_nationalities) REFERENCES nationalities(id)
+	,CONSTRAINT AANationalities_artists_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
+	,CONSTRAINT AANationalities_artworks0_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT AANationalities_nationalities1_FK FOREIGN KEY (id_nationalities) REFERENCES nationalities(id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: ACOCountries
+# Table: AACountries
 #------------------------------------------------------------
 
-CREATE TABLE ACOCountries(
-        id                 Int NOT NULL ,
-        id_culturalObjects Int NOT NULL ,
-        id_artists         Int NOT NULL ,
-        id_countries       Int NOT NULL
-	,CONSTRAINT ACOCountries_PK PRIMARY KEY (id)
+CREATE TABLE AACountries(
+        id           Int NOT NULL ,
+        id_artworks  Int NOT NULL ,
+        id_artists   Int NOT NULL ,
+        id_countries Int NOT NULL
+	,CONSTRAINT AACountries_PK PRIMARY KEY (id)
 
-	,CONSTRAINT ACOCountries_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-	,CONSTRAINT ACOCountries_artists0_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
-	,CONSTRAINT ACOCountries_countries1_FK FOREIGN KEY (id_countries) REFERENCES countries(id)
+	,CONSTRAINT AACountries_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT AACountries_artists0_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
+	,CONSTRAINT AACountries_countries1_FK FOREIGN KEY (id_countries) REFERENCES countries(id)
 )ENGINE=InnoDB;
 
 
@@ -342,18 +343,18 @@ CREATE TABLE reviewsTags(
 
 
 #------------------------------------------------------------
-# Table: COGenres
+# Table: artworksGenres
 #------------------------------------------------------------
 
-CREATE TABLE COGenres(
-        id                 Int NOT NULL ,
-        id_culturalObjects Int NOT NULL ,
-        id_genres          Int NOT NULL
-	,CONSTRAINT COGenres_PK PRIMARY KEY (id)
+CREATE TABLE artworksGenres(
+        id          Int NOT NULL ,
+        id_artworks Int NOT NULL ,
+        id_genres   Int NOT NULL
+	,CONSTRAINT artworksGenres_PK PRIMARY KEY (id)
 
-	,CONSTRAINT COGenres_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-	,CONSTRAINT COGenres_genres0_FK FOREIGN KEY (id_genres) REFERENCES genres(id)
-	,CONSTRAINT COGenres_genres_AK UNIQUE (id_genres)
+	,CONSTRAINT artworksGenres_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT artworksGenres_genres0_FK FOREIGN KEY (id_genres) REFERENCES genres(id)
+	,CONSTRAINT artworksGenres_genres_AK UNIQUE (id_genres)
 )ENGINE=InnoDB;
 
 
@@ -362,39 +363,39 @@ CREATE TABLE COGenres(
 #------------------------------------------------------------
 
 CREATE TABLE trailers(
-        id                 Int NOT NULL ,
-        trailer            Varchar (100) NOT NULL ,
-        id_culturalObjects Int NOT NULL
+        id          Int NOT NULL ,
+        trailer     Varchar (100) NOT NULL ,
+        id_artworks Int NOT NULL
 	,CONSTRAINT trailers_PK PRIMARY KEY (id)
 
-	,CONSTRAINT trailers_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
+	,CONSTRAINT trailers_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: VOD
+# Table: PLATEFORMS
 #------------------------------------------------------------
 
-CREATE TABLE VOD(
-        id      Int NOT NULL ,
-        website Varchar (50) NOT NULL
-	,CONSTRAINT VOD_PK PRIMARY KEY (id)
+CREATE TABLE PLATEFORMS(
+        id        Int NOT NULL ,
+        plateform Varchar (50) NOT NULL
+	,CONSTRAINT PLATEFORMS_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: COVOD
+# Table: artworksPlateforms
 #------------------------------------------------------------
 
-CREATE TABLE COVOD(
-        id                 Int NOT NULL ,
-        id_culturalObjects Int NOT NULL ,
-        id_VOD             Int NOT NULL
-	,CONSTRAINT COVOD_PK PRIMARY KEY (id)
+CREATE TABLE artworksPlateforms(
+        id            Int NOT NULL ,
+        id_artworks   Int NOT NULL ,
+        id_PLATEFORMS Int NOT NULL
+	,CONSTRAINT artworksPlateforms_PK PRIMARY KEY (id)
 
-	,CONSTRAINT COVOD_culturalObjects_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
-	,CONSTRAINT COVOD_VOD0_FK FOREIGN KEY (id_VOD) REFERENCES VOD(id)
-	,CONSTRAINT COVOD_VOD_AK UNIQUE (id_VOD)
+	,CONSTRAINT artworksPlateforms_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT artworksPlateforms_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
+	,CONSTRAINT artworksPlateforms_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
 )ENGINE=InnoDB;
 
 
@@ -413,17 +414,17 @@ CREATE TABLE reports(
 
 
 #------------------------------------------------------------
-# Table: ACO
+# Table: AA
 #------------------------------------------------------------
 
-CREATE TABLE ACO(
-        id                 Int NOT NULL ,
-        id_artists         Int NOT NULL ,
-        id_culturalObjects Int NOT NULL
-	,CONSTRAINT ACO_PK PRIMARY KEY (id)
+CREATE TABLE AA(
+        id          Int NOT NULL ,
+        id_artists  Int NOT NULL ,
+        id_artworks Int NOT NULL
+	,CONSTRAINT AA_PK PRIMARY KEY (id)
 
-	,CONSTRAINT ACO_artists_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
-	,CONSTRAINT ACO_culturalObjects0_FK FOREIGN KEY (id_culturalObjects) REFERENCES culturalObjects(id)
+	,CONSTRAINT AA_artists_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
+	,CONSTRAINT AA_artworks0_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 )ENGINE=InnoDB;
 
 
@@ -442,24 +443,24 @@ ALTER TABLE `users`
         CHANGE `experience` `experience` INT(11) NOT NULL DEFAULT '0', 
         CHANGE `id_ranks` `id_ranks` INT(11) NOT NULL DEFAULT '1';
 
-ALTER TABLE `culturalobjects` 
+ALTER TABLE `artworks` 
         CHANGE `budget` `budget` INT(11) NULL DEFAULT NULL,
         CHANGE `validation` `validation` TINYINT(1) NOT NULL DEFAULT '0';
 
 ALTER TABLE `reviews` CHANGE `date` `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 
-ALTER TABLE `aco` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `aconationalities` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `acocountries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `AA` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `AANationalities` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `AAcountries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `articletypes` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `artists` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `artistsjobs` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `cogenres` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `artworksGenres` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `comments` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `countries` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `covod` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `culturalobjects` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `artworksPlateforms` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `artworks` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `distributors` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `genres` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `jobs` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
@@ -477,7 +478,7 @@ ALTER TABLE `tags` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `trailers` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `upvotes` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `users` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
-ALTER TABLE `vod` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `plateforms` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `upvotes` 
         CHANGE `id_proposals` `id_proposals` INT(11) NULL DEFAULT NULL, 
@@ -486,15 +487,15 @@ ALTER TABLE `upvotes`
         CHANGE `id_users` `id_users` INT(11) NULL DEFAULT NULL;
 
 ALTER TABLE `scores` 
-        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_artworks` `id_artworks` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL;
 
-ALTER TABLE `aconationalities` 
+ALTER TABLE `AANationalities` 
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL, 
-        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL; 
+        CHANGE `id_artworks` `id_artworks` INT(11) NULL DEFAULT NULL; 
 
-ALTER TABLE `acocountries` 
-        CHANGE `id_culturalObjects` `id_culturalObjects` INT(11) NULL DEFAULT NULL, 
+ALTER TABLE `AACountries` 
+        CHANGE `id_artworks` `id_artworks` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL; 
 
 SET FOREIGN_KEY_CHECKS = 1;
@@ -507,13 +508,6 @@ INSERT INTO `ranks` (`rank`) VALUES ('mod');
 INSERT INTO `ranks` (`rank`) VALUES ('admin');
 
 INSERT INTO `questions` (`question`) VALUES ('Quel est le nom de votre premier animal de compagnie?');
-
-INSERT INTO `jobs` (`job`) VALUES ('Non renseigné');
-INSERT INTO `nationalities` (`nationality`) VALUES ('Non renseigné');
-INSERT INTO `countries` (`country`) VALUES ('Non renseigné');
-INSERT INTO `genres` (`genre`) VALUES ('Non renseigné');
-INSERT INTO `VOD` (`website`) VALUES ('Non renseigné');
-INSERT INTO `artists` (`name`) VALUES ('Non renseigné');
 
 INSERT INTO `articleTypes` (`articleType`) VALUES ('Film');
 INSERT INTO `articleTypes` (`articleType`) VALUES ('Série');

@@ -1,6 +1,6 @@
 <?php
 
-class CulturalObjects extends Database {
+class Artworks extends Database {
 
     public $id = null;
     public $name = null;
@@ -12,9 +12,9 @@ class CulturalObjects extends Database {
     public $id_validations = null;
 
 
-    public function selectCulturalObjects() {
+    public function selectArtworks() {
         $culturalObject = [];
-        $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `budget`, `id_articleTypes`, `validation` FROM `' .SALT. 'culturalobjects`';
+        $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `budget`, `id_articleTypes`, `validation` FROM `' .SALT. 'artworks`';
         $culturalObject = Database::getInstance()->query($query);
         if($culturalObject->execute()){
             if (is_object($culturalObject)) {

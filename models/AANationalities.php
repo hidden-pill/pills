@@ -1,8 +1,10 @@
 <?php
 
-class ACONationalities extends Database {
+class AANationalities extends Database {
 
     public $id = null;
+    public $id_nationalities = null;
+    public $id_artists = null;
 
     public function insertArtistNationalities(){
         $query = 'INSERT INTO `' .SALT. 'ACONationalities`'

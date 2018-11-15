@@ -51,13 +51,13 @@ include_once '../controllers/addArtworkController.php';
             <option value="<?= $artist->id; ?>" <?= $artist == $artist->id? 'selected': '';?>><?= $artist->name; ?></option>
             <?php } ?>
         </select>
-        <label for="culturalObjects">Choix du/des artistes</label>
+        <label for="artists">Choix du/des artistes</label>
     </div>
     <div class="input-field">
         <select multiple name="plateforms[]" id="plateforms">
             <option disabled selected>Plateforme</option>
             <?php foreach ($plateformsList as $plateform) { ?>
-            <option value="<?= $plateform->id; ?>" <?= $plateform == $plateform->id? 'selected': '';?>><?= $plateform->website; ?></option>
+            <option value="<?= $plateform->id; ?>" <?= $plateform == $plateform->id? 'selected': '';?>><?= $plateform->plateform; ?></option>
             <?php } ?>
         </select>
         <label for="plateforms">Choix du/des plateforme(s)</label>

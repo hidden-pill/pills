@@ -1,20 +1,19 @@
 <?php
 
-$culturalObject = '';
 $title = '';
 $review = '';
 $image = '';
 $errorReviewForm = [];
 
-$culturalObject = new CulturalObjects();
-$coList = $culturalObject->selectCulturalObjects();
+$artwork = new Artworks();
+$artworksList = $artwork->selectArtworks();
 
 if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
     $id = htmlspecialchars($_SESSION['id']);
-    if (!empty($_POST['culturalObject'])) {
-        $culturalObject = htmlspecialchars($_POST['culturalObject']);
+    if (!empty($_POST['artwork'])) {
+        $artwork = htmlspecialchars($_POST['artwork']);
     }else{
-        $errorReviewForm['culturalObject'] = 'ERROR_CO';
+        $errorReviewForm['artwork'] = 'ERROR_ARTWORK';
     }
 
     if (!empty($_POST['title'])) {
@@ -41,7 +40,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
 
     if (count($errorReviewForm) == 0) {
         $newReview = new Reviews();
-        $newReview->id_culturalObjects = $culturalObject;
+        $newReview->id_artworks = $artwork;
         $newReview->title = $title;
         $newReview->review = $review;
         $newReview->image = $image;
