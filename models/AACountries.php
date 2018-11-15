@@ -17,4 +17,15 @@ class AACountries extends Database {
         $artistCountry->bindValue(':id_countries', $this->country, PDO::PARAM_INT);
         return $artistCountry->execute();
     }
+
+    public function insertArtworkCountries(){
+        $query = 'INSERT INTO `' .SALT. 'AACountries`'
+        . '(`id_artworks`, `id_countries`)'
+        . 'VALUES'
+        . '(:id_artworks, :id_countries)';
+        $artistCountry = Database::getInstance()->prepare($query);
+        $artistCountry->bindValue(':id_artworks', $this->artworkID, PDO::PARAM_INT);
+        $artistCountry->bindValue(':id_countries', $this->country, PDO::PARAM_INT);
+        return $artistCountry->execute();
+    }
 }

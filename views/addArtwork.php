@@ -62,5 +62,6 @@ include_once '../controllers/addArtworkController.php';
         </select>
         <label for="plateforms">Choix du/des plateforme(s)</label>
     </div>
+    <input type="submit" name="submitArtwork" value="Ajouter l' oeuvre" class="waves-effect waves-light btn" />
 </form>
 <?php include_once 'footer.php'; ?>

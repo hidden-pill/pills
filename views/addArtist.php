@@ -32,13 +32,13 @@ include_once '../controllers/addArtistController.php';
         <label for="countries">Choix du/des pays</label>
     </div>
     <div class="input-field">
-        <select multiple name="artists[]" id="artists">
+        <select multiple name="artworks[]" id="artworks">
             <option disabled selected>Oeuvre</option>
-            <?php foreach ($artistsList as $artist) { ?>
-            <option value="<?= $artist->id; ?>" <?= $artist == $artist->id? 'selected': '';?>><?= $artist->name; ?></option>
+            <?php foreach ($artworksList as $artwork) { ?>
+            <option value="<?= $artwork->id; ?>" <?= $artwork == $artwork->id? 'selected': '';?>><?= $artwork->name; ?></option>
             <?php } ?>
         </select>
-        <label for="artists">Choix du/des oeuvres</label>
+        <label for="artworks">Choix du/des oeuvres</label>
     </div>
     <input name="birthDate" type="date" />
     <input name="deathDate" type="date" />

@@ -3,7 +3,7 @@
 class Plateforms extends Database {
 
     public $id = null;
-    public $website = null;
+    public $plateform = null;
 
 
         
@@ -17,5 +17,15 @@ class Plateforms extends Database {
             }
         }
         return $result;
+    }
+
+    public function insertArtworkPlateform(){
+        $query = 'INSERT INTO `' .SALT. 'plateforms`'
+        . '(`plateform`)'
+        . 'VALUES'
+        . '(:plateform)';
+        $artistCountry = Database::getInstance()->prepare($query);
+        $artistCountry->bindValue(':plateform', $this->plateform, PDO::PARAM_INT);
+        return $artistCountry->execute();
     }
 }

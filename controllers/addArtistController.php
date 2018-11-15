@@ -125,7 +125,7 @@ if(isset($_POST['submitArtist'])){
             foreach ($artworksArray as $artwork) {
                 $newArtistArtwork->artwork = $artwork;
                 $newArtistArtwork->artistID = $artistID;
-                $newArtistArtwork->insertArtistCO();
+                $newArtistArtwork->insertArtistArtwork();
             }
             if(isset($image)){
                 $first_path = $image['tmp_name'];

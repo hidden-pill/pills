@@ -18,4 +18,14 @@ class Distributors extends Database {
         }
         return $result;
     }  
+
+    public function insertDistributor(){
+        $query = 'INSERT INTO `' .SALT. 'distributors`'
+        . '(`distributor`)'
+        . 'VALUES'
+        . '(:distributor)';
+        $artistCountry = Database::getInstance()->prepare($query);
+        $artistCountry->bindValue(':distributor', $this->distributor, PDO::PARAM_STR);
+        return $artistCountry->execute();
+    }
 }

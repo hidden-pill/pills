@@ -184,7 +184,6 @@ CREATE TABLE artworks(
 
 	,CONSTRAINT artworks_articleTypes_FK FOREIGN KEY (id_articleTypes) REFERENCES articleTypes(id)
 	,CONSTRAINT artworks_distributors0_FK FOREIGN KEY (id_distributors) REFERENCES distributors(id)
-	,CONSTRAINT artworks_distributors_AK UNIQUE (id_distributors)
 )ENGINE=InnoDB;
 
 
@@ -384,18 +383,18 @@ CREATE TABLE PLATEFORMS(
 
 
 #------------------------------------------------------------
-# Table: artworksPlateforms
+# Table: ARTWORKSPLATEFORMS
 #------------------------------------------------------------
 
-CREATE TABLE artworksPlateforms(
+CREATE TABLE ARTWORKSPLATEFORMS(
         id            Int NOT NULL ,
         id_artworks   Int NOT NULL ,
         id_PLATEFORMS Int NOT NULL
-	,CONSTRAINT artworksPlateforms_PK PRIMARY KEY (id)
+	,CONSTRAINT ARTWORKSPLATEFORMS_PK PRIMARY KEY (id)
 
-	,CONSTRAINT artworksPlateforms_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
-	,CONSTRAINT artworksPlateforms_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
-	,CONSTRAINT artworksPlateforms_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
+	,CONSTRAINT ARTWORKSPLATEFORMS_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
+	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
 )ENGINE=InnoDB;
 
 
