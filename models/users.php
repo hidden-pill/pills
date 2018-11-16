@@ -63,13 +63,37 @@ class Users extends Database {
     public function selectUser(){
         $user = [];
         $query = 'SELECT `id`, `experience` FROM `users` WHERE `pseudo` = :pseudo';
-        $user = Database::getInstance()->query($query);
-        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $user = Database::getInstance()->prepare($query);
+        $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         if($user->execute()){
             if (is_object($user)) {
-                $result = $user->fetchAll(PDO::FETCH_OBJ);
+                $result = $user->fetch(PDO::FETCH_OBJ);
             }
         }
         return $result;
+    }
+
+    public function checkIfPseudoExist(){
+        $state = false;
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `pseudo` = :pseudo';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if ($result->execute()) {
+            $selectResult = $result->fetch(PDO::FETCH_OBJ);
+            $state = $selectResult->count;
+        }
+        return $state;
+    }
+
+    public function checkIfEmailExist(){
+        $state = false;
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `email` = :email';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':email', $this->email, PDO::PARAM_STR);
+        if ($result->execute()) {
+            $selectResult = $result->fetch(PDO::FETCH_OBJ);
+            $state = $selectResult->count;
+        }
+        return $state;
     }
 }

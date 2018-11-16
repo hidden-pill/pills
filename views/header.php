@@ -20,7 +20,7 @@ include_once $path.'controllers/headerController.php';
 <body>
   <div class="navbar-fixed">
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href=""><i class="material-icons">face</i>Ma page</a></li>
+    <li><a href="views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>"><i class="material-icons">face</i>Ma page</a></li>
     <li><a href="#!"><i class="material-icons">settings</i>Mes paramètres</a></li>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
@@ -53,7 +53,7 @@ include_once $path.'controllers/headerController.php';
           <?php } else { ?>
           <li>
             <a class="dropdown-button" href="#!" data-activates="dropdown1">
-              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/users/<?= $_SESSION['id']; ?>.png" alt="image utilisateur" onerror="this.onerror=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';"  onabort="this.onabort=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';" />
+              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/users/<?= $_SESSION['id']; ?>" alt="image utilisateur" onerror="this.onerror=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';"  onabort="this.onabort=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';" />
               <span><?= $_SESSION['pseudo']; ?></span>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
@@ -71,7 +71,7 @@ include_once $path.'controllers/headerController.php';
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
           <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>
           <?php } else { ?>
-          <li><a href=""><i class="material-icons">face</i>Ma page</a></li>
+          <li><a href="views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>">   <i class="material-icons">face</i>Ma page</a></li>
           <li><a href=""><i class="material-icons">settings</i>Mes paramètres</a></li>
           <li class="divider"></li>
           <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
