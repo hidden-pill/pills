@@ -107,6 +107,15 @@ if(isset($_POST['submitArtwork'])){
             }
         }
     } 
+
+    if (!empty($_FILES['image'])) {
+        if (is_uploaded_file($_FILES['image']['tmp_name'])) {
+            if(pathinfo($_FILES['image']['name'])['extension'] == 'png' || pathinfo($_FILES['image']['name'])['extension'] == 'jpg'){
+            $image = $_FILES['image'];
+            }
+        }
+    }
+
     if(count($errorArtworkForm) == 0){
         $newArtwork = new Artworks();
         $newArtwork->name = $name;
@@ -174,7 +183,7 @@ if(isset($_POST['submitArtwork'])){
 
             if(isset($image)){
                 $first_path = $image['tmp_name'];
-                $end_path = '../assets/images/artworks/' .$artworkID. '.png';
+                $end_path = '../assets/images/artworks/' .$artworkID;
                 move_uploaded_file($first_path, $end_path);
             }
             Database::getInstance()->commit();

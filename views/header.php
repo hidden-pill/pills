@@ -88,10 +88,10 @@ include_once $path.'controllers/headerController.php';
       </div>
       <div>
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/trending' ? 'class="active"' : '' ; ?>href="/trending">Tendances</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/new' ? 'class="active"' : '' ; ?>href="/new">Nouveaux</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/top' ? 'class="active"' : '' ; ?>href="/top">Top</a></li>
-          <li class="tab"><a <?=$_SERVER['REQUEST_URI']=='/controversial' ? 'class="active"' : '' ; ?>href="/controversial">Contesté</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI'] == '/trending' ? 'class="active"' : '' ; ?>href="/trending">Tendances</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI'] == '/new' ? 'class="active"' : '' ; ?>href="/new">Nouveaux</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI'] == '/top' ? 'class="active"' : '' ; ?>href="/top">Top</a></li>
+          <li class="tab"><a <?=$_SERVER['REQUEST_URI'] == '/controversial' ? 'class="active"' : '' ; ?>href="/controversial">Contesté</a></li>
         </ul>
       </div>
     </nav>

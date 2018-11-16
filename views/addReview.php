@@ -10,12 +10,30 @@ include_once '../controllers/addReviewController.php';
     <option value="<?= $artwork->id; ?>" <?= $artwork == $artwork->id? 'selected': '';?>><?= $artwork->name; ?></option>
     <?php } ?>
     </select>
-
     <label class="" for="title">Titre</label>
     <input id="title" class="" name="title" placeholder="Titre de la critique" type="text" value="<?= $title; ?>" />    
-    
-    <label class="" for="image">Image</label>
-    <input id="image" class="" name="image" type="file" />
+    <div class="input-field">
+        <input name="tagInputs[]" id="tagInputs" type="text" />
+        <label for="tagInputs">Création d'un tag</label>
+    </div>
+    <div class="input-field">
+        <select multiple name="tags[]" id="tags">
+            <option disabled selected>tag</option>
+            <?php foreach ($tagsList as $tag) { ?>
+            <option value="<?= $tag->id; ?>" <?= $tag == $tag->id? 'selected': '';?>><?= $tag->tag; ?></option>
+            <?php } ?>
+        </select>
+        <label for="tags">Choix de la/des tag(s)</label>
+    </div>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>image (png,jpg)</span>
+        <input type="file" name="image">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
 
     <label class="" for="review">Critique</label>
     <textarea id="review" class="" name="review" placeholder="Texte.." type="review"><?= $review; ?></textarea>

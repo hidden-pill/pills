@@ -59,4 +59,17 @@ class Users extends Database {
         }
         return $result;
     }  
+
+    public function selectUser(){
+        $user = [];
+        $query = 'SELECT `id`, `experience` FROM `users` WHERE `pseudo` = :pseudo';
+        $user = Database::getInstance()->query($query);
+        $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if($user->execute()){
+            if (is_object($user)) {
+                $result = $user->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
 }

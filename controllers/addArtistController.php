@@ -84,8 +84,9 @@ if(isset($_POST['submitArtist'])){
 
     if (!empty($_FILES['image'])) {
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
-            $image = $_FILES['image'];
-            if(pathinfo($image['name'])['extension'] != 'png'){
+            if(pathinfo($_FILES['image']['name'])['extension'] == 'png' || pathinfo($_FILES['image']['name'])['extension'] == 'jpg'){
+                $image = $_FILES['image'];
+            } else {
                 $errorArtistForm['image'] = 'ERROR_IMAGE';
             }
         }

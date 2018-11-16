@@ -130,6 +130,8 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     height: 100%;
     margin: 0 auto;
     text-align: center;
+    object-fit: cover;
+    width: 200px;
 }
 .reviewImage p{
     position: relative;
