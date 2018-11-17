@@ -33,7 +33,7 @@ if(isset($_POST['submitArtist'])){
             if(!is_numeric($job)){
                 $errorArtistForm['jobs'] = 'ERROR_JOBS';
             } else {
-                $jobsArray[] += $job;
+                $jobsArray[] = $job;
             }
         }
     } else {
@@ -45,7 +45,7 @@ if(isset($_POST['submitArtist'])){
             if(!is_numeric($nationality)){
                 $errorArtistForm['nationalities'] = 'ERROR_NATIONALITIES';
             } else {
-                $nationalitiesArray[] += $nationality;
+                $nationalitiesArray[] = $nationality;
             }
         }
     } 
@@ -55,7 +55,7 @@ if(isset($_POST['submitArtist'])){
             if(!is_numeric($country)){
                 $errorArtistForm['countries'] = 'ERROR_COUNTRIES';
             } else {
-                $countriesArray[] += $country;
+                $countriesArray[] = $country;
             }
         }
     } 
@@ -65,7 +65,7 @@ if(isset($_POST['submitArtist'])){
             if(!is_numeric($artwork)){
                 $errorArtistForm['artworks'] = 'ERROR_ARTWORKS';
             } else {
-                $artworksArray[] += $artwork;
+                $artworksArray[] = $artwork;
             }
         }
     } 

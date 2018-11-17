@@ -73,7 +73,7 @@ if(isset($_POST['submitArtwork'])){
             if(!is_numeric($nationality)){
                 $errorArtworkForm['nationalities'] = 'ERROR_NATIONALITIES';
             } else {
-                $nationalitiesArray[] += $nationality;
+                $nationalitiesArray[] = $nationality;
             }
         }
     } 
@@ -83,7 +83,7 @@ if(isset($_POST['submitArtwork'])){
             if(!is_numeric($country)){
                 $errorArtworkForm['countries'] = 'ERROR_COUNTRIES';
             } else {
-                $countriesArray[] += $country;
+                $countriesArray[] = $country;
             }
         }
     } 
@@ -93,7 +93,7 @@ if(isset($_POST['submitArtwork'])){
             if(!is_numeric($artist)){
                 $errorArtworkForm['artists'] = 'ERROR_ARTISTS';
             } else {
-                $artistsArray[] += $artist;
+                $artistsArray[] = $artist;
             }
         }
     }
@@ -103,7 +103,7 @@ if(isset($_POST['submitArtwork'])){
             if(!is_numeric($plateform)){
                 $errorArtworkForm['plateforms'] = 'ERROR_PLATEFORMS';
             } else {
-                $plateformsArray[] += $plateform;
+                $plateformsArray[] = $plateform;
             }
         }
     } 
@@ -140,9 +140,10 @@ if(isset($_POST['submitArtwork'])){
                 $distributorc = $newDistributor->getLastInsertId();
             } else if(!empty($distributor) && empty($distributorInput)){
                 $distributorc = $distributor;
-            } 
+            }
             $newArtwork->id_distributors = $distributorc;
             $newArtwork->insertArtwork();
+
             $artworkID = $newArtwork->getLastInsertId();
 
             foreach ($nationalitiesArray as $nationality) {
@@ -191,5 +192,8 @@ if(isset($_POST['submitArtwork'])){
             Database::getInstance()->rollback();
             die('Erreur : ' . $e->getMessage());
         }
+    } else {
+        var_dump($newArtworkPlateform);
     }
+
 }

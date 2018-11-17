@@ -12,7 +12,6 @@ $artwork = new Artworks();
 $artworksList = $artwork->selectArtworks();
 $tags = new Tags();
 $tagsList = $tags->selectTags();
-var_dump($_POST);
 
 if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
     $id = htmlspecialchars($_SESSION['id']);
@@ -99,5 +98,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
             Database::getInstance()->rollback();
             die('Erreur : ' . $e->getMessage());
         }
+    } else {
+        var_dump($errorReviewForm);
     }
 }

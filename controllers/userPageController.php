@@ -9,7 +9,9 @@ if(isset($_GET['pseudo'])){
         exit;
     }
     $userDetails = $userpage->selectUser();
-    
+    $level = new Levels();
+    $level->experience = $userDetails->experience;
+    $userLevel = $level->searchLevel();
 } else {
     header('Location:/');
     exit;

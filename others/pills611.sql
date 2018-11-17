@@ -151,7 +151,9 @@ CREATE TABLE proposals(
 CREATE TABLE levels(
         id      Int NOT NULL ,
         level   Int NOT NULL ,
-        reachXp Int NOT NULL
+        levelxp Int NOT NULL ,
+        color   Varchar (11) NOT NULL ,
+        title   Varchar (100)
 	,CONSTRAINT levels_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
@@ -372,29 +374,29 @@ CREATE TABLE trailers(
 
 
 #------------------------------------------------------------
-# Table: PLATEFORMS
+# Table: plateforms
 #------------------------------------------------------------
 
-CREATE TABLE PLATEFORMS(
+CREATE TABLE plateforms(
         id        Int NOT NULL ,
         plateform Varchar (50) NOT NULL
-	,CONSTRAINT PLATEFORMS_PK PRIMARY KEY (id)
+	,CONSTRAINT plateforms_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: ARTWORKSPLATEFORMS
+# Table: artworksPlateforms
 #------------------------------------------------------------
 
-CREATE TABLE ARTWORKSPLATEFORMS(
+CREATE TABLE artworksPlateforms(
         id            Int NOT NULL ,
         id_artworks   Int NOT NULL ,
-        id_PLATEFORMS Int NOT NULL
-	,CONSTRAINT ARTWORKSPLATEFORMS_PK PRIMARY KEY (id)
+        id_plateforms Int NOT NULL
+	,CONSTRAINT artworksPlateforms_PK PRIMARY KEY (id)
 
-	,CONSTRAINT ARTWORKSPLATEFORMS_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
-	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
-	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
+	,CONSTRAINT artworksPlateforms_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT artworksPlateforms_plateforms0_FK FOREIGN KEY (id_plateforms) REFERENCES plateforms(id)
+	,CONSTRAINT artworksPlateforms_plateforms_AK UNIQUE (id_plateforms)
 )ENGINE=InnoDB;
 
 
@@ -965,3 +967,56 @@ INSERT INTO `nationalities` (`nationality`) VALUES ('Vietnamienne');
 INSERT INTO `nationalities` (`nationality`) VALUES ('Yemenite');
 INSERT INTO `nationalities` (`nationality`) VALUES ('Zambienne');
 INSERT INTO `nationalities` (`nationality`) VALUES ('Zimbabweenne');
+
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (0, 0 ,'#1c04ae');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (1, 900 ,'#2505b0');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (2, 2700 ,'#2e07b2');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (3, 5400 ,'#3809b4');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (4, 9000 ,'#410bb6');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (5, 13500 ,'#4a0cb8');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (6, 18900 ,'#540eba');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (7, 25200 ,'#5d10bc');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (8, 32400 ,'#6612be');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (9, 40500 ,'#7013c0');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (10, 49500 ,'#7915c2');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (11, 59400 ,'#8317c4');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (12, 70200 ,'#8c19c5');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (13, 81900 ,'#951bc7');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (14, 94500 ,'#9f1cc9');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (15, 108000 ,'#a81ecb');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (16, 122400 ,'#b120cd');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (17, 137700 ,'#bb22cf');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (18, 153900 ,'#c423d1');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (19, 171000 ,'#cd25d3');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (20, 189000 ,'#d727d5');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (21, 207900 ,'#e029d7');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (22, 227700 ,'#e92ad9');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (23, 248400 ,'#f32cdb');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (24, 270000 ,'#fc2edd');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (25, 292500 ,'#f82cd5');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (26, 315900 ,'#f42acc');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (27, 340200 ,'#f029c4');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (28, 365400 ,'#ec27bb');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (29, 391500 ,'#e825b3');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (30, 418500 ,'#e423ab');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (31, 446400 ,'#e022a2');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (32, 475200 ,'#dc209a');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (33, 504900 ,'#d81e92');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (34, 535500 ,'#d41c89');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (35, 567000 ,'#d01b81');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (36, 599400 ,'#c81770');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (37, 632700 ,'#c31568');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (38, 666900 ,'#bf135f');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (39, 702000 ,'#bb1257');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (40, 738000 ,'#b7104e');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (41, 774900 ,'#b30e46');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (42, 812700 ,'#af0c3e');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (43, 851400 ,'#ab0b35');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (44, 891000 ,'#a7092d');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (45, 931500 ,'#a30725');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (46, 972900 ,'#9f051c');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (47, 1015200 ,'#9b0414');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (48, 1058400 ,'#97020b');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (49, 1102500 ,'#930003');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (50, 1147500 ,'#840002');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (51, 1193400 ,'#000000');
