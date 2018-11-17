@@ -1,7 +1,6 @@
 <?php
-session_start();
-include_once 'config.php';
-include_once 'controllers/inspectController.php';
+include_once '../config.php';
+include_once '../controllers/inspectController.php';
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="fr">

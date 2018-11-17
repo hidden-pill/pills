@@ -1,5 +1,4 @@
 <?php
-session_start();
 $path = $_SERVER['PHP_SELF'] != '/index.php'? '../': '';
 include_once $path.'config.php';
 include_once $path.'controllers/headerController.php';
@@ -20,8 +19,8 @@ include_once $path.'controllers/headerController.php';
 <body>
   <div class="navbar-fixed">
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>"><i class="material-icons">face</i>Ma page</a></li>
-    <li><a href="#!"><i class="material-icons">settings</i>Mes paramètres</a></li>
+    <li><a href="/<?= $_SESSION['pseudo']; ?>/"><i class="material-icons">face</i>Ma page</a></li>
+    <li><a href="/<?= $_SESSION['pseudo']; ?>/settings"><i class="material-icons">settings</i>Mes paramètres</a></li>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
     <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
@@ -63,7 +62,7 @@ include_once $path.'controllers/headerController.php';
         <ul class="side-nav" id="mobile-demo">
           <li class="search">
             <div class="search-wrapper card">
-              <input type="text" id="autocomplete-input" class="autocomplete" />
+              <input type="text" id="autocomplete-input2" class="autocomplete" />
               <i class="material-icons">search</i>
             </div>
           </li>
@@ -71,8 +70,8 @@ include_once $path.'controllers/headerController.php';
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
           <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>
           <?php } else { ?>
-          <li><a href="views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>">   <i class="material-icons">face</i>Ma page</a></li>
-          <li><a href=""><i class="material-icons">settings</i>Mes paramètres</a></li>
+          <li><a href="<?= $path; ?>views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>">   <i class="material-icons">face</i>Ma page</a></li>
+          <li><a href="<?= $path; ?>views/userSettings.php?pseudo=<?= $_SESSION['pseudo']; ?>"><i class="material-icons">settings</i>Mes paramètres</a></li>
           <li class="divider"></li>
           <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
           <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>

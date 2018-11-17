@@ -1019,4 +1019,4 @@ INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (47, 1015200 ,'#9b0414
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (48, 1058400 ,'#97020b');
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (49, 1102500 ,'#930003');
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (50, 1147500 ,'#840002');
-INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (51, 1193400 ,'#000000');
+INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (51, 99999999 ,'#65ff00');

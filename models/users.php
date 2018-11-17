@@ -62,7 +62,7 @@ class Users extends Database {
 
     public function selectUser(){
         $user = [];
-        $query = 'SELECT `id`, `experience` FROM `users` WHERE `pseudo` = :pseudo';
+        $query = 'SELECT `id`, `experience` FROM `' .SALT. 'users` WHERE `pseudo` = :pseudo';
         $user = Database::getInstance()->prepare($query);
         $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         if($user->execute()){
@@ -75,7 +75,7 @@ class Users extends Database {
 
     public function checkIfPseudoExist(){
         $state = false;
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `pseudo` = :pseudo';
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'users` WHERE `pseudo` = :pseudo';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         if ($result->execute()) {
@@ -87,7 +87,7 @@ class Users extends Database {
 
     public function checkIfEmailExist(){
         $state = false;
-        $query = 'SELECT COUNT(`id`) AS `count` FROM `users` WHERE `email` = :email';
+        $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'users` WHERE `email` = :email';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':email', $this->email, PDO::PARAM_STR);
         if ($result->execute()) {
@@ -95,5 +95,22 @@ class Users extends Database {
             $state = $selectResult->count;
         }
         return $state;
+    }
+
+    public function selectSettingsUser(){
+        $user = [];
+        $query = 'SELECT'
+	                . '`us`.`password`, `us`.`email`, `q`.`question`, `us`.`secretAnswer`, `us`.`newsletter`'
+                . 'FROM `' .SALT. 'users` AS `us`'
+	                . 'LEFT JOIN `' .SALT. 'questions` AS `q` ON `us`.`id_questions` = `q`.`id`'
+                . 'WHERE `us`.`pseudo` = :pseudo';
+        $user = Database::getInstance()->prepare($query);
+        $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if($user->execute()){
+            if (is_object($user)) {
+                $result = $user->fetch(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
     }
 }

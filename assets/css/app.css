@@ -240,6 +240,8 @@ transform: scale(1.2);
     height: 2rem;
 }
 
+
+
 @media (max-width: 992px) {
     #logo img:first-child {
         display: none;
@@ -254,5 +256,11 @@ transform: scale(1.2);
     }
     .reviewFooter a:nth-child(2):hover {
         transform: scale(0.9) translate(10px);
+    }
+}
+
+@media (min-width: 993px){
+    .changebtn {
+        margin-top: 16px !important;
     }
 }

@@ -2,8 +2,16 @@
 
     RewriteEngine On
 
-    RewriteRule ^([A-z]+)$ ?order=$1    
+    RewriteRule ^([A-z]+)$ ?order=$1
+    RewriteRule ^([A-z]+)/$ /views/userPage.php?pseudo=$1
+    RewriteRule ^([A-z]+)/settings$ /views/userSettings.php?pseudo=$1
 
-    ErrorDocument 404     /404.php
+    RewriteRule ^add-review.html$ /views/addReview.php
+    RewriteRule ^add-artist.html$ /views/addArtist.php
+    RewriteRule ^add-artwork.html$ /views/addArtwork.php
+
+
+
+    ErrorDocument 404     /views/404.php
 
 </ifModule>
