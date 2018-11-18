@@ -5,18 +5,39 @@ if(isset($_SESSION['pseudo'])){
     $user->pseudo = $_SESSION['pseudo'];
     $userSettings = $user->selectSettingsUser();
 
-    if(isset($_POST['answer']) && isset($_POST['newpassword'])){
-        if($_POST['answer'] == $userSettings->secretAnswer){ 
-            $user->newpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
-            if($user->updatePassword()){
-                echo 'Success';
-            } else{
-                echo 'Failed'; 
+    if(isset($_POST['answer'])){
+        if($_POST['answer'] == $userSettings->secretAnswer){
+            if(isset($_POST['newpassword'])){
+                $user->newpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
+                if($user->updatePassword()){
+                    echo 'SuccessPassword';
+                }else{
+                    echo 'Failed'; 
+                }
             }
-        }
-        else{
+
+            if(isset($_POST['newemail'])){
+                $user->newemail = htmlspecialchars($_POST['newemail']);
+                if($user->updateEmail()){
+                    echo 'SuccessEmail';
+                }else{
+                    echo 'Failed'; 
+                }
+            }
+
+            if(isset($_POST['newnewsletter'])){
+                $user->newnewsletter = htmlspecialchars($_POST['newnewsletter']);
+                if($user->updateNewsletter()){
+                    echo 'SuccessNewsletter';
+                }else{
+                    echo 'Failed'; 
+                }
+            }
+        }else{
             echo 'Failed';
         }
+    }else{
+        echo 'FailedAnswer';
     }
 }else{
     echo 'Failed';

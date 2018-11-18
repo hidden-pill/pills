@@ -17,10 +17,10 @@ include_once 'header.php';
     </div>
     <div class="row">
         <div class="input-field col l8 s12">
-            <input type="email" name="newmail" id="newmail" />
-            <label for="newmail">email@something.com</label>
+            <input type="email" name="newemail" id="newemail" />
+            <label for="newemail">email@something.com</label>
         </div>
-        <input type="submit" name="changeMail" class="btn col l4 s12 changebtn" value="changer votre adresse mail" />
+        <input type="submit" name="changeEmail" id="changeEmail" class="btn col l4 s12 changebtn" value="changer votre adresse mail" />
     </div>
     <div class="row">
         <div class="file-field input-field col l8 s12">
@@ -38,7 +38,7 @@ include_once 'header.php';
         <label for="newNewsletter">Se désinscrire de la newsletter</label>
         <label>
         Off
-            <input type="checkbox" id="newNewsletter" name="newNewsletter" <?= $userSettings->newsletter == 1? 'checked="true"': '';?>  value="1">
+            <input type="checkbox" id="newNewsletter" name="newNewsletter" <?= $userSettings->newsletter == 1? 'checked="true"': '';?>  value="<?= $userSettings->newsletter == 1? '0': '1';?>">
             <span class="lever"></span>
         On
         </label>

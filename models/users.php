@@ -125,4 +125,28 @@ class Users extends Database {
         }
         return $state;
     }
+
+    public function updateEmail(){
+        $state = false;
+        $query = 'UPDATE `' .SALT. 'users` SET `email` = :newemail WHERE `pseudo` = :pseudo';
+        $user = Database::getInstance()->prepare($query);
+        $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $user->bindValue(':newemail', $this->newemail, PDO::PARAM_STR);
+        if ($user->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
+    
+    public function updateNewsletter(){
+        $state = false;
+        $query = 'UPDATE `' .SALT. 'users` SET `newsletter` = :newnewsletter WHERE `pseudo` = :pseudo';
+        $user = Database::getInstance()->prepare($query);
+        $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $user->bindValue(':newnewsletter', $this->newnewsletter, PDO::PARAM_INT);
+        if ($user->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
 }
