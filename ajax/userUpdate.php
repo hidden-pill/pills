@@ -17,6 +17,7 @@ if(isset($_SESSION['pseudo'])){
     if(isset($_POST['checkdelete'])) {
         if($_POST['checkdelete'] == 'SUPPRIMER') {
             if($user->deleteUser()){
+                unlink('../assets/images/users/' .$_SESSION['id']);
                 session_destroy();
                 echo 'DELETESUCCESS';
             }else{
