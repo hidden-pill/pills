@@ -41,17 +41,33 @@ $(function(){
         $.post(
             '../ajax/userUpdate.php', 
             {
-                answer: $('#answer').val(), 
                 newnewsletter: $('#newNewsletter').val()
             },
             function(data){
                 if (data == 'SuccessNewsletter') {
-                    alert('Votre abonnement à la newsletter a été mis à jour');
+                    location.reload(); 
                 } else {
                     alert('erreur');
                 }
             }, 'text'
         );
     });
-    
+
+    $('#deleteAccount').click(function(e) {
+        e.preventDefault();
+        $.post(
+            '../ajax/userUpdate.php', 
+            {
+                checkdelete: $('#checkDelete').val()
+            },
+            function(data){
+                if (data == 'DELETESUCCESS') {
+                    location.reload(); 
+                } else {
+                    alert('il a eu un problème');
+                }
+            }, 'text'
+        );
+    });
+
 });

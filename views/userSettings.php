@@ -22,18 +22,18 @@ include_once 'header.php';
         </div>
         <input type="submit" name="changeEmail" id="changeEmail" class="btn col l4 s12 changebtn" value="changer votre adresse mail" />
     </div>
-    <div class="row">
+    <form action="" method="POST" enctype="multipart/form-data" class="row">
         <div class="file-field input-field col l8 s12">
             <div class="btn">
-                <span>image.png</span>
+                <span>(png, jpg)</span>
                 <input type="file" name="image">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
             </div>
         </div>
-        <input type="submit" name="changeImage" class="btn col l4 s12 changebtn" value="changer votre image" />
-    </div>
+        <input type="submit" name="changeImage" id="changeImage" class="btn col l4 s12 changebtn" value="changer votre image" />
+    </form>
     <div class="switch">
         <label for="newNewsletter">Se désinscrire de la newsletter</label>
         <label>
@@ -42,6 +42,17 @@ include_once 'header.php';
             <span class="lever"></span>
         On
         </label>
+    </div>
+    <a class="waves-effect waves-light btn modal-trigger red" href="#modalDELETE">SUPPRIMER MON COMPTE</a>
+    <div id="modalDELETE" class="modal">
+        <div class="modal-content">
+            <div class="input-field">
+                <input type="text" id="checkDelete" />
+                <label for="checkDelete">VEUILLEZ INSCRIRE 'SUPPRIMER'</label>
+            </div>
+            <a class="btn red" id="deleteAccount">SUPPRIMER MON COMPTE</a>
+            <a href="" class="modal-action modal-close btn-flat">ANNULER</a>
+        </div>
     </div>
 <?php include_once 'footer.php'; ?>
 <script src="../assets/js/userSettings.js"></script>

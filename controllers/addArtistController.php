@@ -129,7 +129,7 @@ if(isset($_POST['submitArtist'])){
             }
             if(isset($image)){
                 $first_path = $image['tmp_name'];
-                $end_path = '../assets/images/artists/' .$artistID. '.png';
+                $end_path = '../assets/images/artists/' .$artistID;
                 move_uploaded_file($first_path, $end_path);
             }
             Database::getInstance()->commit();

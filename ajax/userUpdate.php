@@ -5,6 +5,26 @@ if(isset($_SESSION['pseudo'])){
     $user->pseudo = $_SESSION['pseudo'];
     $userSettings = $user->selectSettingsUser();
 
+    if(isset($_POST['newnewsletter'])){
+        $user->newnewsletter = htmlspecialchars($_POST['newnewsletter']);
+        if($user->updateNewsletter()){
+            echo 'SuccessNewsletter';
+        }else{
+            echo 'Failed'; 
+        }
+    }
+
+    if(isset($_POST['checkdelete'])) {
+        if($_POST['checkdelete'] == 'SUPPRIMER') {
+            if($user->deleteUser()){
+                session_destroy();
+                echo 'DELETESUCCESS';
+            }else{
+                echo 'Failed'; 
+            }
+        }
+    }
+    
     if(isset($_POST['answer'])){
         if($_POST['answer'] == $userSettings->secretAnswer){
             if(isset($_POST['newpassword'])){
@@ -25,19 +45,9 @@ if(isset($_SESSION['pseudo'])){
                 }
             }
 
-            if(isset($_POST['newnewsletter'])){
-                $user->newnewsletter = htmlspecialchars($_POST['newnewsletter']);
-                if($user->updateNewsletter()){
-                    echo 'SuccessNewsletter';
-                }else{
-                    echo 'Failed'; 
-                }
-            }
         }else{
             echo 'Failed';
         }
-    }else{
-        echo 'FailedAnswer';
     }
 }else{
     echo 'Failed';

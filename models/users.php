@@ -100,7 +100,7 @@ class Users extends Database {
     public function selectSettingsUser(){
         $user = [];
         $query = 'SELECT'
-	                . '`us`.`password`, `us`.`email`, `q`.`question`, `us`.`secretAnswer`, `us`.`newsletter`'
+	                . '`us`.`id`, `us`.`password`, `us`.`email`, `q`.`question`, `us`.`secretAnswer`, `us`.`newsletter`'
                 . 'FROM `' .SALT. 'users` AS `us`'
 	                . 'LEFT JOIN `' .SALT. 'questions` AS `q` ON `us`.`id_questions` = `q`.`id`'
                 . 'WHERE `us`.`pseudo` = :pseudo';
@@ -145,6 +145,17 @@ class Users extends Database {
         $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $user->bindValue(':newnewsletter', $this->newnewsletter, PDO::PARAM_INT);
         if ($user->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
+
+    public function deleteUser() {
+        $state = false;
+        $query = 'DELETE FROM  `' .SALT. 'users` WHERE `pseudo` = :pseudo';
+        $delete = Database::getInstance()->prepare($query);
+        $delete->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if ($delete->execute()) { 
             $state = true;
         }
         return $state;
