@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_GET['pseudo']) && isset( $_SESSION['pseudo'])){
     if($_GET['pseudo'] != $_SESSION['pseudo']){
         header('Location:/');
@@ -8,32 +7,7 @@ if(isset($_GET['pseudo']) && isset( $_SESSION['pseudo'])){
     $user = new Users();
     $user->pseudo = $_SESSION['pseudo'];
     $userSettings = $user->selectSettingsUser();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 } else {
     header('Location:/');

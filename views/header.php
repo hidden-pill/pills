@@ -22,9 +22,11 @@ include_once $path.'controllers/headerController.php';
     <li><a href="/<?= $_SESSION['pseudo']; ?>/"><i class="material-icons">face</i>Ma page</a></li>
     <li><a href="/<?= $_SESSION['pseudo']; ?>/settings"><i class="material-icons">settings</i>Mes paramètres</a></li>
     <li class="divider"></li>
-    <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
-    <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
-    <li><a href="<?= $path; ?>views/addArtwork.php"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
+    <li><a href="/leaderboard.html"><i class="material-icons">poll</i>Classement</a></li>
+    <li class="divider"></li>
+    <li><a href="/add-review.html"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
+    <li><a href="/add-artist.html"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>
+    <li><a href="/add-artwork.html"><i class="material-icons">add_circle_outline</i>Ajouter une œuvre</a></li>
     <?php if($_SESSION['rank'] > 1){?>
     <li class="divider"></li>
     <li><a href="<?= $path; ?>views/admin.php"><i class="material-icons">settings</i>Admin</a></li>
@@ -70,8 +72,8 @@ include_once $path.'controllers/headerController.php';
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
           <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>
           <?php } else { ?>
-          <li><a href="<?= $path; ?>views/userPage.php?pseudo=<?= $_SESSION['pseudo']; ?>">   <i class="material-icons">face</i>Ma page</a></li>
-          <li><a href="<?= $path; ?>views/userSettings.php?pseudo=<?= $_SESSION['pseudo']; ?>"><i class="material-icons">settings</i>Mes paramètres</a></li>
+          <li><a href="/<?= $_SESSION['pseudo']; ?>/"><i class="material-icons">face</i>Ma page</a></li>
+          <li><a href="/<?= $_SESSION['pseudo']; ?>/settings"><i class="material-icons">settings</i>Mes paramètres</a></li>
           <li class="divider"></li>
           <li><a href="<?= $path; ?>views/addReview.php"><i class="material-icons">add_circle_outline</i>Créer une critique</a></li>
           <li><a href="<?= $path; ?>views/addArtist.php"><i class="material-icons">add_circle_outline</i>Ajouter un artiste</a></li>

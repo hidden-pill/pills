@@ -9,6 +9,7 @@
     RewriteRule ^add-review.html$ /views/addReview.php
     RewriteRule ^add-artist.html$ /views/addArtist.php
     RewriteRule ^add-artwork.html$ /views/addArtwork.php
+    RewriteRule ^leaderboard.html$ /views/leaderboard.php
 
 
 

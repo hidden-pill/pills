@@ -24,8 +24,8 @@ class Plateforms extends Database {
         . '(`plateform`)'
         . 'VALUES'
         . '(:plateform)';
-        $artistCountry = Database::getInstance()->prepare($query);
-        $artistCountry->bindValue(':plateform', $this->plateform, PDO::PARAM_INT);
-        return $artistCountry->execute();
+        $plateform = Database::getInstance()->prepare($query);
+        $plateform->bindValue(':plateform', $this->plateform, PDO::PARAM_INT);
+        return $plateform->execute();
     }
 }

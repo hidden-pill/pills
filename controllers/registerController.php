@@ -62,7 +62,6 @@ if(isset($_POST['submitRegister'])){
         $newsletter = 0;
     }
 
-    var_dump($formError);
 
     if (count($formError) == 0) {
         $user = new Users();
@@ -76,5 +75,7 @@ if(isset($_POST['submitRegister'])){
         if(!$user->userInsert()){
             echo 'raté';
         }
+    }else{
+        var_dump($formError);
     }
 }

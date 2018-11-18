@@ -113,4 +113,16 @@ class Users extends Database {
         }
         return $result;
     }
+
+    public function updatePassword(){
+        $state = false;
+        $query = 'UPDATE `' .SALT. 'users` SET `password` = :newpassword WHERE `pseudo` = :pseudo';
+        $user = Database::getInstance()->prepare($query);
+        $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $user->bindValue(':newpassword', $this->newpassword, PDO::PARAM_STR);
+        if ($user->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
 }

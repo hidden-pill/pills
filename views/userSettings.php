@@ -3,9 +3,7 @@ include_once '../config.php';
 include_once '../controllers/userSettingsController.php';
 include_once 'header.php';
 ?>
-<?= var_dump($_POST) ?>
 <p>Veuillez répondre à votre question secrete pour effectuer votre modification</p>
-<form action="/<?= $_SESSION['pseudo']; ?>/settings" method="POST" enctype="multipart/form-data">
     <div class="input-field">
         <input type="text" name="answer" id="answer" />
         <label for="answer"><?= $userSettings->question; ?>*</label>
@@ -15,7 +13,7 @@ include_once 'header.php';
             <input type="password" name="newpassword" id="newpassword" />
             <label for="newpassword">Nouveau mot de passe</label>
         </div>
-        <input type="submit" name="changePassword" class="btn col l4 s12 changebtn" value="changer de mot de passe" />
+        <input type="submit" id="changePassword" class="btn col l4 s12 changebtn" value="changer de mot de passe" />
     </div>
     <div class="row">
         <div class="input-field col l8 s12">
@@ -45,13 +43,5 @@ include_once 'header.php';
         On
         </label>
     </div>
-
-
-</form>
-
-
-
-
-
-
 <?php include_once 'footer.php'; ?>
+<script src="../assets/js/userSettings.js"></script>
