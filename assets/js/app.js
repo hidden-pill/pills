@@ -24,4 +24,24 @@ $(document).ready(function () {
   
   $('#textarea1').trigger('autoresize');
 
+  $('.sumupvote').click(function(){
+    $.post(
+      '../ajax/test.php', 
+      {
+        test: null
+      },
+      function(data){
+        var upvotes = $.parseJSON(data);
+        switch(upvotes.color){
+          case 0:
+            console.log('blue');
+            break;
+          case 1:
+            console.log('red');
+            break;
+        };
+        console.log(upvotes.sum);
+      });
+  });
+
 });

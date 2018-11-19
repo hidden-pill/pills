@@ -15,9 +15,9 @@
             <a href=""><span class="new badge" data-badge-caption="#<?= $review->tag; ?>"></span></a>
         </div>
         <span class="pillIcon" <?php if(($review->red + $review->blue) != 0){?> style="background-color: rgb(<?= $review->red > $review->blue? $review->red : 0; ?>, 0, <?= $review->blue > $review->red? $review->blue : 0; ?>)"<?php } ?>>
-    <i class="material-icons" id="plus" review="2">add_circle</i>
-    <p><?= $review->upCount >= $review->downCount? '+' .$review->upCount: '-' .$review->downCount;?></p>
-    <i class="material-icons">remove_circle</i>
+    <i class="material-icons upvote" id_column="<?= $review->id; ?>" upvote="1" column="id_reviews">add_circle</i>
+    <p class="sumupvote"><?= $review->upCount >= $review->downCount? '+' .$review->upCount: '-' .$review->downCount;?></p>
+    <i class="material-icons upvote" id_column="<?= $review->id; ?>" upvote="0" column="id_reviews">remove_circle</i>
 </span>
     </div>
     <p class="reviewContent"><?= $review->review; ?></p>
@@ -29,9 +29,9 @@
         <a class="btn waves-effect waves-light black">
             Voir la critique<i class="material-icons right">send</i>
         </a>
-
     </div>
 </div>
 <?php } ?>
 
 <?php include_once 'views/footer.php'; ?>
+<script src="assets/js/vote.js"></script>

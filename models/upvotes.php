@@ -23,7 +23,7 @@ class Upvotes extends Database {
         return $state;
     }
 
-    public function selectUpvote($column){
+    public function selectVote($column){
         $value = 0;
         $query = 'SELECT `upvote` FROM `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
         $result = Database::getInstance()->prepare($query);
@@ -36,33 +36,46 @@ class Upvotes extends Database {
         return $value;
     }
 
-    public function updateVote($column){/** */
-        $value = 0;
-        $query = 'SELECT `upvote` FROM `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
+    public function updateVote($column){
+        $state = false;
+        $query = 'UPDATE `' .SALT. 'upvotes` SET `upvote` = :upvote WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':id_column', $this->id_column, PDO::PARAM_INT);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
-        if ($result->execute()) {
-            $selectResult = $result->fetch(PDO::FETCH_OBJ);
-            $value = $selectResult->upvote;
+        $result->bindValue(':upvote', $this->upvote, PDO::PARAM_INT);
+        if ($result->execute()) { 
+            $state = true;
         }
-        return $value;
+        return $state;
     }
 
+    public function insertVote($column) {
+        $state = false;
+        $query = 'INSERT INTO `' .SALT. 'upvotes`'
+               . '(`upvote`, `' .$column. '`, `id_users`)'
+               . 'VALUES '
+               . '(:upvote, :id_column, :id_users)';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':id_column', $this->id_column, PDO::PARAM_INT);
+        $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+        $result->bindValue(':upvote', $this->upvote, PDO::PARAM_INT);
+        if ($result->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
 
-
-
-
-
-
-    /*        if($vote->checkIfVoteExist()){
-            if($vote->selectUpvote() == 1){
-                echo 'alreadyVote';
-            } else {
-                $vote->updateVote();
-                echo 'success';
-            }
-        }else{
-            if($vote->insertVote()){*/
+    
+    public function deleteVote($column) {
+        $state = false;
+        $query = 'DELETE FROM  `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':id_column', $this->id_column, PDO::PARAM_INT);
+        $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+        if ($result->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
 
 }

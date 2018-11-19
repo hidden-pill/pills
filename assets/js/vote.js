@@ -1,16 +1,39 @@
+/*function upvote(){
+    $.post(
+      '../ajax/vote.php', 
+      {
+        getsumupvote: null,
+        id_column: $(this).attr('id_column'),
+        column: $(this).attr('column')
+      },
+      function(data){
+          if (data == 'success') {
+              $('.sumupvote').text('2');
+          }else {
+              alert('erreur');
+          }
+      }, 'text'
+    );
+  }
+*/
 $(function(){
-    $('#plus').click(function(e) {
+    $('.upvote').click(function(e) {
         e.preventDefault();
         $.post(
             '../ajax/vote.php', 
             {
-                id_review: $('#plus').attr('review'),
-                plus: 1
+                id_column: $(this).attr('id_column'),
+                upvote: $(this).attr('upvote'),
+                column: $(this).attr('column')
             },
             function(data){
-                if (data == 'Success') {
-                    alert('Votre mot de passe a bien été changé');
-                } else {
+                if (data == 'success') {
+                    $('.sumupvote').text('2');
+                } else if(data == 'nosession') {
+                    alert('connection');
+                }else if(data == 'del') {
+                    alert('del');
+                }else {
                     alert('erreur');
                 }
             }, 'text'

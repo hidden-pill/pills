@@ -3,20 +3,28 @@ include_once '../config.php';
 if(isset($_SESSION['id'])){
     $id = $_SESSION['id'];
 
-    if(isset($_POST['plus']) && !empty($_POST['id_review'])){
+    if(isset($_POST['upvote']) && !empty($_POST['id_column'])){
         $vote = new Upvotes();
         $vote->id_users = $id;
-        $vote->id_column = $_POST['id_review'];
-        $vote->upvote = 1;
-        if($vote->checkIfVoteExist('id_reviews')){
-            if($vote->selectUpvote('id_reviews') == 1){
-                echo 'alreadyVote';
+        $vote->id_column = $_POST['id_column'];
+        $vote->upvote = $_POST['upvote'];
+        $column = $_POST['column'];
+        if($vote->checkIfVoteExist($column)){
+            if($vote->selectVote($column) == $_POST['upvote']){
+                if($vote->deleteVote($column)){
+                    echo 'del';
+                }else{
+                    echo 'error';
+                }
             } else {
-                $vote->updateVote();
-                echo 'success';
+                if($vote->updateVote($column)){
+                    echo 'success';
+                } else {
+                    echo 'Error';
+                }
             }
         }else{
-            if($vote->insertVote()){
+            if($vote->insertVote($column)){
                 echo 'success';
             } else {
                 echo 'Error';
