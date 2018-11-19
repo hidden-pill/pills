@@ -21,3 +21,9 @@ if(isset($_GET['order'])){
 $reviews = new Reviews();
 $reviewsList = $reviews->selectReviews($order);
 
+$vote = new Upvotes();
+$vote->id_users = 1;
+$vote->id_column = 1;
+$vote->upvote = 1;
+var_dump($vote->checkIfVoteExist('id_reviews'));
+var_dump($vote->selectUpvote('id_reviews'));

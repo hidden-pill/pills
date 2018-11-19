@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once '../controllers/addArtworkController.php';
 ?>
-<form action="addArtwork.php" method="POST" enctype="multipart/form-data">
+<form action="add-artwork.html" method="POST" enctype="multipart/form-data">
     <div class="input-field">
         <input name="name" type="text" id="name" />
         <label for="name">Nom de l'oeuvre*</label>

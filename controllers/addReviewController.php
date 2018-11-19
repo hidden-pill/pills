@@ -27,16 +27,18 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
         $errorReviewForm['title'] = 'ERROR_TITLE';
     }
 
-    if((count($_POST['tagInputs']) != 0) && (!empty($_POST['tags']))){
+    if((count($_POST['tagInputs']) != 0) || (!empty($_POST['tags']))){
         foreach($_POST['tagInputs'] as $tagInput){
             $tagInput = htmlspecialchars($tagInput);
             $tagsInputArray[] = $tagInput;
         }
-        foreach($_POST['tags'] as $tag){
-            if(!is_numeric($tag)){
-                $errorReviewForm['tags'] = 'ERROR_TAGS';
-            } else {
-                $tagsArray[] = $tag;
+            if(!empty($_POST['tags'])){
+            foreach($_POST['tags'] as $tag){
+                if(!is_numeric($tag)){
+                    $errorReviewForm['tags'] = 'ERROR_TAGS';
+                } else {
+                    $tagsArray[] = $tag;
+                }
             }
         }
     } else {

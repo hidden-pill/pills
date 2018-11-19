@@ -374,29 +374,29 @@ CREATE TABLE trailers(
 
 
 #------------------------------------------------------------
-# Table: plateforms
+# Table: PLATEFORMS
 #------------------------------------------------------------
 
-CREATE TABLE plateforms(
+CREATE TABLE PLATEFORMS(
         id        Int NOT NULL ,
         plateform Varchar (50) NOT NULL
-	,CONSTRAINT plateforms_PK PRIMARY KEY (id)
+	,CONSTRAINT PLATEFORMS_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: artworksPlateforms
+# Table: ARTWORKSPLATEFORMS
 #------------------------------------------------------------
 
-CREATE TABLE artworksPlateforms(
+CREATE TABLE ARTWORKSPLATEFORMS(
         id            Int NOT NULL ,
         id_artworks   Int NOT NULL ,
-        id_plateforms Int NOT NULL
-	,CONSTRAINT artworksPlateforms_PK PRIMARY KEY (id)
+        id_PLATEFORMS Int NOT NULL
+	,CONSTRAINT ARTWORKSPLATEFORMS_PK PRIMARY KEY (id)
 
-	,CONSTRAINT artworksPlateforms_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
-	,CONSTRAINT artworksPlateforms_plateforms0_FK FOREIGN KEY (id_plateforms) REFERENCES plateforms(id)
-	,CONSTRAINT artworksPlateforms_plateforms_AK UNIQUE (id_plateforms)
+	,CONSTRAINT ARTWORKSPLATEFORMS_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
+	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
 )ENGINE=InnoDB;
 
 
@@ -427,6 +427,7 @@ CREATE TABLE AA(
 	,CONSTRAINT AA_artists_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
 	,CONSTRAINT AA_artworks0_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 )ENGINE=InnoDB;
+
 
 
 
@@ -580,7 +581,7 @@ INSERT INTO `countries` (`country`) VALUES ('Îles Cook');
 INSERT INTO `countries` (`country`) VALUES ('Corée du Sud');
 INSERT INTO `countries` (`country`) VALUES ('Corée du Nord');
 INSERT INTO `countries` (`country`) VALUES ('Costa Rica');
-INSERT INTO `countries` (`country`) VALUES ('Côte d\'Ivoire');
+INSERT INTO `countries` (`country`) VALUES ("Côte d'Ivoire");
 INSERT INTO `countries` (`country`) VALUES ('Croatie');
 INSERT INTO `countries` (`country`) VALUES ('Cuba');
 INSERT INTO `countries` (`country`) VALUES ('Curaçao');
@@ -690,7 +691,7 @@ INSERT INTO `countries` (`country`) VALUES ('Île Norfolk');
 INSERT INTO `countries` (`country`) VALUES ('Norvège');
 INSERT INTO `countries` (`country`) VALUES ('Nouvelle-Calédonie');
 INSERT INTO `countries` (`country`) VALUES ('Nouvelle-Zélande');
-INSERT INTO `countries` (`country`) VALUES ('Territoire britannique de l\'océan Indien');
+INSERT INTO `countries` (`country`) VALUES ("Territoire britannique de l'océan Indien");
 INSERT INTO `countries` (`country`) VALUES ('Oman');
 INSERT INTO `countries` (`country`) VALUES ('Ouganda');
 INSERT INTO `countries` (`country`) VALUES ('Ouzbékistan');

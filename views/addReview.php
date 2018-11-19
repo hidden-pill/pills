@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once '../controllers/addReviewController.php';
 ?>
-<form action="addReview.php" method="POST" enctype="multipart/form-data">
+<form action="add-review.html" method="POST" enctype="multipart/form-data">
     <label class="" for="artwork">Choix de l'oeuvre</label>
     <select id="artwork" name="artwork">
     <option selected disabled>Choisir une oeuvre</option>

@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once '../controllers/addArtistController.php';
 ?>
-<form action="addArtist.php" method="POST" enctype="multipart/form-data">
+<form action="add-artist.html" method="POST" enctype="multipart/form-data">
     <input name="name" type="text" />
     <div class="input-field">
         <select multiple name="jobs[]" id="jobs">
