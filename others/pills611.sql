@@ -503,6 +503,8 @@ ALTER TABLE `AACountries`
 ALTER TABLE `reviewstags` DROP FOREIGN KEY `reviewsTags_reviews_FK`; 
 ALTER TABLE `reviewstags` ADD CONSTRAINT `reviewsTags_reviews_FK` FOREIGN KEY (`id_reviews`) REFERENCES `reviews`(`id`) ON DELETE CASCADE ON UPDATE RESTRICT; 
 
+ALTER TABLE `artworks` CHANGE `id_distributors` `id_distributors` INT(11) NULL DEFAULT NULL;
+
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
 # INSERT
