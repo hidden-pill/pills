@@ -78,4 +78,15 @@ class Upvotes extends Database {
         return $state;
     }
 
+    public function selectTotalVote($column){
+        $value = 0;
+        $query = 'SELECT COUNT(IF(`up`.`upvote` = 1, 1, NULL)) - COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `total` FROM `' .SALT. 'upvotes` AS `up` WHERE `' .$column. '` = :id_column';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':id_column', $this->id_column, PDO::PARAM_INT);
+        if ($result->execute()) {
+            $selectResult = $result->fetch(PDO::FETCH_OBJ);
+            $value = $selectResult->total;
+        }
+        return $value;
+    }
 }

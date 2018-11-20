@@ -196,15 +196,15 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
 .pillIcon i:hover {
 transform: scale(1.2);
 }
-.voted{
-    transform: scale(1.2);
-    text-shadow: 0 0 1px white;
-}
 .up{
     color: red !important;
+    transform: scale(1.2);
+    text-shadow: 0 0 4px;
 }
 .down{
     color: blue !important;
+    transform: scale(1.2);
+    text-shadow: 0 0 4px white;
 }
 .reviewContent{
     grid-row: span 2;

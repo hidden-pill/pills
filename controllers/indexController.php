@@ -19,4 +19,13 @@ if(isset($_GET['order'])){
     }
 }
 $reviews = new Reviews();
-$reviewsList = $reviews->selectReviews($order);
+if(isset($_SESSION['id'])){
+    if(is_numeric($_SESSION['id'])){
+        $reviews->id_users = $_SESSION['id'];
+        $reviewsList = $reviews->selectReviewsUserConnected($order);
+    }else{
+        $reviewsList = $reviews->selectReviews($order);
+    }
+}else{
+    $reviewsList = $reviews->selectReviews($order);
+}

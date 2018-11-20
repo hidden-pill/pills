@@ -12,25 +12,28 @@ if(isset($_SESSION['id'])){
         if($vote->checkIfVoteExist($column)){
             if($vote->selectVote($column) == $_POST['upvote']){
                 if($vote->deleteVote($column)){
-                    echo 'del';
+                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'del', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                    echo json_encode($jsonReturn);
                 }else{
-                    echo 'error';
+                    echo json_encode(['error' => 'error']);
                 }
             } else {
                 if($vote->updateVote($column)){
-                    echo 'success';
+                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'upd', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                    echo json_encode($jsonReturn);
                 } else {
-                    echo 'Error';
+                    echo json_encode(['error' => 'error']);
                 }
             }
         }else{
             if($vote->insertVote($column)){
-                echo 'success';
+                $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'ins', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                echo json_encode($jsonReturn);
             } else {
-                echo 'Error';
+                echo json_encode(['error' => 'error']);
             }
         }
     }
 } else {
-    echo 'nosession';
+     echo json_encode(['error' => 'nossession']);
 }
