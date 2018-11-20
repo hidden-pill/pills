@@ -34,6 +34,16 @@ class Database {
         return $result;
     }
 
+    public function deleteForDeleteUser($table) {
+        $state = false;
+        $query = 'DELETE FROM  `' .SALT.$table. '` WHERE `id_users` = :id_users';
+        $delete = Database::getInstance()->prepare($query);
+        $delete->bindValue(':id_users', $this->id, PDO::PARAM_INT);
+        if ($delete->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
     /**
      * __destruct de la connection à la db
      */

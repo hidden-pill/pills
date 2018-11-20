@@ -14,4 +14,5 @@ class ReviewsTags extends Database {
         $artistJob->bindValue(':id_reviews', $this->reviewID, PDO::PARAM_INT);
         return $artistJob->execute();
     }
+
 }
