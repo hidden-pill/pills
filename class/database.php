@@ -34,7 +34,7 @@ class Database {
         return $result;
     }
 
-    public function deleteForDeleteUser($table) {
+    public function deleteToDeleteUser($table) {
         $state = false;
         $query = 'DELETE FROM  `' .SALT.$table. '` WHERE `id_users` = :id_users';
         $delete = Database::getInstance()->prepare($query);
@@ -44,6 +44,19 @@ class Database {
         }
         return $state;
     }
+
+    
+    public function updateToDeleteUser($table){
+        $state = false;
+        $query = 'UPDATE `' .SALT.$table. '` SET `id_users` = 2 WHERE `id_users` = :id_users';
+        $update = Database::getInstance()->prepare($query);
+        $update->bindValue(':id_users', $this->id, PDO::PARAM_INT);
+        if ($update->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
+
     /**
      * __destruct de la connection à la db
      */

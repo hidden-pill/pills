@@ -132,4 +132,15 @@ class Reviews extends Database {
         return $result;
     }
 
+    public function searchReviewsToDeleteUser(){
+        $query = 'SELECT `id` FROM `reviews` WHERE `id_users` = :id_users';
+        $reviews = Database::getInstance()->prepare($query);
+        $reviews->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+        if($reviews->execute()){
+            if (is_object($reviews)) {
+                $result = $reviews->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
 }

@@ -62,7 +62,7 @@ $(function(){
             },
             function(data){
                 if (data == 'DELETESUCCESS') {
-                    location.reload(); 
+                    location.reload();
                 } else {
                     alert('il a eu un problème');
                 }
