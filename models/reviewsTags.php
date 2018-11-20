@@ -15,15 +15,5 @@ class ReviewsTags extends Database {
         return $artistJob->execute();
     }
 
-    public function deleteReviewsTagsToDeleteUser(){
-        $state = false;
-        $query = 'DELETE FROM  `' .SALT. 'reviewsTags` WHERE `id_reviews` = :id_reviews';
-        $delete = Database::getInstance()->prepare($query);
-        $delete->bindValue(':id_reviews', $this->id_reviews, PDO::PARAM_INT);
-        if ($delete->execute()) { 
-            $state = true;
-        }
-        return $state;
-    }
 
 }

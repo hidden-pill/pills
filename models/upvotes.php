@@ -52,9 +52,9 @@ class Upvotes extends Database {
     public function insertVote($column) {
         $state = false;
         $query = 'INSERT INTO `' .SALT. 'upvotes`'
-               . '(`upvote`, `' .$column. '`, `id_users`)'
-               . 'VALUES '
-               . '(:upvote, :id_column, :id_users)';
+                    . '(`upvote`, `' .$column. '`, `id_users`)'
+                    . 'VALUES '
+                    . '(:upvote, :id_column, :id_users)';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':id_column', $this->id_column, PDO::PARAM_INT);
         $result->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);

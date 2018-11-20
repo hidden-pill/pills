@@ -1,5 +1,6 @@
 <?php
 include_once '../config.php';
+
 if(isset($_SESSION['pseudo'])){
     $id = $_SESSION['id'];
     $user = new Users();
@@ -18,10 +19,7 @@ if(isset($_SESSION['pseudo'])){
 
     if(isset($_POST['checkdelete'])) {
         if($_POST['checkdelete'] == 'SUPPRIMER') {
-            $reviews = new Reviews();
-            $reviewsTags = new ReviewsTags();
             $user->id = $id;
-            $reviews->id_users = $id;
             try{
                 Database::getInstance()->beginTransaction();
                 $user->updateToDeleteUser('comments');
