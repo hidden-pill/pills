@@ -3,8 +3,15 @@
     RewriteEngine On
 
     RewriteRule ^([A-z]+)$ ?order=$1
+    RewriteRule ^search=([A-z]+)$ ?search=$1
+    RewriteRule ^([A-z]+)&search=([A-z]+)$ ?order=$1&search=$2
     RewriteRule ^([A-z]+)/$ /views/userPage.php?pseudo=$1
+
     RewriteRule ^([A-z]+)/settings$ /views/userSettings.php?pseudo=$1
+    RewriteRule ^review-([0-9]+).html$ /views/review.php?review=$1
+    RewriteRule ^artist-([0-9]+).html$ /views/artist.php?artist=$1
+    RewriteRule ^artwork-([0-9]+).html$ /views/artwork.php?artwork=$1
+
 
     RewriteRule ^add-review.html$ /views/addReview.php
     RewriteRule ^add-artist.html$ /views/addArtist.php

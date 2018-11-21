@@ -160,4 +160,16 @@ class Users extends Database {
         }
         return $state;
     }
+
+    public function countPageLeaderboard(){
+        $count = 0;
+        $query = 'SELECT CEIL(COUNT(`id`) / :limit) AS `count` FROM `users`';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':limit', $this->limit, PDO::PARAM_INT);
+        if ($result->execute()) {
+            $selectResult = $result->fetch(PDO::FETCH_OBJ);
+            $count = $selectResult->count;
+        }
+        return $count;
+    }
 }
