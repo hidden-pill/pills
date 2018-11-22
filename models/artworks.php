@@ -53,7 +53,8 @@ class Artworks extends Database {
     public function selectArtwork(){
         $artwork = [];
         $query = 'SELECT'
-        . '`atk`.`name`, '
+        . '`atk`.`id`,'
+        . '`atk`.`name`,'
         . 'IF(`atk`.`releaseDate` = \'0000-00-00\', \'Non renseigné\', DATE_FORMAT(`atk`.`releaseDate`, \'%d/%m/%Y\')) AS `releaseDate`,'
         . '`atk`.`synopsis`, '
         . '`atk`.`budget`,'
@@ -93,7 +94,8 @@ class Artworks extends Database {
     public function selectArtworkUserConnected(){
         $artwork = [];
         $query = 'SELECT'
-        . '`atk`.`name`, '
+        . '`atk`.`id`,'
+        . '`atk`.`name`,'
         . 'IF(`atk`.`releaseDate` = \'0000-00-00\', \'Non renseigné\', DATE_FORMAT(`atk`.`releaseDate`, \'%d/%m/%Y\')) AS `releaseDate`,'
         . '`atk`.`synopsis`, '
         . '`atk`.`budget`,'
@@ -105,7 +107,8 @@ class Artworks extends Database {
         . 'GROUP_CONCAT(DISTINCT `g`.`genre` SEPARATOR \', \') AS `genres`,'
         . 'GROUP_CONCAT(DISTINCT `t`.`trailer` SEPARATOR \', \') AS `trailers`,'
         . 'IF(AVG(`sc`.`score`) < 0, null, TRUNCATE(AVG(`sc`.`score`), 2)) AS `scoreAVG`,'
-        . 'IF(AVG(`sc`.`score`) < 0, null, TRUNCATE(AVG(`sc`.`score`), 0)) AS `countStars`'
+        . 'IF(AVG(`sc`.`score`) < 0, null, TRUNCATE(AVG(`sc`.`score`), 0)) AS `countStars`,'
+        . '(SELECT `score` FROM `scores` WHERE `id_artworks` = :id AND `id_users` = :id_users) AS `ussc`'
     . 'FROM `artworks` AS `atk`'
         . 'LEFT JOIN `distributors` AS `d` ON `d`.`id` = `atk`.`id_distributors`'
         . 'LEFT JOIN `articleTypes` AS `at` ON `at`.`id` = `atk`.`id_articleTypes`'
@@ -119,7 +122,7 @@ class Artworks extends Database {
         . 'LEFT JOIN `genres` AS `g` ON `g`.`id` = `AG`.`id_genres`'
         . 'LEFT JOIN `trailers` AS `t` ON `t`.`id_artworks` = `atk`.`id`'
         . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `atk`.`id`'
-    . 'WHERE `atk`.`id` = :id AND `sc`.`id_users` = :id_users';
+    . 'WHERE `atk`.`id` = :id';
         $artwork = Database::getInstance()->prepare($query);
         $artwork->bindValue(':id', $this->id, PDO::PARAM_INT);
         $artwork->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);

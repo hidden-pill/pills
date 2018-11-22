@@ -37,15 +37,21 @@ class Levels extends Database {
     public function leaderboard() {
         $leaderboard = [];
         $query = 'SELECT'
-                    . '`us`.`pseudo`,'
-                    . 'MAX(`lvl`.`level`) AS `level`,'
-                    . 'MAX(`lvl`.`color`) AS `color`,'
-                    . '`us`.`experience`'
-                . 'FROM `users` AS `us`,'
-                    . '`levels` AS `lvl`'
-                . 'WHERE  	`us`.`experience` - `lvl`.`levelxp` >= 0 '
-                    . 'GROUP BY `us`.`pseudo` '
-                    . 'ORDER BY `us`.`experience` DESC, `us`.`creationDate` '
+                    . '`lvlus`.`pseudo`,'
+                    . '`lvlus`.`level`,'
+                    . '`lvlus`.`experience`,'
+                    . '`levels`.`color`'
+                . 'FROM'
+                    . '`levels`'
+                        . 'LEFT JOIN'
+                    . '(SELECT '
+                        . '`us`.`pseudo`, MAX(`lvl`.`level`) AS `level`, `us`.`experience`, `us`.`creationDate` '
+                    . 'FROM'
+                        . '`users` AS `us`, `levels` AS `lvl`'
+                    . 'WHERE'
+                        . '`us`.`experience` - `lvl`.`levelxp` >= 0 '
+                    . 'GROUP BY `us`.`pseudo`) AS `lvlus` ON `lvlus`.`level` = `levels`.`level` '
+                    . 'ORDER BY `lvlus`.`experience` DESC, `lvlus`.`creationDate` DESC '
                     . 'LIMIT :page, :limit';
         $leaderboard = Database::getInstance()->prepare($query);
         $leaderboard->bindValue(':page', $this->page, PDO::PARAM_INT);

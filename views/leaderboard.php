@@ -3,10 +3,8 @@ include_once 'header.php';
 include_once '../controllers/leaderboardController.php';
 ?>
 <?php foreach($leaderboardArray as $leaderboardRow){?>
-<p><?= $leaderboardRow->pseudo; ?></p>
-<p><?= $leaderboardRow->level; ?></p>
-<p><?= $leaderboardRow->color; ?></p>
-<p><?= $leaderboardRow->experience; ?></p>
+<p><?= $leaderboardRow->pseudo; ?> | <?= $leaderboardRow->level; ?> | <?= $leaderboardRow->color; ?> | <?= $leaderboardRow->experience; ?></p>
 <?php } ?>
-<?= $pages; ?>
+<a class="btn" href="?page=<?= $_GET['page'] - 1; ?>">page -</a>
+<a class="btn" href="?page=<?= $_GET['page'] + 1; ?>">page +</a>
 <?php include 'footer.php'; ?>
