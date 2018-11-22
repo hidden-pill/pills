@@ -52,19 +52,22 @@ a{
 .search{
     display: flex;
     align-items: center;
-    margin: 0 20px;
+    width: 60vw;
+    transform: translate(-10%, 20%);
 }
-#autocomplete-input {
+#search{
     background-color: #fff;
     border-radius: 500px;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 800;
     width: 100%;
     height: 45px;
     margin: 0;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border: 0;
+    color: black;
+    padding-left: 10px;
 
 }
 
@@ -72,11 +75,9 @@ a{
     cursor: pointer;
     color:#3c3c3c;
     z-index: 901;
+    left: -42px;
+    position: relative;
 }
-.autocomplete-content{
-    width: 251.667px;
-}
-
 .userImage{
     border-radius: 5000px;
     border: white 2px solid;
@@ -102,9 +103,7 @@ a{
 .dropdown-content .material-icons{
     margin: 0 4px 0 0;
 }
-#autocomplete-input{
-    color: black;
-}
+
 input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default):focus:not([readonly]), input[type="password"]:not(.browser-default):focus:not([readonly]), input[type="email"]:not(.browser-default):focus:not([readonly]), input[type="url"]:not(.browser-default):focus:not([readonly]), input[type="time"]:not(.browser-default):focus:not([readonly]), input[type="date"]:not(.browser-default):focus:not([readonly]), input[type="datetime"]:not(.browser-default):focus:not([readonly]), input[type="datetime-local"]:not(.browser-default):focus:not([readonly]), input[type="tel"]:not(.browser-default):focus:not([readonly]), input[type="number"]:not(.browser-default):focus:not([readonly]), input[type="search"]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #26a69a00;
     -webkit-box-shadow: 0 1px 0 0 #26a69a00;
@@ -240,7 +239,14 @@ transform: scale(1.2);
     height: 2rem;
 }
 
-
+@media (max-width: 1300px) {
+    .reviewFooter a:nth-child(2) {
+        transform: scale(1);
+    }
+    .reviewFooter a:nth-child(2):hover {
+        transform: scale(0.9) translate(10px);
+    }
+}
 
 @media (max-width: 992px) {
     #logo img:first-child {
@@ -250,12 +256,6 @@ transform: scale(1.2);
     #logo img:last-child {
         top: 0;
         left: -45px;
-    }
-    .reviewFooter a:nth-child(2) {
-        transform: scale(1);
-    }
-    .reviewFooter a:nth-child(2):hover {
-        transform: scale(0.9) translate(10px);
     }
 }
 

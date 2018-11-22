@@ -45,8 +45,8 @@ include_once $path.'controllers/headerController.php';
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li class="search">
-            <input type="text" id="autocomplete-input" class="autocomplete" />
-            <i class="material-icons">search</i>
+            <input type="text" id="search" class="autocomplete" />
+            <a class="material-icons" id="submitSearch">search</a>
           </li>
           <?php if(!isset($_SESSION['isConnect'])){ ?>
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
