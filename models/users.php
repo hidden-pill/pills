@@ -172,4 +172,28 @@ class Users extends Database {
         }
         return $count;
     }
+
+    public function addUserReward(){
+        $state = false;
+        $query = 'UPDATE `users` SET `experience` = (`experience` + (SELECT `reward` FROM `rewards` WHERE `id` = :rewardID)) WHERE `id` = :id';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $result->bindValue(':rewardID', $this->rewardID, PDO::PARAM_INT);
+        if ($result->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
+
+    public function deleteUserReward() {
+        $state = false;
+        $query = 'UPDATE `users` SET `experience` = (`experience` - (SELECT `reward` FROM `rewards` WHERE `id` = :rewardID)) WHERE `id` = :id';
+        $result = Database::getInstance()->prepare($query);
+        $result->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $result->bindValue(':rewardID', $this->rewardID, PDO::PARAM_INT);
+        if ($result->execute()) { 
+            $state = true;
+        }
+        return $state;
+    }
 }
