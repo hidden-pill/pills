@@ -3,8 +3,7 @@
     RewriteEngine On
 
     RewriteRule ^([A-z]+)$ ?order=$1
-    RewriteRule ^search=([A-z]+)$ ?search=$1
-    RewriteRule ^([A-z]+)&search=([A-z]+)$ ?order=$1&search=$2
+    RewriteRule ^([A-z]+)-search=([A-z]+)$ ?order=$1&search=$2
     RewriteRule ^([A-z]+)/$ /views/userPage.php?pseudo=$1
 
     RewriteRule ^([A-z]+)/settings$ /views/userSettings.php?pseudo=$1

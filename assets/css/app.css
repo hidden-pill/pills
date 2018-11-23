@@ -3,9 +3,19 @@
 ::after {
     box-sizing: content-box;
 }
+
 .container{
     width: 100%;
 }
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+  }
 a{
     color: white;
 }
@@ -116,7 +126,7 @@ input:not([type]):focus:not([readonly]), input[type="text"]:not(.browser-default
     grid-template-rows: repeat(4, 1fr);
     height: 50vh;
     max-height: 300px;
-    margin-top: 20px;
+    margin: 20px 0;
     background-color: #0000008e;
     border-radius: 2px;
     box-shadow: 0 0 10px #3c3c3c;
@@ -279,4 +289,11 @@ transform: scale(1.2);
 
 .rating i:hover{
     transform: scale(1.5);
+}
+footer{
+    background: url(../images/drugs.png);
+    background-size: cover;
+}
+footer .container p{
+    display: inline;
 }

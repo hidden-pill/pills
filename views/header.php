@@ -32,7 +32,7 @@ include_once $path.'controllers/headerController.php';
     <li><a href="<?= $path; ?>views/admin.php"><i class="material-icons">settings</i>Admin</a></li>
     <?php } ?>
     <li class="divider"></li>
-    <li><a href="?action=disconnect"><i class="material-icons">exit_to_app</i>Se déconnecter</a></li>
+    <li><a href="/?action=disconnect"><i class="material-icons">exit_to_app</i>Se déconnecter</a></li>
   </ul>
     <nav class="nav-extended">
       <div class="nav-wrapper">
@@ -44,10 +44,12 @@ include_once $path.'controllers/headerController.php';
         </a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <?php if($_SERVER['PHP_SELF'] == '/index.php'){ ?>
           <li class="search">
-            <input type="text" id="search" class="autocomplete" />
-            <a class="material-icons" id="submitSearch">search</a>
+            <input type="text" id="search" placeholder="Rechercher une critique.." class="autocomplete" value="<?= isset($_GET['search'])? $_GET['search']: '' ; ?>" />
+            <a class="material-icons" id="submitSearch" href="/trending-search=">search</a>
           </li>
+          <?php } ?>
           <?php if(!isset($_SESSION['isConnect'])){ ?>
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
           <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>
@@ -113,4 +115,4 @@ include_once $path.'controllers/headerController.php';
     </div>
     </form>
 </div>
-<div class="container">
+<main class="container">

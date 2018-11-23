@@ -61,9 +61,13 @@ class Reviews extends Database {
                         . ') `up` ON `up`.`upid_reviews` = `rv`.`id`'
                     . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `rv`.`id_artworks`'
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
-                . 'GROUP BY `rv`.`id`'
+                    . 'LEFT JOIN `aa` ON `aa`.`id_artworks` = `a`.`id`'
+                    . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `aa`.`id_artworks`'
+                    . 'WHERE `rv`.`title` LIKE :search OR `a`.`name` LIKE :search OR `ats`.`name` LIKE :search OR `t`.`tag` LIKE :search OR `us`.`pseudo` LIKE :search '
+                . 'GROUP BY `rv`.`id` '
                 . 'ORDER BY' .$order;
         $reviews = Database::getInstance()->prepare($query);
+        $reviews->bindValue(':search', '%' .$this->search. '%', PDO::PARAM_STR);
         if($reviews->execute()){
             if (is_object($reviews)) {
                 $result = $reviews->fetchAll(PDO::FETCH_OBJ);
@@ -120,10 +124,14 @@ class Reviews extends Database {
                 . ') `upv` ON `upv`.`upid_reviews` = `rv`.`id`'
                 . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `rv`.`id_artworks`'
                 . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
-                . 'GROUP BY `rv`.`id`'
+                . 'LEFT JOIN `aa` ON `aa`.`id_artworks` = `a`.`id`'
+                . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `aa`.`id_artworks`'
+                . 'WHERE `rv`.`title` LIKE :search OR `a`.`name` LIKE :search OR `ats`.`name` LIKE :search OR `t`.`tag` LIKE :search OR `us`.`pseudo` LIKE :search '
+                . 'GROUP BY `rv`.`id` '
             . 'ORDER BY' .$order;
             $reviews = Database::getInstance()->prepare($query);
             $reviews->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+            $reviews->bindValue(':search', '%' .$this->search. '%', PDO::PARAM_STR);
         if($reviews->execute()){
             if (is_object($reviews)) {
                 $result = $reviews->fetchAll(PDO::FETCH_OBJ);

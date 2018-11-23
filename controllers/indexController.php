@@ -18,14 +18,29 @@ if(isset($_GET['order'])){
             break;
     }
 }
+    
+
 $reviews = new Reviews();
+$search = '';
 if(isset($_SESSION['id'])){
     if(is_numeric($_SESSION['id'])){
         $reviews->id_users = $_SESSION['id'];
+        if(isset($_GET['search'])){
+            $search = htmlspecialchars(trim($_GET['search']));
+        }
+        $reviews->search = $search;
         $reviewsList = $reviews->selectReviewsUserConnected($order);
     }else{
+        if(isset($_GET['search'])){
+            $search = htmlspecialchars(trim($_GET['search']));
+        }
+        $reviews->search = $search;
         $reviewsList = $reviews->selectReviews($order);
     }
 }else{
+    if(isset($_GET['search'])){
+        $search = htmlspecialchars(trim($_GET['search']));
+    }
+    $reviews->search = $search;
     $reviewsList = $reviews->selectReviews($order);
 }
