@@ -17,4 +17,3 @@ $leaderboardArray = $leaderboard->leaderboard();
 $pagesLeaderboard = new Users();
 $pagesLeaderboard->limit = $limit;
 $pages = $pagesLeaderboard->countPageLeaderboard();
-$pages -= 1;
