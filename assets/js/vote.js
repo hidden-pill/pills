@@ -1,5 +1,7 @@
 $(function(){
     $('.vote').click(function(e) {
+        var column = $(this).attr('column');
+        var id_column = $(this).attr('id_column');
         e.preventDefault();
         $.post(
             '../ajax/vote.php', 
@@ -35,35 +37,35 @@ $(function(){
                     }
                     var color = red + ',' + green + ', ' + blue;
                     console.log(color);
-                    $('#pill'+data['item']).css('background-color', 'rgb(' + color +')');
+                    $('#pill' + column + id_column).css('background-color', 'rgb(' + color + ')');
                     switch(data['action']){
                         case 'del':
                             if(data['button'] == 1){
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .upvote').removeClass('up');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .upvote').removeClass('up');
                             } else {
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .downvote').removeClass('down');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .downvote').removeClass('down');
                             }
                             break;
                         case 'ins':
                             if(data['button'] == 1){
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .upvote').addClass('up');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .upvote').addClass('up');
                             } else {
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .downvote').addClass('down');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .downvote').addClass('down');
                             }
                             break;
                         case 'upd':
                             if(data['button'] == 1){
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .upvote').addClass('up');
-                                $('#pill'+data['item'] + ' .downvote').removeClass('down');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .upvote').addClass('up');
+                                $('#pill' + column + id_column + ' .downvote').removeClass('down');
                             } else {
-                                $('#pill'+data['item'] + ' .sumupvote').text(data['sum']);
-                                $('#pill'+data['item'] + ' .downvote').addClass('down');
-                                $('#pill'+data['item'] + ' .upvote').removeClass('up');
+                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                                $('#pill' + column + id_column + ' .downvote').addClass('down');
+                                $('#pill' + column + id_column + ' .upvote').removeClass('up');
                             }
                             break;
                     }

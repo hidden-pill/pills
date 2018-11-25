@@ -46,5 +46,5 @@ if(isset($_SESSION['id'])){
         }
     }
 } else {
-     echo json_encode(['error' => 'nossession']);
+    echo json_encode(['error' => 'nossession']);
 }

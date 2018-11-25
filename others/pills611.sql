@@ -505,6 +505,14 @@ ALTER TABLE `reviewstags` ADD CONSTRAINT `reviewsTags_reviews_FK` FOREIGN KEY (`
 
 ALTER TABLE `artworks` CHANGE `id_distributors` `id_distributors` INT(11) NULL DEFAULT NULL;
 
+ALTER TABLE `comments` CHANGE `date` `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `comments` 
+        CHANGE `commentsId` `commentsId` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_reviews` `id_reviews` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_proposals` `id_proposals` INT(11) NULL DEFAULT NULL, 
+        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL;
+
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
 # INSERT
@@ -1026,3 +1034,10 @@ INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (48, 1058400 ,'#97020b
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (49, 1102500 ,'#930003');
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (50, 1147500 ,'#840002');
 INSERT INTO `levels` (`level`, `levelxp`, `color`) VALUES (51, 99999999 ,'#65ff00');
+
+INSERT INTO `rewards`(`reward`) VALUES (10);
+INSERT INTO `rewards`(`reward`) VALUES (25);
+INSERT INTO `rewards`(`reward`) VALUES (500);
+INSERT INTO `rewards`(`reward`) VALUES (10000);
+INSERT INTO `rewards`(`reward`) VALUES (25000);
+INSERT INTO `rewards`(`reward`) VALUES (50000);

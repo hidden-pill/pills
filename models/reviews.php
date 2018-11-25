@@ -246,7 +246,7 @@ class Reviews extends Database {
                 . 'LEFT JOIN ('
                     . 'SELECT'
                         . '`upv`.`id_reviews` AS `upid_reviews`,'
-                        . 'IF(`upv`.`id_users` = :id_users AND `upv`.`upvote` = 1, 1, 0) AS `classupvote`'
+                        . '`upv`.`upvote` AS `classupvote`'
                     . 'FROM `upvotes` AS `upv`'
                     . 'WHERE id_users = :id_users'
                 . ') `upv` ON `upv`.`upid_reviews` = `rv`.`id`'

@@ -297,3 +297,123 @@ footer{
 footer .container p{
     display: inline;
 }
+
+.pageReview{
+    background-color: grey;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+}
+.pageReview pre{
+    background-color: #ffffff49;
+    padding: 5px;
+}
+.headerReview {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.headerReview h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 1.8em;
+    padding-left: 12px;
+}
+
+.headerReview div,
+.headerReview div a,
+.headerReview div p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footerReview,
+.footerReview a{
+    display: flex;
+    padding-left: 4px;
+    align-items: center;
+}
+.footerReview a p,
+.footerReview a i{
+    padding: 0 10px;
+}
+
+.userComment {
+    display: grid;
+    grid-template-columns: 90px 4fr;
+    grid-template-rows: 60px 1fr 36px;
+    padding: 10px 0;
+    width: 100%;
+}
+.userCommentAnswer {
+    display: grid;
+    grid-template-columns: 90px 4fr;
+    grid-template-rows: 60px 1fr 120px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.userImgComment {
+    border-radius: 5000px;
+    border: white 2px solid;
+    height: 52px;
+    width: 80px;
+    object-fit: cover;
+    margin: auto 0;
+}
+
+.commentHeader {
+    margin: auto 0;
+    background-color: black;
+    padding: 16px 24px;
+    border-radius: 0 60px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+.commentHeader .sumupvote{
+    color: black;
+}
+.commentHeader h4 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+}
+.commentContent {
+    background-color: #75757598;
+    grid-column: 2/2;
+    grid-row: 2/2;
+    padding: 2px 2px 2px 5px;
+    margin: 12px 0 0 0;
+}
+.commentFooter{
+    grid-column: 2/2;
+    grid-row: 3/3;
+}
+.commentFooter .addComment{
+    width: 100%;
+    padding: 0;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    font-weight: bold;
+}
+.answer {
+    float: right;
+    width: 92%;
+}
+#sendComment{
+    width: 100%;
+    margin: 10px 0;
+    padding: 0;
+}
+.userCommentAnswer textarea{
+    background-color: #fff;
+    margin: 0;
+}
