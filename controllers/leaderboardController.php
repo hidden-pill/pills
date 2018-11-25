@@ -1,5 +1,6 @@
 <?php
-$limit = 10;
+$limit = 25;
+$page = 1;
 
 $leaderboard = new Levels();
 $leaderboard->page = 0;
@@ -16,3 +17,4 @@ $leaderboardArray = $leaderboard->leaderboard();
 $pagesLeaderboard = new Users();
 $pagesLeaderboard->limit = $limit;
 $pages = $pagesLeaderboard->countPageLeaderboard();
+$pages -= 1;

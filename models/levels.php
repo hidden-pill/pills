@@ -51,6 +51,7 @@ class Levels extends Database {
                     . 'WHERE'
                         . '`us`.`experience` - `lvl`.`levelxp` >= 0 '
                     . 'GROUP BY `us`.`pseudo`) AS `lvlus` ON `lvlus`.`level` = `levels`.`level` '
+                    . 'WHERE `lvlus`.`pseudo` IS NOT NULL '
                     . 'ORDER BY `lvlus`.`experience` DESC, `lvlus`.`creationDate` DESC '
                     . 'LIMIT :page, :limit';
         $leaderboard = Database::getInstance()->prepare($query);

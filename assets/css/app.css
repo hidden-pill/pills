@@ -417,3 +417,14 @@ footer .container p{
     background-color: #fff;
     margin: 0;
 }
+
+tbody{
+    color: white;
+    font-weight: 900;
+}
+
+#pagesLeaderboard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
