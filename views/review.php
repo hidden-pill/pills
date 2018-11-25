@@ -52,9 +52,11 @@ include_once 'header.php';
                 </span>
             </div>
             <p class="commentContent"><?= $com->comment; ?></p>
+            <?php if($com->commentsId == null){ ?>
             <div class="commentFooter">
                 <div class="btn black addComment" comment="<?= $com->id; ?>">Répondre</div>
             </div>
+            <?php } ?>
         </li>
     <?php } ?>
 </ul>
@@ -63,5 +65,3 @@ include_once 'header.php';
     <div class="btn black" id="sendComment" id_column="<?= $_GET['review']; ?>" column="id_reviews">Envoyer le commentaire</div>
 
     <?php include_once 'footer.php'; ?>
-    <script src="../assets/js/vote.js"></script>
-    <script src="../assets/js/comments.js"></script>

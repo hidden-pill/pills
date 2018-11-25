@@ -33,4 +33,3 @@
 </div>
 <?php } ?>
 <?php include_once 'views/footer.php'; ?>
-<script src="assets/js/vote.js"></script>

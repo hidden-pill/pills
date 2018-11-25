@@ -23,7 +23,11 @@ class Comments extends Database {
                     . 'COUNT(IF(`up`.`upvote` = 1, 1, NULL)) - COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `upvoteTotal`,'
                     . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 1, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 1, 1, NULL)) > COUNT(IF(`up`.`upvote` = 0, 1, NULL)), +100, -100)) , 0) AS `red`,'
                     . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) > COUNT(IF(`up`.`upvote` = 1, 1, NULL)), +100, -100)) , 0) AS `blue`,'
-                    . '`upv`.`usvote`'
+                    . '`upv`.`usvote`,'
+                    . 'CASE `com`.`commentsId` '
+                    . 'WHEN 0 THEN CONCAT_WS(\'.\',`com`.`id`,LPAD((SELECT MAX(`id`)+1 FROM Comments WHERE `com`.`commentsId` = `com`.`id`), 2, 0)) '
+                    . 'ELSE CONCAT_WS(\'.\',`com`.`commentsId`,LPAD(`com`.`id`,2,0)) '
+                    . 'END AS `sort`'
                     . 'FROM'
                     . '`comments` AS `com`'
                         . 'LEFT JOIN'
@@ -35,10 +39,90 @@ class Comments extends Database {
                 . 'WHERE '
                     . 'com.id_reviews = :id_reviews '
                 . 'GROUP BY `com`.`id` '
-                . 'ORDER BY `date` ASC';
+                . 'ORDER BY `sort` ASC';
             $comments = Database::getInstance()->prepare($query);
             $comments->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
             $comments->bindValue(':id_reviews', $this->id_reviews, PDO::PARAM_INT);
+        if($comments->execute()){
+            if (is_object($comments)) {
+                $result = $comments->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
+
+    public function selectArtistCommentsUserConnected(){
+        $comments = [];
+        $query = 'SELECT'
+                    . '`com`.`id`,'
+                    . '`com`.`commentsId`,'
+                    . '`us`.`id` AS `userID`,'
+                    . '`us`.`pseudo`,'
+                    . '`com`.`comment`,'
+                    . 'IF(DATEDIFF(NOW(), `com`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`com`.`date`, \'%T\')), \' heure(s)\'), CONCAT(DATEDIFF(NOW(), `com`.`date`), \' jour(s)\')) AS `comPastTime`,'
+                    . 'COUNT(IF(`up`.`upvote` = 1, 1, NULL)) - COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `upvoteTotal`,'
+                    . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 1, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 1, 1, NULL)) > COUNT(IF(`up`.`upvote` = 0, 1, NULL)), +100, -100)) , 0) AS `red`,'
+                    . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) > COUNT(IF(`up`.`upvote` = 1, 1, NULL)), +100, -100)) , 0) AS `blue`,'
+                    . '`upv`.`usvote`,'
+                    . 'CASE `com`.`commentsId` '
+                    . 'WHEN 0 THEN CONCAT_WS(\'.\',`com`.`id`,LPAD((SELECT MAX(`id`)+1 FROM Comments WHERE `com`.`commentsId` = `com`.`id`), 2, 0)) '
+                    . 'ELSE CONCAT_WS(\'.\',`com`.`commentsId`,LPAD(`com`.`id`,2,0)) '
+                    . 'END AS `sort`'
+                    . 'FROM'
+                    . '`comments` AS `com`'
+                        . 'LEFT JOIN'
+                    . '`users` AS `us` ON `us`.`id` = `com`.`id_users`'
+                        . 'LEFT JOIN'
+                    . '`upvotes` AS `up` ON `up`.`id_comments` = `com`.`id`'
+                        . 'LEFT JOIN'
+                    . '	(SELECT `upvotes`.`id_comments` AS `idupc`, `upvotes`.`upvote` AS `usvote` FROM `upvotes` WHERE `id_users` = :id_users) AS `upv` ON `idupc` = `com`.`id`'
+                . 'WHERE '
+                    . 'com.id_artists = :id_artists '
+                . 'GROUP BY `com`.`id` '
+                . 'ORDER BY `sort` ASC';
+            $comments = Database::getInstance()->prepare($query);
+            $comments->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+            $comments->bindValue(':id_artists', $this->id_artists, PDO::PARAM_INT);
+        if($comments->execute()){
+            if (is_object($comments)) {
+                $result = $comments->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
+
+    public function selectArtworkCommentsUserConnected(){
+        $comments = [];
+        $query = 'SELECT'
+                    . '`com`.`id`,'
+                    . '`com`.`commentsId`,'
+                    . '`us`.`id` AS `userID`,'
+                    . '`us`.`pseudo`,'
+                    . '`com`.`comment`,'
+                    . 'IF(DATEDIFF(NOW(), `com`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`com`.`date`, \'%T\')), \' heure(s)\'), CONCAT(DATEDIFF(NOW(), `com`.`date`), \' jour(s)\')) AS `comPastTime`,'
+                    . 'COUNT(IF(`up`.`upvote` = 1, 1, NULL)) - COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `upvoteTotal`,'
+                    . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 1, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 1, 1, NULL)) > COUNT(IF(`up`.`upvote` = 0, 1, NULL)), +100, -100)) , 0) AS `red`,'
+                    . 'IF(COUNT(`up`.`upvote`) > 0, ABS(COUNT(IF(`up`.`upvote` = 0, 1, NULL)))+(IF(COUNT(IF(`up`.`upvote` = 0, 1, NULL)) > COUNT(IF(`up`.`upvote` = 1, 1, NULL)), +100, -100)) , 0) AS `blue`,'
+                    . '`upv`.`usvote`,'
+                    . 'CASE `com`.`commentsId` '
+                    . 'WHEN 0 THEN CONCAT_WS(\'.\',`com`.`id`,LPAD((SELECT MAX(`id`)+1 FROM Comments WHERE `com`.`commentsId` = `com`.`id`), 2, 0)) '
+                    . 'ELSE CONCAT_WS(\'.\',`com`.`commentsId`,LPAD(`com`.`id`,2,0)) '
+                    . 'END AS `sort`'
+                    . 'FROM'
+                    . '`comments` AS `com`'
+                        . 'LEFT JOIN'
+                    . '`users` AS `us` ON `us`.`id` = `com`.`id_users`'
+                        . 'LEFT JOIN'
+                    . '`upvotes` AS `up` ON `up`.`id_comments` = `com`.`id`'
+                        . 'LEFT JOIN'
+                    . '	(SELECT `upvotes`.`id_comments` AS `idupc`, `upvotes`.`upvote` AS `usvote` FROM `upvotes` WHERE `id_users` = :id_users) AS `upv` ON `idupc` = `com`.`id`'
+                . 'WHERE '
+                    . 'com.id_artworks = :id_artworks '
+                . 'GROUP BY `com`.`id` '
+                . 'ORDER BY `sort` ASC';
+            $comments = Database::getInstance()->prepare($query);
+            $comments->bindValue(':id_users', $this->id_users, PDO::PARAM_INT);
+            $comments->bindValue(':id_artworks', $this->id_artworks, PDO::PARAM_INT);
         if($comments->execute()){
             if (is_object($comments)) {
                 $result = $comments->fetchAll(PDO::FETCH_OBJ);

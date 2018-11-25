@@ -12,4 +12,7 @@
 <script src="<?= $path; ?>assets/materialize/js/materialize.js"></script>
 <script src="<?= $path; ?>assets/js/app.js"></script>
 <script src="<?= $path; ?>assets/js/search.js"></script>
+<script src="<?= $path; ?>assets/js/score.js"></script>
+<script src="<?= $path; ?>assets/js/vote.js"></script>
+<script src="<?= $path; ?>assets/js/comments.js"></script>
 </html>
