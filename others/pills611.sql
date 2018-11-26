@@ -118,7 +118,7 @@ CREATE TABLE users(
         secretAnswer Varchar (50) NOT NULL ,
         newsletter   Bool NOT NULL ,
         birthDate    Date NOT NULL ,
-        creationDate Date NOT NULL ,
+        creationDate Datetime NOT NULL ,
         experience   Int NOT NULL ,
         id_questions Int NOT NULL ,
         id_ranks     Int NOT NULL
@@ -197,7 +197,7 @@ CREATE TABLE reviews(
         id          Int NOT NULL ,
         title       Varchar (255) NOT NULL ,
         review      Text NOT NULL ,
-        date        Date NOT NULL ,
+        date        Datetime NOT NULL ,
         id_users    Int NOT NULL ,
         id_artworks Int NOT NULL
 	,CONSTRAINT reviews_PK PRIMARY KEY (id)
@@ -214,12 +214,13 @@ CREATE TABLE reviews(
 CREATE TABLE comments(
         id           Int NOT NULL ,
         comment      Text NOT NULL ,
-        date         Date NOT NULL ,
+        date         Datetime NOT NULL ,
         commentsId   Int NOT NULL ,
         id_reviews   Int NOT NULL ,
         id_proposals Int NOT NULL ,
         id_artists   Int NOT NULL ,
-        id_users     Int NOT NULL
+        id_users     Int NOT NULL ,
+        id_artworks  Int NOT NULL
 	,CONSTRAINT comments_AK UNIQUE (commentsId)
 	,CONSTRAINT comments_PK PRIMARY KEY (id)
 
@@ -227,6 +228,7 @@ CREATE TABLE comments(
 	,CONSTRAINT comments_proposals0_FK FOREIGN KEY (id_proposals) REFERENCES proposals(id)
 	,CONSTRAINT comments_artists1_FK FOREIGN KEY (id_artists) REFERENCES artists(id)
 	,CONSTRAINT comments_users2_FK FOREIGN KEY (id_users) REFERENCES users(id)
+	,CONSTRAINT comments_artworks3_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
 )ENGINE=InnoDB;
 
 
@@ -374,29 +376,29 @@ CREATE TABLE trailers(
 
 
 #------------------------------------------------------------
-# Table: PLATEFORMS
+# Table: plateforms
 #------------------------------------------------------------
 
-CREATE TABLE PLATEFORMS(
+CREATE TABLE plateforms(
         id        Int NOT NULL ,
         plateform Varchar (50) NOT NULL
-	,CONSTRAINT PLATEFORMS_PK PRIMARY KEY (id)
+	,CONSTRAINT plateforms_PK PRIMARY KEY (id)
 )ENGINE=InnoDB;
 
 
 #------------------------------------------------------------
-# Table: ARTWORKSPLATEFORMS
+# Table: artworksPlateforms
 #------------------------------------------------------------
 
-CREATE TABLE ARTWORKSPLATEFORMS(
+CREATE TABLE artworksPlateforms(
         id            Int NOT NULL ,
         id_artworks   Int NOT NULL ,
-        id_PLATEFORMS Int NOT NULL
-	,CONSTRAINT ARTWORKSPLATEFORMS_PK PRIMARY KEY (id)
+        id_plateforms Int NOT NULL
+	,CONSTRAINT artworksPlateforms_PK PRIMARY KEY (id)
 
-	,CONSTRAINT ARTWORKSPLATEFORMS_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
-	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS0_FK FOREIGN KEY (id_PLATEFORMS) REFERENCES PLATEFORMS(id)
-	,CONSTRAINT ARTWORKSPLATEFORMS_PLATEFORMS_AK UNIQUE (id_PLATEFORMS)
+	,CONSTRAINT artworksPlateforms_artworks_FK FOREIGN KEY (id_artworks) REFERENCES artworks(id)
+	,CONSTRAINT artworksPlateforms_plateforms0_FK FOREIGN KEY (id_plateforms) REFERENCES plateforms(id)
+	,CONSTRAINT artworksPlateforms_plateforms_AK UNIQUE (id_plateforms)
 )ENGINE=InnoDB;
 
 
@@ -511,7 +513,8 @@ ALTER TABLE `comments`
         CHANGE `commentsId` `commentsId` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_reviews` `id_reviews` INT(11) NULL DEFAULT NULL, 
         CHANGE `id_proposals` `id_proposals` INT(11) NULL DEFAULT NULL, 
-        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL;
+        CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL,
+        CHANGE `id_artworks` `id_artworks` INT(11) NULL DEFAULT NULL;
 
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
@@ -536,6 +539,10 @@ INSERT INTO `users`
         VALUES
         ('ADMIN', '$2y$10$VC.Qnv3QniLISGGiztaI0uxP7CAtQ9CdqpVlkSgtuUUitpLsU7vla', 'emmanuel.galland117@gmail.com', 'oslo', '1', '1994-02-12', '2018-11-05 20:20:53',  '0', '1', '3');
 
+INSERT INTO `users` 
+        (`pseudo`, `password`, `email`, `secretAnswer`, `newsletter`, `birthDate`, `creationDate`, `experience`, `id_questions`, `id_ranks`) 
+        VALUES
+        ('anonyme','anon', '$2y$10$AfLMM7bKuY2k/f0kJvC/7efFgmxcf14czNrC8rl0NPmhp4KUmPt1u', 'anon','0','0000-00-00','2018-11-20 17:26:23','-9999999','1','1');
 
 INSERT INTO `countries` (`country`) VALUES ('Afghanistan');
 INSERT INTO `countries` (`country`) VALUES ('Afrique du Sud');
@@ -1041,3 +1048,6 @@ INSERT INTO `rewards`(`reward`) VALUES (500);
 INSERT INTO `rewards`(`reward`) VALUES (10000);
 INSERT INTO `rewards`(`reward`) VALUES (25000);
 INSERT INTO `rewards`(`reward`) VALUES (50000);
+
+INSERT INTO `jobs`(`job`) VALUES ('Acteur');
+INSERT INTO `jobs`(`job`) VALUES ('Réalisateur');

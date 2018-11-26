@@ -1,3 +1,8 @@
+@keyframes logo{
+    0%{transform: scale(0.9);}
+    50%{transform: scale(1.1);}
+    100%{transform: scale(0.9);}
+}
 *,
 ::before,
 ::after {
@@ -44,14 +49,18 @@ a{
 #logo img{
     position: absolute;
     height: 112px;
+
 }
 #logo img:last-child{
     height: 50px;
     top: 36px;
     left: 30px;
+    animation-name: logo;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
 }
-#logo img:last-child:hover{
-    transform: scale(1.1);
+#logo img:first-child:hover{
+    transform: rotate(5deg);
 }
 .autocomplete-content{
     position: absolute;
@@ -275,21 +284,6 @@ transform: scale(1.2);
     }
 }
 
-.rating i{
-    cursor: pointer;
-    -webkit-user-select: none;
-    /* Chrome all / Safari all */
-    -moz-user-select: none;
-    /* Firefox all */
-    -ms-user-select: none;
-    /* IE 10+ */
-    user-select: none;
-    /* Likely future */
-}
-
-.rating i:hover{
-    transform: scale(1.5);
-}
 footer{
     background: url(../images/drugs.png);
     background-size: cover;
@@ -427,4 +421,124 @@ tbody{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#rabbit{
+    height: 42px;
+    width: 50px;
+}
+#rabbit:hover{
+    transition-duration: 10s;
+    transform: translate(50px) scale(1.2) rotate(24deg);
+}
+
+.artworkPage{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 40px 100px 80px 1fr 1fr;
+    margin: 20px 0;
+    min-height: 600px;
+}
+
+.artworkPage img{
+    grid-row: span 4;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    object-fit: cover;
+    width: 18vw;
+    min-width: 160px;
+}
+
+.artworkPage .avg{
+    background-color: black;
+    color: white;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    grid-row: 1;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 1.8;
+}
+.artworkPage h3{
+    background-color: black;
+    color: white;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 1.5;
+    grid-row: 1;
+}
+.artworkPage h1{
+    padding-left: 10px;
+    line-height: 30px;
+}
+.artworkPage .rating{
+    grid-row: 3;
+    grid-column: 2;
+    padding: 10px 0 0 10px; 
+}
+
+.rating i{
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */
+    font-size: 4rem;
+}
+
+.rating i:hover{
+    transform: scale(1.5);
+}
+
+.artworkPage .synopsis,
+.artworkPage .info{
+    padding-left: 10px;
+}
+
+.artists{
+    display: flex;
+    flex-wrap: wrap;
+}
+.AA{
+    height: 220px;
+    width: 160px;
+    background-color: black;
+    padding: 2px;
+}
+.AA img{
+    height: 160px;
+    width: 160px;
+    margin: 0 auto;
+    object-fit: cover;
+}
+.AA p{
+    margin: 0;
+    color: white;
+    text-align: center;
 }

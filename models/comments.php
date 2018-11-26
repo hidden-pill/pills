@@ -117,7 +117,7 @@ class Comments extends Database {
                         . 'LEFT JOIN'
                     . '	(SELECT `upvotes`.`id_comments` AS `idupc`, `upvotes`.`upvote` AS `usvote` FROM `upvotes` WHERE `id_users` = :id_users) AS `upv` ON `idupc` = `com`.`id`'
                 . 'WHERE '
-                    . 'com.id_artworks = :id_artworks '
+                    . '`com`.`id_artworks` = :id_artworks '
                 . 'GROUP BY `com`.`id` '
                 . 'ORDER BY `sort` ASC';
             $comments = Database::getInstance()->prepare($query);

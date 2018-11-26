@@ -3,8 +3,8 @@
   <div class="footer-copyright">
     <div class="container">
         <p>Copyright Pills© 2018 - Tous droits réservés.</p>
-        <a class="grey-text text-lighten-4 right" href="">Soumettre une amélioration au développeur</a>
     </div>
+    <a class="right" href="#"><img id="rabbit" src="<?= $path; ?>assets/images/rabbit.png" /></a>
   </div>
 </footer>
 </body>

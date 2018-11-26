@@ -99,7 +99,7 @@ class Artworks extends Database {
         . 'IF(`atk`.`releaseDate` = \'0000-00-00\', \'Non renseigné\', DATE_FORMAT(`atk`.`releaseDate`, \'%d/%m/%Y\')) AS `releaseDate`,'
         . '`atk`.`synopsis`, '
         . '`atk`.`budget`,'
-        . '`d`.`distributor`,'
+        . 'GROUP_CONCAT(DISTINCT `d`.`distributor` SEPARATOR \', \') AS `distributor`,'
         . '`at`.`articleType`,'
         . 'GROUP_CONCAT(DISTINCT `N`.`nationality` SEPARATOR \', \') AS `nationalities`,'
         . 'GROUP_CONCAT(DISTINCT `C`.`country` SEPARATOR \', \') AS `countries`,'
@@ -133,4 +133,5 @@ class Artworks extends Database {
         }
         return $result;
     }
+
 }

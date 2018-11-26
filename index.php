@@ -12,7 +12,7 @@
     <div class="reviewTitle">
         <div class="titleTags">
             <a href="review-<?= $review->id; ?>.html"><h2><?= $review->title; ?></h2></a>
-            <a href=""><span class="new badge" data-badge-caption="#<?= $review->tag; ?>"></span></a>
+            <a href="?search=<?= $review->tag; ?>"><span class="new badge" data-badge-caption="#<?= $review->tag; ?>"></span></a>
         </div>
         <span class="pillIcon" id="pillid_reviews<?= $review->id; ?>" <?php if(($review->red + $review->blue) != 0){?> style="background-color: rgb(<?= $review->red > $review->blue? $review->red : 0; ?>, 0, <?= $review->blue > $review->red? $review->blue : 0; ?>)"<?php } ?>>
             <i class="material-icons vote upvote <?= $review->classupvote == '1'? 'up': ''; ?>" id_column="<?= $review->id; ?>" upvote="1" column="id_reviews">add_circle</i>

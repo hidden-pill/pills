@@ -4,12 +4,44 @@ include_once '../controllers/artworkController.php';
 include_once 'header.php';
 ?>
 
-<?= $artworkDetails->name; ?>
 
-<div class="rating" id="ratingid_artworks<?= $artworkDetails->id; ?>">
-<?php for($star = 1; $star <= 10; $star++){ ?><i class="material-icons star<?= $star; ?>" score="<?= $star;?>" id_column="<?= $artworkDetails->id; ?>" column="id_artworks"><?php if(isset($_SESSION['id'])){?><?= $artworkDetails->ussc >= $star?'star' : 'star_border'; ?><?php }else{ echo 'star_border'; } ?></i><?php } ?>
+<div class="artworkPage">
+    <img src="../assets/images/artworks/<?= $artworkDetails->id; ?>" />
     <p class="avg"><?= $artworkDetails->scoreAVG; ?></p>
+    <h1><?= $artworkDetails->name; ?></h1>
+    <div class="rating" id="ratingid_artworks<?= $artworkDetails->id; ?>">
+        <?php for($star = 1; $star <= 10; $star++){ ?><i class="material-icons star<?= $star; ?>" score="<?= $star;?>" id_column="<?= $artworkDetails->id; ?>" column="id_artworks"><?php if(isset($_SESSION['id'])){?><?= $artworkDetails->ussc >= $star?'star' : 'star_border'; ?><?php }else{ echo 'star_border'; } ?></i><?php } ?>
+    </div>
+    <p class="synopsis">
+        Synopsis : <br />
+        <?= $artworkDetails->synopsis; ?>
+    </p>
+    <ul class="info">
+        <li>Date de sortie : <?= $artworkDetails->releaseDate; ?></li>
+        <li>Plateforme : <?= $artworkDetails->plateforms; ?></li>
+        <li>Distribution : <?= $artworkDetails->distributor; ?></li>
+        <li>Nationalité : <?= $artworkDetails->nationalities; ?></li>
+        <li>Tournage : <?= $artworkDetails->countries; ?></li>
+        <li>Genre : <?= $artworkDetails->genres; ?></li>
+        <li>Trailer : <?= $artworkDetails->trailers; ?></li>
+    </ul>
+    <h3><?= $artworkDetails->articleType; ?></h3>
 </div>
+<div class="artists">
+    <?php foreach($artistList as $ats){ ?>
+    <a href="artist-<?= $ats->id; ?>.html" class="AA">
+        <img src="../assets/images/artists/<?= $ats->id; ?>" />
+        <p><?= $ats->name; ?></p>
+        <p><?= $ats->jobs; ?></p>
+    </a>
+    <?php } ?>
+</div>
+
+
+
+
+
+
 <ul>
     <?php foreach($commentList as $com){?>
         <li class="userComment <?= $com->commentsId != null? 'answer': ''; ?>" id="comment<?= $com->id; ?>">
@@ -34,5 +66,5 @@ include_once 'header.php';
 </ul>
 
     <textarea id="newComment" class="materialize-textarea"></textarea>
-    <div class="btn black" id="sendComment" id_column="<?= $_GET['artwork']; ?>" column="id_artworks">Envoyer le commentaire</div>
+    <div class="btn black" id="sendComment" id_column="<?= $_GET['review']; ?>" column="id_reviews">Envoyer le commentaire</div>
 <?php include_once 'footer.php'; ?>
