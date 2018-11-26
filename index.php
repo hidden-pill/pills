@@ -4,7 +4,7 @@
 <?php foreach ($reviewsList as $review){ ?>
 <div class="review">
     <a href="artwork-<?= $review->artworkID; ?>.html" class="reviewImage">
-      <object class="reviewImage" data="assets/images/artworks/<?= $review->artworkID; ?>" title="<?= $review->name; ?>" onerror="this.onerror=null;this.src='assets/images/artworks/default_poster.png';"  onabort="this.onabort=null;this.src='assets/images/artworks/default_default_posterprofile.png';"">
+      <object class="reviewImage" data="assets/images/artworks/<?= $review->artworkID; ?>" title="<?= $review->name; ?>" onerror="this.onerror=null;this.src='assets/images/default/default_poster.png';"  onabort="this.onabort=null;this.src='assets/images/default/default_default_posterprofile.png';"">
         <img class="reviewImage" src="assets/images/artworks/default_poster.png" alt="default-poster">
       </object>
       <p><?= $review->scoreAVG; ?></p>
@@ -23,7 +23,7 @@
     <p class="reviewContent"><?= $review->review; ?></p>
     <div class="reviewFooter">
         <a href="<?= $review->pseudo; ?>/">
-            <img class="userImage" src="assets/images/users/<?= $review->idUs; ?>" onerror="this.onerror=null;this.src='assets/images/users/default_profile.png';"  onabort="this.onabort=null;this.src='assets/images/users/default_profile.png';" />
+            <img class="userImage" src="assets/images/users/<?= $review->idUs; ?>" onerror="this.onerror=null;this.src='assets/images/default/default_profile.png';"  onabort="this.onabort=null;this.src='assets/images/default/default_profile.png';" />
             <p><?= $review->pseudo; ?></p>
         </a>
         <a class="btn waves-effect waves-light black" href="review-<?= $review->id; ?>.html">

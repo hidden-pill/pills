@@ -14,7 +14,7 @@ include_once '../controllers/leaderboardController.php';
         <?php foreach($leaderboardArray as $leaderboardRow){?>
         <tr style="background-color : <?= $leaderboardRow->color; ?>">
             <td>
-                <?= $leaderboardRow->pseudo; ?>
+                <a href="/<?= $leaderboardRow->pseudo; ?>/"><?= $leaderboardRow->pseudo; ?></a>
             </td>
             <td>
                 <?= $leaderboardRow->level; ?>

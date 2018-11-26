@@ -263,4 +263,27 @@ class Reviews extends Database {
         }
         return $result;
     }
+
+    public function selectLastUserReviews(){
+        $reviews = [];
+        $query = 'SELECT '
+                    .' `rv`.`id`,'
+                    .' `rv`.`title`,'
+                    .' IF(DATEDIFF(NOW(), `rv`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`rv`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `rv`.`date`), \'j\')) AS `reviewPastTime`'
+                .' FROM'
+                    .' `reviews` `rv`'
+                        .' LEFT JOIN '
+                    .' `users` `us` ON `us`.`id` = `rv`.`id_users`'
+                .' WHERE'
+                    .' `us`.`pseudo` = :pseudo '
+                    .' ORDER BY `rv`.`date` DESC LIMIT 5';
+            $reviews = Database::getInstance()->prepare($query);
+            $reviews->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if($reviews->execute()){
+            if (is_object($reviews)) {
+                $result = $reviews->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
 }

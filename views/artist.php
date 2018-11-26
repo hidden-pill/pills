@@ -3,17 +3,36 @@ include_once '../config.php';
 include_once '../controllers/artistController.php';
 include_once 'header.php';
 ?>
-
-<?= $artistDetails->name; ?>
-
-<div class="rating" id="ratingid_artists<?= $artistDetails->id; ?>">
-<?php for($star = 1; $star <= 10; $star++){ ?>
-    <i class="material-icons star<?= $star; ?>" score="<?= $star;?>" id_column="<?= $artistDetails->id; ?>" column="id_artists">
-    <?php if(isset($_SESSION['id'])){?><?= $artistDetails->ussc >= $star?'star' : 'star_border'; ?><?php }else{ echo 'star_border'; } ?>
-    </i>
-<?php } ?>
+<div class="artworkPage">
+    <img src="../assets/images/artists/<?= $artistDetails->id; ?>" />
     <p class="avg"><?= $artistDetails->scoreAVG; ?></p>
+    <h1><?= $artistDetails->name; ?></h1>
+    <div class="rating" id="ratingid_artists<?= $artistDetails->id; ?>">
+        <?php for($star = 1; $star <= 10; $star++){ ?><i class="material-icons star<?= $star; ?>" score="<?= $star;?>" id_column="<?= $artistDetails->id; ?>" column="id_artists"><?php if(isset($_SESSION['id'])){?><?= $artistDetails->ussc >= $star?'star' : 'star_border'; ?><?php }else{ echo 'star_border'; } ?></i><?php } ?>
+    </div>
+    <p class="synopsis">
+        Biographie : <br />
+        <?= $artistDetails->biography; ?>
+    </p>
+    <ul class="info">
+        <li>Date de naissance : <?= $artistDetails->birthDate; ?></li>
+        <li>Pays de naissance : <?= $artistDetails->countries; ?></li>
+        <li>Nationalité : <?= $artistDetails->nationalities; ?></li>
+        <li>Date de décès : <?= $artistDetails->deathDate; ?></li>
+    </ul>
+    <h3><?= $artistDetails->jobs; ?></h3>
 </div>
+
+<div class="AAbox">
+    <?php foreach($artworkList as $atk){ ?>
+    <a href="artwork-<?= $atk->id; ?>.html" class="AA">
+        <img src="../assets/images/artworks/<?= $atk->id; ?>" />
+        <p><?= $atk->name; ?></p>
+        <p><?= $atk->articleType; ?></p>
+    </a>
+    <?php } ?>
+</div>
+
 
 <ul>
     <?php foreach($commentList as $com){?>

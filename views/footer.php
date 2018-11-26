@@ -4,7 +4,7 @@
     <div class="container">
         <p>Copyright Pills© 2018 - Tous droits réservés.</p>
     </div>
-    <a class="right" href="#"><img id="rabbit" src="<?= $path; ?>assets/images/rabbit.png" /></a>
+<?php if(isset($_SESSION['isConnect'])){ ?><a class="right" href="#"><img id="rabbit" src="<?= $path; ?>assets/images/rabbit.png" /></a><?php } ?>
   </div>
 </footer>
 </body>

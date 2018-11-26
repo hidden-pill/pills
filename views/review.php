@@ -25,8 +25,8 @@ include_once 'header.php';
     <pre><?= $reviewDetails->review; ?></pre>
     <div class="footerReview">
         <a href="<?= $reviewDetails->pseudo; ?>/">
-            <img class="userImage" src="assets/images/users/<?= $reviewDetails->idUs; ?>" onerror="this.onerror=null;this.src='assets/images/users/default_profile.png';"
-                onabort="this.onabort=null;this.src='assets/images/users/default_profile.png';" />
+            <img class="userImage" src="../assets/images/users/<?= $reviewDetails->idUs; ?>" onerror="this.onerror=null;this.src='../assets/images/default/default_profile.png';"
+                onabort="this.onabort=null;this.src='../assets/images/default/default_profile.png';" />
             <p>
                 <?= $reviewDetails->pseudo; ?>
             </p>

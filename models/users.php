@@ -62,7 +62,20 @@ class Users extends Database {
 
     public function selectUser(){
         $user = [];
-        $query = 'SELECT `id`, `experience` FROM `' .SALT. 'users` WHERE `pseudo` = :pseudo';
+        $query = 'SELECT '
+                    .'`us`.`id`, '
+                    .'`us`.`experience`, '
+                    .'(SELECT `lvl`.`level` FROM `levels` `lvl`, `users` `us` WHERE `us`.`experience` - `lvl`.`levelxp` >= 0 AND `us`.`pseudo` = :pseudo GROUP BY `lvl`.`id` DESC LIMIT 1) as `level`, '
+                    .'(SELECT `lvl`.`color` FROM `levels` `lvl`, `users` `us` WHERE `us`.`experience` - `lvl`.`levelxp` >= 0 AND `us`.`pseudo` = :pseudo GROUP BY `lvl`.`id` DESC LIMIT 1) as `color`,'
+                    .'COUNT(DISTINCT `up`.`id`) AS `countUp`,'
+                    .'(SELECT SUM(`sc`.`score`) `score` FROM `users` `us` LEFT JOIN `scores` `sc` ON `sc`.`id_users` = `us`.`id` WHERE `pseudo` = :pseudo) as `countSc`,'
+                    .'COUNT(DISTINCT `rv`.`id`) AS `countRv`'
+                    .'FROM'
+                    .'`users` `us`'
+                    .'LEFT JOIN `upvotes` `up` ON `up`.`id_users` = `us`.`id`'
+                        .'LEFT JOIN `reviews` `rv` ON `rv`.`id_users` = `us`.`id`'
+                .'WHERE'
+                    .'`pseudo` = :pseudo';
         $user = Database::getInstance()->prepare($query);
         $user->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         if($user->execute()){

@@ -4,6 +4,7 @@ if(isset($_GET['artist'])){
     $artistID = $_GET['artist'];
     $artist = new Artists();
     $comment = new Comments();
+    $artwork = new AA();
     $artist->id = $artistID;
     if($artist->checkIfArtistExist()){
         if(isset($_SESSION['id'])){
@@ -15,6 +16,8 @@ if(isset($_GET['artist'])){
         }else{
             $artistDetails = $artist->selectArtist();
         }
+        $artwork->id_artists = $artistID;
+        $artworkList = $artwork->selectArtistArtworks();
     }else{
         header('Location:/');
         exit;

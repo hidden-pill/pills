@@ -427,8 +427,8 @@ tbody{
     width: 50px;
 }
 #rabbit:hover{
-    transition-duration: 10s;
-    transform: translate(50px) scale(1.2) rotate(24deg);
+    transition-duration: 2s;
+    transform: translate(80px) scale(1.2) rotate(24deg);
 }
 
 .artworkPage{
@@ -491,12 +491,13 @@ tbody{
 }
 .artworkPage h1{
     padding-left: 10px;
-    line-height: 30px;
+    margin: 0 auto;
 }
 .artworkPage .rating{
     grid-row: 3;
     grid-column: 2;
     padding: 10px 0 0 10px; 
+    margin: 0 auto;
 }
 
 .rating i{
@@ -510,7 +511,50 @@ tbody{
     user-select: none;
     /* Likely future */
     font-size: 4rem;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
+.star1{
+    background: -webkit-linear-gradient(0deg, #0f15ff,  #2a14e4);
+}
+
+.star2{
+    background: -webkit-linear-gradient(0deg, #2a14e4,  #4412ca);
+}
+
+.star3{
+    background: -webkit-linear-gradient(0deg, #4412ca,  #5f11af);
+}
+
+.star4{
+    background: -webkit-linear-gradient(0deg, #5f11af,  #7a1094);
+}
+
+.star5{
+    background: -webkit-linear-gradient(0deg, #7a1094,  #940e7a);
+}
+
+.star6{
+    background: -webkit-linear-gradient(0deg, #940e7a,  #af0d5f);
+}
+
+.star7{
+    background: -webkit-linear-gradient(0deg, #af0d5f,  #ca0c44);
+}
+
+.star8{
+    background: -webkit-linear-gradient(0deg, #ca0c44,  #e40a2a);
+}
+
+.star9{
+    background: -webkit-linear-gradient(0deg, #e40a2a,  #ff090f);
+}
+
+.star10{
+    background: -webkit-linear-gradient(0deg, #ff090f,  #ec0006);
+}
+
 
 .rating i:hover{
     transform: scale(1.5);
@@ -521,7 +565,7 @@ tbody{
     padding-left: 10px;
 }
 
-.artists{
+.AAbox{
     display: flex;
     flex-wrap: wrap;
 }
@@ -541,4 +585,33 @@ tbody{
     margin: 0;
     color: white;
     text-align: center;
+}
+
+.userPage{
+    margin-top: 10px;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
+    height: 400px;
+}
+.userPage img{
+    grid-row: span 4;
+    grid-column: 1;
+    border-radius: 5000px;
+    height: 100%;
+    margin: 0 auto;
+    object-fit: cover;
+    width: 80%;
+}
+
+.userPage h1,
+.userPage p,
+.userPage table,
+.userPage a{
+    grid-column: 2;
+}
+
+tbody,
+tbody a{
+    color: black;
 }

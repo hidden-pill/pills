@@ -146,4 +146,26 @@ class Comments extends Database {
         }
         return $state;
     }
+
+    public function selectLastUserComments(){
+        $comments = [];
+        $query = 'SELECT '
+                    . '`com`.`comment`,'
+                    . 'IF(DATEDIFF(NOW(), `com`.`date`) = 0, CONCAT(ABS(DATE_FORMAT(NOW(), \'%T\') - DATE_FORMAT(`com`.`date`, \'%T\')), \'h\'), CONCAT(DATEDIFF(NOW(), `com`.`date`), \'j\')) AS `commentPastTime`'
+                . 'FROM'
+                    . '`comments` `com`'
+                        . 'LEFT JOIN '
+                    . '`users` `us` ON `us`.`id` = `com`.`id_users`'
+                . 'WHERE'
+                    . '`us`.`pseudo` = :pseudo '
+                . 'ORDER BY `com`.`date` DESC LIMIT 5';
+            $comments = Database::getInstance()->prepare($query);
+            $comments->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        if($comments->execute()){
+            if (is_object($comments)) {
+                $result = $comments->fetchAll(PDO::FETCH_OBJ);
+            }
+        }
+        return $result;
+    }
 }

@@ -27,7 +27,7 @@ include_once 'header.php';
     </ul>
     <h3><?= $artworkDetails->articleType; ?></h3>
 </div>
-<div class="artists">
+<div class="AAbox">
     <?php foreach($artistList as $ats){ ?>
     <a href="artist-<?= $ats->id; ?>.html" class="AA">
         <img src="../assets/images/artists/<?= $ats->id; ?>" />
