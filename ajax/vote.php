@@ -3,7 +3,7 @@ include_once '../config.php';
 if(isset($_SESSION['id'])){
     $id = $_SESSION['id'];
 
-    if(isset($_POST['upvote']) && !empty($_POST['id_column'])){
+    if(isset($_POST['upvote']) && !empty($_POST['id_column'])  && !empty($_POST['column'])){
         $rewardUser = new Users();
         $rewardUser->id = $id;
         $rewardUser->rewardID = 1;
@@ -16,7 +16,7 @@ if(isset($_SESSION['id'])){
             if($vote->selectVote($column) == $_POST['upvote']){
                 if($vote->deleteVote($column)){
                     if($rewardUser->deleteUserReward()){
-                        $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'del', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                        $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'del'];
                         echo json_encode($jsonReturn);
                     }else {
                         echo json_encode(['error' => 'error']);
@@ -26,7 +26,7 @@ if(isset($_SESSION['id'])){
                 }
             } else {
                 if($vote->updateVote($column)){
-                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'upd', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'upd'];
                     echo json_encode($jsonReturn);
                 } else {
                     echo json_encode(['error' => 'error']);
@@ -35,7 +35,7 @@ if(isset($_SESSION['id'])){
         }else{
             if($vote->insertVote($column)){
                 if($rewardUser->addUserReward()){
-                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'ins', 'button' => $_POST['upvote'], 'item' => $_POST['id_column']];
+                    $jsonReturn = ['sum' => $vote->selectTotalVote($column), 'action' => 'ins'];
                     echo json_encode($jsonReturn);
                 }else {
                     echo json_encode(['error' => 'error']);
@@ -48,3 +48,4 @@ if(isset($_SESSION['id'])){
 } else {
      echo json_encode(['error' => 'nossession']);
 }
+

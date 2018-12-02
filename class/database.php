@@ -57,10 +57,4 @@ class Database {
         return $state;
     }
 
-    /**
-     * __destruct de la connection à la db
-     */
-    public function __destruct(){
-        $this->db = NULL;
-    }
 }

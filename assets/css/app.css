@@ -615,3 +615,8 @@ tbody,
 tbody a{
     color: black;
 }
+
+.leaderboard tbody,
+.leaderboard tbody a{
+    color : white;
+}

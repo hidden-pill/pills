@@ -13,7 +13,7 @@ class AA extends Database {
         . '(:id_artists, :id_artworks)';
         $artistCountry = Database::getInstance()->prepare($query);
         $artistCountry->bindValue(':id_artists', $this->artistID, PDO::PARAM_INT);
-        $artistCountry->bindValue(':id_artworks', $this->artwork, PDO::PARAM_INT);
+        $artistCountry->bindValue(':id_artworks', $this->artworkID, PDO::PARAM_INT);
         return $artistCountry->execute();
     }
 

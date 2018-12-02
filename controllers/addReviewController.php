@@ -96,7 +96,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
                 move_uploaded_file($first_path, $end_path);
             }
             Database::getInstance()->commit();
-        } catch (Exception $e) { // catch error message
+        } catch (Exception $e) {
             Database::getInstance()->rollback();
             die('Erreur : ' . $e->getMessage());
         }

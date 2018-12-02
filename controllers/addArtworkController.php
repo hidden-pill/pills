@@ -159,7 +159,7 @@ if(isset($_POST['submitArtwork'])){
             }
 
             foreach ($artistsArray as $artist) {
-                $newArtworkArtists->artist = $artist;
+                $newArtworkArtists->artistID = $artist;
                 $newArtworkArtists->artworkID = $artworkID;
                 $newArtworkArtists->insertArtistArtwork();
             }

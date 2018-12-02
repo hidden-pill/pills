@@ -66,5 +66,5 @@ include_once 'header.php';
 </ul>
 
     <textarea id="newComment" class="materialize-textarea"></textarea>
-    <div class="btn black" id="sendComment" id_column="<?= $_GET['review']; ?>" column="id_reviews">Envoyer le commentaire</div>
+    <div class="btn black" id="sendComment" id_column="<?= $_GET['artwork']; ?>" column="id_artworks">Envoyer le commentaire</div>
 <?php include_once 'footer.php'; ?>

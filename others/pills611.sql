@@ -110,22 +110,22 @@ CREATE TABLE ranks(
 # Table: users
 #------------------------------------------------------------
 
-CREATE TABLE users(
-        id           Int NOT NULL ,
-        pseudo       Varchar (24) NOT NULL ,
-        password     Varchar (100) NOT NULL ,
-        email        Varchar (255) NOT NULL ,
-        secretAnswer Varchar (50) NOT NULL ,
-        newsletter   Bool NOT NULL ,
-        birthDate    Date NOT NULL ,
-        creationDate Datetime NOT NULL ,
-        experience   Int NOT NULL ,
-        id_questions Int NOT NULL ,
-        id_ranks     Int NOT NULL
-	,CONSTRAINT users_PK PRIMARY KEY (id)
+CREATE TABLE `users`(
+        `id`           Int NOT NULL ,
+        `pseudo`       Varchar (24) NOT NULL ,
+        `password`     Varchar (100) NOT NULL ,
+        `email`        Varchar (255) NOT NULL ,
+        `secretAnswer` Varchar (50) NOT NULL ,
+        `newsletter`   Bool NOT NULL ,
+        `birthDate`    Date NOT NULL ,
+        `creationDate` Datetime NOT NULL ,
+        `experience`   Int NOT NULL ,
+        `id_questions` Int NOT NULL ,
+        `id_ranks`     Int NOT NULL
+	,CONSTRAINT `users_PK` PRIMARY KEY (id)
 
-	,CONSTRAINT users_questions_FK FOREIGN KEY (id_questions) REFERENCES questions(id)
-	,CONSTRAINT users_ranks0_FK FOREIGN KEY (id_ranks) REFERENCES ranks(id)
+	,CONSTRAINT `users_questions_FK` FOREIGN KEY (`id_questions`) REFERENCES `questions`(`id`)
+	,CONSTRAINT `users_ranks0_FK` FOREIGN KEY (`id_ranks`) REFERENCES `ranks`(`id`)
 )ENGINE=InnoDB;
 
 

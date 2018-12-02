@@ -2,7 +2,7 @@
 include_once 'header.php';
 include_once '../controllers/leaderboardController.php';
 ?>
-<table>
+<table class="leaderboard">
     <thead>
         <tr>
             <th>Pseudo</th>

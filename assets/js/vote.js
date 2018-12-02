@@ -2,13 +2,14 @@ $(function(){
     $('.vote').click(function(e) {
         var column = $(this).attr('column');
         var id_column = $(this).attr('id_column');
+        var upvote = $(this).attr('upvote');
         e.preventDefault();
         $.post(
             '../ajax/vote.php', 
             {
-                id_column: $(this).attr('id_column'),
-                upvote: $(this).attr('upvote'),
-                column: $(this).attr('column')
+                id_column: id_column,
+                upvote: upvote,
+                column: column
             },
             function(data){
                 if('error' in data){
@@ -36,34 +37,28 @@ $(function(){
                         }
                     }
                     var color = red + ',' + green + ', ' + blue;
-                    console.log(color);
                     $('#pill' + column + id_column).css('background-color', 'rgb(' + color + ')');
+                    $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
                     switch(data['action']){
                         case 'del':
-                            if(data['button'] == 1){
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                            if(upvote == 1){
                                 $('#pill' + column + id_column + ' .upvote').removeClass('up');
                             } else {
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
                                 $('#pill' + column + id_column + ' .downvote').removeClass('down');
                             }
                             break;
                         case 'ins':
-                            if(data['button'] == 1){
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                            if(upvote == 1){
                                 $('#pill' + column + id_column + ' .upvote').addClass('up');
                             } else {
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
                                 $('#pill' + column + id_column + ' .downvote').addClass('down');
                             }
                             break;
                         case 'upd':
-                            if(data['button'] == 1){
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
+                            if(upvote == 1){
                                 $('#pill' + column + id_column + ' .upvote').addClass('up');
                                 $('#pill' + column + id_column + ' .downvote').removeClass('down');
                             } else {
-                                $('#pill' + column + id_column + ' .sumupvote').text(data['sum']);
                                 $('#pill' + column + id_column + ' .downvote').addClass('down');
                                 $('#pill' + column + id_column + ' .upvote').removeClass('up');
                             }
@@ -73,3 +68,5 @@ $(function(){
         },'json');
     });
 });
+
+
