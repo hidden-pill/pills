@@ -6,7 +6,10 @@ class Rewards extends Database {
     public $reward = null;
 
 
-
+    /**
+     * get all reward in rewards table
+     * @return array
+     */
     public function selectRewards() {
         $reward = [];
         $query = 'SELECT `id`, `reward` FROM `' .SALT. 'rewards`';

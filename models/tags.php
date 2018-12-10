@@ -5,6 +5,10 @@ class Tags extends Database {
     public $id = null;
     public $tag = null;
   
+    /**
+     * get all tag in tags table
+     * @return array
+     */
     public function selectTags() {
         $tag = [];
         $query = 'SELECT `id`, `tag` FROM `' .SALT. 'tags`';
@@ -17,6 +21,10 @@ class Tags extends Database {
         return $result;
     }  
 
+    /**
+     * insert tag in tags table
+     * @return array
+     */
     public function insertTag(){
         $query = 'INSERT INTO `' .SALT. 'tags`'
         . '(`tag`)'

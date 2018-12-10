@@ -9,7 +9,11 @@ class Upvotes extends Database {
     public $id_reviews = null;
     public $id_users = null;
 
-
+    /**
+     * check if vote exist in upvotes table
+     * @param column $column to choose column concern
+     * @return bool
+     */
     public function checkIfVoteExist($column){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
@@ -23,6 +27,11 @@ class Upvotes extends Database {
         return $state;
     }
 
+    /**
+     * get user vote exist in upvotes table
+     * @param column $column to choose column concern
+     * @return int
+     */
     public function selectVote($column){
         $value = 0;
         $query = 'SELECT `upvote` FROM `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
@@ -36,6 +45,11 @@ class Upvotes extends Database {
         return $value;
     }
 
+    /**
+     * update user vote exist in upvotes table
+     * @param column $column to choose column concern
+     * @return bool
+     */
     public function updateVote($column){
         $state = false;
         $query = 'UPDATE `' .SALT. 'upvotes` SET `upvote` = :upvote WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
@@ -49,6 +63,11 @@ class Upvotes extends Database {
         return $state;
     }
 
+    /**
+     * insert user vote exist in upvotes table
+     * @param column $column to choose column concern
+     * @return bool
+     */
     public function insertVote($column) {
         $state = false;
         $query = 'INSERT INTO `' .SALT. 'upvotes`'
@@ -65,6 +84,11 @@ class Upvotes extends Database {
         return $state;
     }
 
+    /**
+     * delete user vote exist in upvotes table
+     * @param column $column to choose column concern
+     * @return bool
+     */
     public function deleteVote($column) {
         $state = false;
         $query = 'DELETE FROM  `' .SALT. 'upvotes` WHERE `' .$column. '` = :id_column AND `id_users` = :id_users';
@@ -77,6 +101,10 @@ class Upvotes extends Database {
         return $state;
     }
 
+    /**
+     * get sum vote
+     * @return int
+     */
     public function selectTotalVote($column){
         $value = 0;
         $query = 'SELECT COUNT(IF(`up`.`upvote` = 1, 1, NULL)) - COUNT(IF(`up`.`upvote` = 0, 1, NULL)) AS `total`'

@@ -62,7 +62,7 @@ if(isset($_POST['submitRegister'])){
         $newsletter = 0;
     }
 
-
+    // execute if they are no error in array
     if (count($formError) == 0) {
         $user = new Users();
         $user->pseudo = $pseudo;
@@ -72,10 +72,11 @@ if(isset($_POST['submitRegister'])){
         $user->secretQuestion = $secretQuestion;
         $user->secretAnswer = $secretAnswer;
         $user->newsletter = $newsletter;
+        // if insert didn't work, error message
         if(!$user->userInsert()){
-            echo 'raté';
+            $message = 'Il y a eu un problème';
+        }else{ // else ok message
+            $message = 'Votre compte a bien été créé';
         }
-    }else{
-        var_dump($formError);
     }
 }

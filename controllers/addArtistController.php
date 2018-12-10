@@ -1,7 +1,6 @@
 <?php
-
+// initialize variables / arrays
 $errorArtistForm = [];
-
 $name = '';
 $jobsArray = [];
 $nationalitiesArray = [];
@@ -11,6 +10,7 @@ $birthDate = '0000-00-00';
 $deathDate = '0000-00-00';
 $bio = '';
 
+// all instances for all selectors
 $jobs = new Jobs();
 $jobsList = $jobs->selectJobs();
 $nationalities = new Nationalities();
@@ -20,6 +20,8 @@ $countriesList = $countries->selectCountries();
 $artwork = new Artworks();
 $artworksList = $artwork->selectArtworks();
 
+
+// submit artist
 if(isset($_POST['submitArtist'])){
 
     if(empty($_POST['name'])){
@@ -28,6 +30,7 @@ if(isset($_POST['submitArtist'])){
         $name = htmlspecialchars($_POST['name']);
     }
 
+    // clean all contents in jobs array
     if(!empty($_POST['jobs'])){
         foreach($_POST['jobs'] as $job){
             if(!is_numeric($job)){
@@ -40,6 +43,7 @@ if(isset($_POST['submitArtist'])){
         $errorArtistForm['jobs'] = 'ERROR_JOBS';
     }
 
+    // clean all contents in nationalities array
     if(!empty($_POST['nationalities'])){
         foreach($_POST['nationalities'] as $nationality){
             if(!is_numeric($nationality)){
@@ -50,6 +54,7 @@ if(isset($_POST['submitArtist'])){
         }
     } 
 
+    // clean all contents in countries array
     if(!empty($_POST['countries'])){
         foreach($_POST['countries'] as $country){
             if(!is_numeric($country)){
@@ -60,6 +65,7 @@ if(isset($_POST['submitArtist'])){
         }
     } 
 
+    // clean all contents in artworks array
     if(!empty($_POST['artworks'])){
         foreach($_POST['artworks'] as $artwork){
             if(!is_numeric($artwork)){
@@ -70,6 +76,7 @@ if(isset($_POST['submitArtist'])){
         }
     } 
     
+
     if(!empty($_POST['birthDate'])){
         $birthDate = htmlspecialchars($_POST['birthDate']);
     } 
@@ -82,6 +89,7 @@ if(isset($_POST['submitArtist'])){
         $bio = htmlspecialchars($_POST['bio']);
     }
 
+    // if image exists, upload it only if extension if jpg and png
     if (!empty($_FILES['image'])) {
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
             if(pathinfo($_FILES['image']['name'])['extension'] == 'png' || pathinfo($_FILES['image']['name'])['extension'] == 'jpg'){
@@ -92,6 +100,7 @@ if(isset($_POST['submitArtist'])){
         }
     }
     
+    // try to insert in db if error array still empty after all tests
     if(count($errorArtistForm) == 0){
         $newArtist = new Artists();
         $newArtist->name = $name;
@@ -103,7 +112,9 @@ if(isset($_POST['submitArtist'])){
         $newArtistCountries = new AACountries();
         $newArtistArtwork = new AA();
 
+        // transaction
         try {
+            //start
             Database::getInstance()->beginTransaction();
             $newArtist->insertArtist();
             $artistID = $newArtist->getLastInsertId();
@@ -132,6 +143,7 @@ if(isset($_POST['submitArtist'])){
                 $end_path = '../assets/images/artists/' .$artistID;
                 move_uploaded_file($first_path, $end_path);
             }
+            // execute all insert if there is no problems
             Database::getInstance()->commit();
         } catch (Exception $e) { // catch error message
             Database::getInstance()->rollback();

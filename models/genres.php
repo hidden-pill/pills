@@ -5,7 +5,10 @@ class Genres extends Database {
     public $id = null;
     public $genre = null;
 
-
+    /**
+     * get all genre from genres table
+     * @return array
+     */
     public function selectGenres() {
         $genre = [];
         $query = 'SELECT `id`, `genre` FROM `' .SALT. 'genres`';

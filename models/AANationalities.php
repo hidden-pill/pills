@@ -6,6 +6,10 @@ class AANationalities extends Database {
     public $id_nationalities = null;
     public $id_artists = null;
 
+    /**
+     * insert artist and nationality ids into table AANationalities
+     * @return bool
+     */
     public function insertArtistNationalities(){
         $query = 'INSERT INTO `' .SALT. 'AANationalities`'
         . '(`id_artists`, `id_nationalities`)'
@@ -17,6 +21,10 @@ class AANationalities extends Database {
         return $artistJob->execute();
     }
 
+    /**
+     * insert artwork and nationality ids into table AANationalities
+     * @return bool
+     */
     public function insertArtworkNationalities(){
         $query = 'INSERT INTO `' .SALT. 'AANationalities`'
         . '(`id_artworks`, `id_nationalities`)'

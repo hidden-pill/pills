@@ -1,11 +1,16 @@
 <?php
-
+/* header controller
+ also used to user connection
+in the entire website */
 
 $identifier = '';
 $errorList = array();
 $message='';
 
+// user try to connect
 if(isset($_POST['submitLogin'])){
+    // check if inputs are not empty
+
     if (!empty($_POST['identifier'])) {
         $identifier = htmlspecialchars($_POST['identifier']);
     }else{
@@ -18,14 +23,16 @@ if(isset($_POST['submitLogin'])){
         $errorList['password'] = 'ERROR_LOGIN';
     }
 
+    // if there is no error, try connection
     if(count($errorList) == 0){
         $user = new Users();
         $user->identifier = $identifier;
         if($user->userConnection()){
+            // check if password match
             if(password_verify($password, $user->password)){
                 //la connexion se fait
                 $message = 'USER_CONNECTION_SUCCESS';
-                //On rempli la session avec les attributs de l'objet issus de l'hydratation
+                // set session
                 $_SESSION['pseudo'] = $user->pseudo;
                 $_SESSION['id'] = $user->id;
                 $_SESSION['rank'] = $user->id_ranks;
@@ -38,6 +45,7 @@ if(isset($_POST['submitLogin'])){
     }
 }
 
+// disconnect part
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'disconnect') {
         session_destroy();

@@ -8,7 +8,10 @@ class Levels extends Database {
     public $reachXp = null;
 
 
-
+    /**
+     * get all level in levels
+     * @return array
+     */
     public function selectLevels() {
         $level = [];
         $query = 'SELECT `id`, `level` FROM `levels`';
@@ -21,6 +24,10 @@ class Levels extends Database {
         return $result;
     }
 
+    /**
+     * get one level and one color in levels table where user experience is superior to levelxp
+     * @return array
+     */
     public function searchLevel() {
         $level = [];
         $query = 'SELECT `level`, `color` FROM `levels` WHERE levelxp <= :experience ORDER BY `level` DESC LIMIT 1';
@@ -34,6 +41,11 @@ class Levels extends Database {
         return $result;
     }
 
+    /**
+     * get all users with pseudo, level, color, experience
+     * with limit and page for pagination
+     * @return array
+     */
     public function leaderboard() {
         $leaderboard = [];
         $query = 'SELECT'

@@ -6,6 +6,10 @@ class AA extends Database {
     public $id_artists = null;
     public $id_artworks = null;
 
+    /**
+     * insert an artist and an artwork with thier id
+     * @return bool
+     */
     public function insertArtistArtwork(){
         $query = 'INSERT INTO `' .SALT. 'AA`'
         . '(`id_artists`, `id_artworks`)'
@@ -16,7 +20,11 @@ class AA extends Database {
         $artistCountry->bindValue(':id_artworks', $this->artworkID, PDO::PARAM_INT);
         return $artistCountry->execute();
     }
-
+    
+    /**
+     * get a list of artists for artwork request
+     * @return array
+     */
     public function selectArtworkArtists(){
         $artists = [];
         $query = 'SELECT '
@@ -39,6 +47,10 @@ class AA extends Database {
         return $result;
     }
 
+    /**
+     * get a list of artworks for artist request
+     * @return array
+     */
     public function selectArtistArtworks(){
         $artworks = [];
         $query = 'SELECT '

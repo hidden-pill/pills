@@ -6,7 +6,10 @@ class Plateforms extends Database {
     public $plateform = null;
 
 
-        
+    /**
+     * get all plateform in plateforms table
+     * @return array
+     */
     public function selectPlateforms() {
         $plateform = [];
         $query = 'SELECT `id`, `plateform` FROM `' .SALT. 'plateforms`';
@@ -19,6 +22,10 @@ class Plateforms extends Database {
         return $result;
     }
 
+    /**
+     * insert plateform in plateforms
+     * @return array
+     */
     public function insertArtworkPlateform(){
         $query = 'INSERT INTO `' .SALT. 'plateforms`'
         . '(`plateform`)'

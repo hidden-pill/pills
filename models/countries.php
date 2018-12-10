@@ -5,7 +5,10 @@ class Countries extends Database {
     public $id = null;
     public $country = null;
 
-
+    /**
+    * get all countries 
+    * @return array 
+    */
     public function selectCountries() {
         $country = [];
         $query = 'SELECT `id`, `country` FROM `' .SALT. 'countries`';

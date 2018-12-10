@@ -1,4 +1,6 @@
 $(function(){
+// data send to php file userUpdate.php
+
 
     $('#changePassword').click(function(e) {
         e.preventDefault();
@@ -62,6 +64,7 @@ $(function(){
             },
             function(data){
                 if (data == 'DELETESUCCESS') {
+                    // reload page to redirect user 
                     location.reload();
                 } else {
                     alert('il a eu un problème');

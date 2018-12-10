@@ -4,6 +4,10 @@ class ReviewsTags extends Database {
 
     public $id = null;
 
+    /**
+     * insert review and tag ids into table reviewsTags
+     * @return bool
+     */
     public function insertReviewTag(){
         $query = 'INSERT INTO `' .SALT. 'reviewsTags`'
         . '(`id_reviews`, `id_tags`)'

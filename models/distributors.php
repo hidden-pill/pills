@@ -6,7 +6,10 @@ class Distributors extends Database {
     public $distributor = null;
 
 
-        
+    /**
+    * get all distributors 
+    * @return array 
+    */    
     public function selectDistributors() {
         $distributor = [];
         $query = 'SELECT `id`, `distributor` FROM `' .SALT. 'distributors`';
@@ -19,6 +22,10 @@ class Distributors extends Database {
         return $result;
     }  
 
+    /**
+     * insert distributor in distributors table
+     * @return array
+     */
     public function insertDistributor(){
         $query = 'INSERT INTO `' .SALT. 'distributors`'
         . '(`distributor`)'

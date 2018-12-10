@@ -11,6 +11,12 @@ class Comments extends Database {
     public $id_artists = null;
     public $id_users = null;
 
+    /**
+     * get comments for a review with his id
+     * + votes
+     * + user concern
+     * @return array
+     */
     public function selectReviewCommentsUserConnected(){
         $comments = [];
         $query = 'SELECT'
@@ -51,6 +57,12 @@ class Comments extends Database {
         return $result;
     }
 
+    /**
+     * get comments for an artist with his id
+     * + votes
+     * + user concern
+     * @return array
+     */
     public function selectArtistCommentsUserConnected(){
         $comments = [];
         $query = 'SELECT'
@@ -91,6 +103,12 @@ class Comments extends Database {
         return $result;
     }
 
+    /**
+     * get comments for an artwork with his id
+     * + votes
+     * + user concern
+     * @return array
+     */
     public function selectArtworkCommentsUserConnected(){
         $comments = [];
         $query = 'SELECT'
@@ -131,6 +149,11 @@ class Comments extends Database {
         return $result;
     }
 
+    /**
+     * insert comment, id for the column and id_users in comments table
+     * @param column $column to switch column concern
+     * @return bool
+     */
     public function insertComment($column){
         $state = false;
         $query = 'INSERT INTO `' .SALT. 'comments` '
@@ -147,6 +170,10 @@ class Comments extends Database {
         return $state;
     }
 
+    /**
+     * get the last 5 comments post for an user
+     * @return array
+     */
     public function selectLastUserComments(){
         $comments = [];
         $query = 'SELECT '

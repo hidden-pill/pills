@@ -1,10 +1,12 @@
 $(function () {
+    // click to add an input
     $('.addComment').click(function () {
         var comment = $(this).attr('comment');
         $(this).remove();
         $('#comment' + comment + ' .commentFooter').append(' <textarea class="materialize-textarea"></textarea><div class="btn black addComment" comment="' + comment + '">Envoyer le commentaire</div>');
         $('#comment' + comment).removeClass('userComment').addClass('userCommentAnswer');
     });
+    // send comment in ajax
     $('#sendComment').click(function(e){
         e.preventDefault();
         $.post(

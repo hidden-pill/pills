@@ -6,7 +6,10 @@ class AACountries extends Database {
     public $id_countries = null;
     public $id_artists = null;
 
-
+    /**
+     * insert artist and country ids into table AACountries
+     * @return bool
+     */
     public function insertArtistCountries(){
         $query = 'INSERT INTO `' .SALT. 'AACountries`'
         . '(`id_artists`, `id_countries`)'
@@ -17,7 +20,11 @@ class AACountries extends Database {
         $artistCountry->bindValue(':id_countries', $this->country, PDO::PARAM_INT);
         return $artistCountry->execute();
     }
-
+    
+    /**
+     * insert artwork and country ids into table AACountries
+     * @return bool
+     */
     public function insertArtworkCountries(){
         $query = 'INSERT INTO `' .SALT. 'AACountries`'
         . '(`id_artworks`, `id_countries`)'

@@ -7,7 +7,10 @@ class Reviews extends Database {
     public $review = null;
     public $date = null;
 
-
+    /**
+     * insert title, review, id_users, id_artworks in reviews table
+     * @return bool
+     */
     public function insertReview() {
         $query = 'INSERT INTO `' .SALT. 'reviews`'
                     . '(`title`, `review`, `id_users`, `id_artworks`)'
@@ -21,6 +24,12 @@ class Reviews extends Database {
         return $result->execute();
     }
 
+    /**
+     * get all reviews with all additional contents
+     * + search possible
+     * @param order $order change order in homepage
+     * @return array
+     */
     public function selectReviews($order) {
         $reviews = [];
         $query = 'SELECT'
@@ -76,6 +85,13 @@ class Reviews extends Database {
         return $result;
     }
 
+    /**
+     * get all reviews with all additional contents
+     * + user concern
+     * + search possible
+     * @param order $order change order in homepage
+     * @return array
+     */
     public function selectReviewsUserConnected($order){
         $reviews = [];
         $query = 'SELECT'
@@ -140,6 +156,10 @@ class Reviews extends Database {
         return $result;
     }
 
+    /**
+     * check if review id exist in reviews table
+     * @return bool
+     */
     public function checkIfReviewExist(){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'reviews` WHERE `id` = :id';
@@ -152,6 +172,10 @@ class Reviews extends Database {
         return $state;
     }
 
+    /**
+     * get review with all additional contents
+     * @return array
+     */
     public function selectReview(){
         $review = [];
         $query ='SELECT'
@@ -204,6 +228,11 @@ class Reviews extends Database {
 
     }
 
+    /**
+     * get review with all additional contents
+     * + user concern
+     * @return array
+     */
     public function selectReviewUserConnected(){
         $review = [];
         $query = 'SELECT'
@@ -264,6 +293,10 @@ class Reviews extends Database {
         return $result;
     }
 
+    /**
+     * get the last 5 reviews post for an user
+     * @return array
+     */
     public function selectLastUserReviews(){
         $reviews = [];
         $query = 'SELECT '

@@ -1,20 +1,22 @@
 <?php
-
+// initialize variables / arrays
 $title = '';
 $review = '';
 $tagsArray = [];
 $tagsInputArray = [];
 $newTagsArray = [];
-
 $errorReviewForm = [];
 
+// all instances for all selectors
 $artwork = new Artworks();
 $artworksList = $artwork->selectArtworks();
 $tags = new Tags();
 $tagsList = $tags->selectTags();
 
+// submit review
 if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
     $id = htmlspecialchars($_SESSION['id']);
+
     if (!empty($_POST['artwork'])) {
         $artwork = htmlspecialchars($_POST['artwork']);
     }else{
@@ -27,6 +29,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
         $errorReviewForm['title'] = 'ERROR_TITLE';
     }
 
+    // check if review get one tag at least
     if((count($_POST['tagInputs']) != 0) || (!empty($_POST['tags']))){
         foreach($_POST['tagInputs'] as $tagInput){
             $tagInput = htmlspecialchars($tagInput);
@@ -45,6 +48,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
         $errorReviewForm['tags'] = 'ERROR_EMPTY_TAG';
     }
 
+    // if image exists, upload it only if extension if jpg and png
     if (!empty($_FILES['image']['name'])) {
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
             if(pathinfo($_FILES['image']['name'])['extension'] == 'png' || pathinfo($_FILES['image']['name'])['extension'] == 'jpg'){
@@ -59,15 +63,20 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
         $errorReviewForm['review'] = 'ERROR_REVIEW';
     }
 
+    // try to insert in db if error array still empty after all tests
     if (count($errorReviewForm) == 0) {
         $newReview = new Reviews();
         $newReview->id_artworks = $artwork;
         $newReview->title = $title;
         $newReview->review = $review;
         $newReview->id_users = $id;
+
         $newTags = new Tags();
         $newReviewTag = new ReviewsTags();
+
+        // transaction
         try {
+            //start
             Database::getInstance()->beginTransaction();
             $newReview->insertReview();
             $reviewID = $newReview->getLastInsertId();
@@ -95,6 +104,7 @@ if(isset($_POST['submitReview']) && isset($_SESSION['id'])){
                 $end_path = '../assets/images/reviews/' .$reviewID;
                 move_uploaded_file($first_path, $end_path);
             }
+            // execute all insert if there is no problems
             Database::getInstance()->commit();
         } catch (Exception $e) {
             Database::getInstance()->rollback();

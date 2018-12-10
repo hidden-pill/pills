@@ -13,15 +13,18 @@ class Users extends Database {
     public $experience = null;
 
 
-        public function userConnection() {
+    /**
+     * get user data
+     * @return bool
+     */
+    public function userConnection() {
         $state = false;
         $query = 'SELECT `id`, `pseudo`, `password`, `id_ranks` FROM `' .SALT. 'users` WHERE `pseudo` = :identifier OR `email` = :identifier';
         $result = Database::getInstance()->prepare($query);
         $result->bindValue(':identifier', $this->identifier, PDO::PARAM_STR);
-        if ($result->execute()) { //On vérifie que la requête s'est bien exécutée
+        if ($result->execute()) {
             $selectResult = $result->fetch(PDO::FETCH_OBJ);
-            if (is_object($selectResult)) { //On vérifie que l'on a bien trouvé un utilisateur
-                // On hydrate
+            if (is_object($selectResult)) { // check if find something
                 $this->pseudo = $selectResult->pseudo;
                 $this->password = $selectResult->password;
                 $this->id_ranks = $selectResult->id_ranks;
@@ -32,7 +35,11 @@ class Users extends Database {
         return $state;
     }
 
-        public function userInsert() {
+    /**
+     * insert pseudo, birthdate, password, email, question id, secretanswer and newsletter in users table
+     * @return bool
+     */
+    public function userInsert() {
         $query = 'INSERT INTO `' .SALT. 'users`'
                . '(`pseudo`, `birthDate`, `password`, `email`, `id_questions`, `secretAnswer`, `newsletter`)'
                . 'VALUES '
@@ -48,6 +55,10 @@ class Users extends Database {
         return $result->execute();
     }
     
+    /**
+     * get pseudo, birthdate, email, creationdate in users table
+     * @return array
+     */
     public function selectUsers() {
         $user = [];
         $query = 'SELECT `id`, `pseudo`, `birthdate`, `email`, `creationDate` FROM `' .SALT. 'users`';
@@ -60,6 +71,10 @@ class Users extends Database {
         return $result;
     }  
 
+    /**
+     * get user with all additional contents
+     * @return array
+     */
     public function selectUser(){
         $user = [];
         $query = 'SELECT '
@@ -86,6 +101,10 @@ class Users extends Database {
         return $result;
     }
 
+    /**
+     * check if pseudo exist in users table
+     * @return bool
+     */
     public function checkIfPseudoExist(){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'users` WHERE `pseudo` = :pseudo';
@@ -98,6 +117,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * check if email exist in users table
+     * @return bool
+     */
     public function checkIfEmailExist(){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'users` WHERE `email` = :email';
@@ -110,6 +133,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * select data needed to change settings user
+     * @return array
+     */
     public function selectSettingsUser(){
         $user = [];
         $query = 'SELECT'
@@ -127,6 +154,10 @@ class Users extends Database {
         return $result;
     }
 
+    /**
+     * update user password in users table
+     * @return bool
+     */
     public function updatePassword(){
         $state = false;
         $query = 'UPDATE `' .SALT. 'users` SET `password` = :newpassword WHERE `pseudo` = :pseudo';
@@ -139,6 +170,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * update user email in users table
+     * @return bool
+     */
     public function updateEmail(){
         $state = false;
         $query = 'UPDATE `' .SALT. 'users` SET `email` = :newemail WHERE `pseudo` = :pseudo';
@@ -151,6 +186,10 @@ class Users extends Database {
         return $state;
     }
     
+    /**
+     * update user newsletter in users table
+     * @return bool
+     */
     public function updateNewsletter(){
         $state = false;
         $query = 'UPDATE `' .SALT. 'users` SET `newsletter` = :newnewsletter WHERE `pseudo` = :pseudo';
@@ -163,6 +202,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * delete user  in users table
+     * @return bool
+     */
     public function deleteUser() {
         $state = false;
         $query = 'DELETE FROM  `' .SALT. 'users` WHERE `pseudo` = :pseudo';
@@ -174,6 +217,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * get number of users and divid per limit for pagination
+     * @return int
+     */
     public function countPageLeaderboard(){
         $count = 0;
         $query = 'SELECT CEIL(COUNT(`id` - 1) / :limit) AS `count` FROM `users`';
@@ -186,6 +233,11 @@ class Users extends Database {
         return $count;
     }
 
+    /**
+     * add experience to user
+     * + reward can be choose
+     * @return bool
+     */
     public function addUserReward(){
         $state = false;
         $query = 'UPDATE `users` SET `experience` = (`experience` + (SELECT `reward` FROM `rewards` WHERE `id` = :rewardID)) WHERE `id` = :id';
@@ -198,6 +250,10 @@ class Users extends Database {
         return $state;
     }
 
+    /**
+     * delete amount of experience for user
+     * @return bool
+     */
     public function deleteUserReward() {
         $state = false;
         $query = 'UPDATE `users` SET `experience` = (`experience` - (SELECT `reward` FROM `rewards` WHERE `id` = :rewardID)) WHERE `id` = :id';

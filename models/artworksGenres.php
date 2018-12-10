@@ -3,7 +3,13 @@
 class ArtworksGenres extends Database {
 
     public $id = null;
+    public $id_artworks = null;
+    public $id_genres = null;
 
+    /**
+     * insert artist and genre ids into table ArtistsJobs
+     * @return bool
+     */
     public function insertArtworkGenre(){
         $query = 'INSERT INTO `' .SALT. 'artworksGenres`'
         . '(`id_artworks`, `id_genres`)'

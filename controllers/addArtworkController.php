@@ -1,7 +1,6 @@
 <?php
-
+// initialize variables / arrays
 $errorArtworkForm = [];
-
 $name = '';
 $articleType = '';
 $releaseDate = '0000-00-00';
@@ -17,6 +16,8 @@ $artworkGenresArray = [];
 $artworkTrailersArray = [];
 $distributorc = null;
 
+
+// all instances for all selectors
 $articleTypes = new ArticleTypes();
 $articleTypesList = $articleTypes->selectArticleTypes();
 $distributors = new Distributors();
@@ -30,6 +31,8 @@ $artistsList = $artists->selectArtists();
 $plateforms = new Plateforms();
 $plateformsList = $plateforms->selectPlateforms();
 
+
+// submit artwork
 if(isset($_POST['submitArtwork'])){
 
     if(!empty($_POST['name'])){
@@ -38,6 +41,7 @@ if(isset($_POST['submitArtwork'])){
         $errorArtworkForm['name'] = 'ERROR_NAME';
     }
 
+    // clean all contents in articleType array
     if(!empty($_POST['articleType'])){
         $articleType = htmlspecialchars($_POST['articleType']);
         if(!is_numeric($articleType)){
@@ -59,6 +63,7 @@ if(isset($_POST['submitArtwork'])){
         $budget = htmlspecialchars($_POST['budget']);
     }
 
+
     if(!empty($_POST['distributorInput'])){
         $distributorInput = htmlspecialchars($_POST['distributorInput']);
     } else if(!empty($_POST['distributor'])){
@@ -68,6 +73,7 @@ if(isset($_POST['submitArtwork'])){
         }
     } 
 
+    // clean all contents in nationalities array
     if(!empty($_POST['nationalities'])){
         foreach($_POST['nationalities'] as $nationality){
             if(!is_numeric($nationality)){
@@ -78,6 +84,7 @@ if(isset($_POST['submitArtwork'])){
         }
     } 
 
+    // clean all contents in countries array
     if(!empty($_POST['countries'])){
         foreach($_POST['countries'] as $country){
             if(!is_numeric($country)){
@@ -88,6 +95,7 @@ if(isset($_POST['submitArtwork'])){
         }
     } 
 
+    // clean all contents in artists array
     if(!empty($_POST['artists'])){
         foreach($_POST['artists'] as $artist){
             if(!is_numeric($artist)){
@@ -98,6 +106,7 @@ if(isset($_POST['submitArtwork'])){
         }
     }
 
+    // clean all contents in plateforms array
     if(!empty($_POST['plateforms'])){
         foreach($_POST['plateforms'] as $plateform){
             if(!is_numeric($plateform)){
@@ -108,6 +117,7 @@ if(isset($_POST['submitArtwork'])){
         }
     } 
 
+    // if image exists, upload it only if extension if jpg and png
     if (!empty($_FILES['image'])) {
         if (is_uploaded_file($_FILES['image']['tmp_name'])) {
             if(pathinfo($_FILES['image']['name'])['extension'] == 'png' || pathinfo($_FILES['image']['name'])['extension'] == 'jpg'){
@@ -116,6 +126,7 @@ if(isset($_POST['submitArtwork'])){
         }
     }
 
+    // try to insert in db if error array still empty after all tests
     if(count($errorArtworkForm) == 0){
         $newArtwork = new Artworks();
         $newArtwork->name = $name;
@@ -132,7 +143,9 @@ if(isset($_POST['submitArtwork'])){
         $newArtworkGenres = new ArtworksGenres();
         $newArtworkPlateforms = new ArtworksPlateforms();
         
+        // transaction
         try {
+            //start
             Database::getInstance()->beginTransaction();
             if(!empty($distributorInput)){
                 $newDistributor->distributor = $distributorInput;
@@ -187,6 +200,7 @@ if(isset($_POST['submitArtwork'])){
                 $end_path = '../assets/images/artworks/' .$artworkID;
                 move_uploaded_file($first_path, $end_path);
             }
+            // execute all insert if there is no problems
             Database::getInstance()->commit();
         } catch (Exception $e) { // catch error message
             Database::getInstance()->rollback();

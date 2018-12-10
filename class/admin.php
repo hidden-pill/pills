@@ -2,7 +2,10 @@
 
 class Admin extends Database {
 
-
+    /**
+     * method to get all tables in db
+     * @return array
+     */
     public function showTables(){
         $column = [];
         $query = 'SHOW TABLES';
@@ -14,6 +17,12 @@ class Admin extends Database {
         }
         return $result;
     }
+
+    /**
+     * method to get all columns of a table
+     * @param table $table the table wanted
+     * @return array
+     */
     public function showColumns($table) {
         $column = [];
         $query = 'SHOW COLUMNS FROM  `' .SALT.$table. '`';
@@ -26,6 +35,11 @@ class Admin extends Database {
         return $result;
     }
 
+    /**
+     * method to get all content of a table
+     * @param table $table the table wanted
+     * @return array
+     */
     public function getAllInTable($table) {
         $all = [];
         $query = 'SELECT * FROM  `' .SALT.$table. '`';
@@ -37,7 +51,10 @@ class Admin extends Database {
         }
         return $result;
     }
-    
+    /**
+     * method to delete an element of a table
+     * @return bool
+     */
     public function deleteInTable($table) {
         $delete = [];
         $query = 'DELETE FROM  `' .SALT.$table. '` WHERE `id` = :id';

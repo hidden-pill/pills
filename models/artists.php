@@ -9,6 +9,10 @@ class Artists extends Database {
     public $biography = null;
     public $id_validations = null;
 
+    /**
+     * get all artists
+     * @return array
+     */
     public function selectArtists() {
         $artist = [];
         $query = 'SELECT `id`, `name`, `birthDate`, `deathDate`, `biography`, `validation` FROM `' .SALT. 'artists`';
@@ -21,6 +25,10 @@ class Artists extends Database {
         return $result;
     }
 
+    /**
+     * insert an artist in artists table
+     * @return bool
+     */
     public function insertArtist(){
         $query = 'INSERT INTO `' .SALT. 'artists`'
         . '(`name`, `birthDate`, `deathDate`, `biography`)'
@@ -34,6 +42,10 @@ class Artists extends Database {
         return $artist->execute();
     }
 
+    /**
+     * check if an id exist in artists table
+     * @return bool
+     */
     public function checkIfArtistExist(){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'artists` WHERE `id` = :id';
@@ -46,6 +58,10 @@ class Artists extends Database {
         return $state;
     }
 
+    /**
+     * get an artist in artists table with all contents in others tables
+     * @return array
+     */
     public function selectArtist(){
         $artist = [];
         $query ='SELECT'
@@ -80,6 +96,11 @@ class Artists extends Database {
         return $result;
     }
 
+    /**
+     * get an artist in artists table with all contents in others tables
+     * + user concern
+     * @return array
+     */
     public function selectArtistUserConnected(){
         $artist = [];
         $query = 'SELECT '

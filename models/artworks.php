@@ -11,6 +11,10 @@ class Artworks extends Database {
     public $id_articleTypes	= null;
     public $id_validations = null; 
 
+    /**
+     * get all artworks
+     * @return array
+     */
     public function selectArtworks() {
         $culturalObject = [];
         $query = 'SELECT `id`, `name`, `releaseDate`, `synopsis`, `budget`, `id_articleTypes`, `id_distributors`, `validation` FROM `' .SALT. 'artworks`';
@@ -23,6 +27,10 @@ class Artworks extends Database {
         return $result;
     }
 
+    /**
+     * insert an artwork in artworks table
+     * @return bool
+     */
     public function insertArtwork(){
         $query = 'INSERT INTO `' .SALT. 'artworks`'
         . '(`name`, `releaseDate`, `synopsis`, `budget`, `id_articleTypes`, `id_distributors`)'
@@ -38,6 +46,10 @@ class Artworks extends Database {
         return $artistCountry->execute();
     }
 
+    /**
+     * check if an id exist in artworks table
+     * @return bool
+     */
     public function checkIfArtworkExist(){
         $state = false;
         $query = 'SELECT COUNT(`id`) AS `count` FROM `' .SALT. 'artworks` WHERE `id` = :id';
@@ -50,6 +62,10 @@ class Artworks extends Database {
         return $state;
     }
 
+    /**
+     * get an artwork in artworks table with all contents in others tables
+     * @return array
+     */
     public function selectArtwork(){
         $artwork = [];
         $query = 'SELECT'
@@ -91,6 +107,11 @@ class Artworks extends Database {
         return $result;
     }
 
+    /**
+     * get an artwork in artworks table with all contents in others tables
+     * + user concern
+     * @return array
+     */
     public function selectArtworkUserConnected(){
         $artwork = [];
         $query = 'SELECT'

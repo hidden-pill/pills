@@ -21,7 +21,11 @@ class Database {
         }
         return self::$_db;
     }
-
+    /**
+     * method to get last id insert in db
+     * useful in transaction
+     * @return int
+     */
     public function getLastInsertId() {
         $result = 0;
         $query = 'SELECT LAST_INSERT_ID() AS `id`';
@@ -34,6 +38,9 @@ class Database {
         return $result;
     }
 
+    /**
+     * @return bool
+     */
     public function deleteToDeleteUser($table) {
         $state = false;
         $query = 'DELETE FROM  `' .SALT.$table. '` WHERE `id_users` = :id_users';
@@ -45,7 +52,9 @@ class Database {
         return $state;
     }
 
-    
+    /**
+     * @return bool
+     */
     public function updateToDeleteUser($table){
         $state = false;
         $query = 'UPDATE `' .SALT.$table. '` SET `id_users` = 2 WHERE `id_users` = :id_users';

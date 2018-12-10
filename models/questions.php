@@ -6,7 +6,10 @@ class Questions extends Database {
     public $question = null;
 
 
-
+    /**
+     * get all question in questions table
+     * @return array
+     */
     public function selectQuestions() {
         $question = [];
         $query = 'SELECT `id`, `question` FROM `' .SALT. 'questions`';

@@ -1,5 +1,7 @@
 <?php
+// check if pseudo params exist in url and if user is connect
 if(isset($_GET['pseudo']) && isset( $_SESSION['pseudo'])){
+    // if user connect didn't match with user page, redirect to homepage
     if($_GET['pseudo'] != $_SESSION['pseudo']){
         header('Location:/');
         exit;
@@ -7,7 +9,7 @@ if(isset($_GET['pseudo']) && isset( $_SESSION['pseudo'])){
     $user = new Users();
     $user->pseudo = $_SESSION['pseudo'];
     $userSettings = $user->selectSettingsUser();
-
+    // change user image
     if(isset($_POST['changeImage'])){
         if(!empty($_FILES['image'])) {
             if (is_uploaded_file($_FILES['image']['tmp_name'])) {
@@ -21,7 +23,7 @@ if(isset($_GET['pseudo']) && isset( $_SESSION['pseudo'])){
         }
     }
 
-} else {
+} else { // redirect to homepage if pseudo params didn't exist and/or user not connect
     header('Location:/');
     exit;
 }

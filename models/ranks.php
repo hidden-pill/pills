@@ -6,7 +6,10 @@ class Ranks extends Database {
     public $rank = null;
 
 
-
+    /**
+     * get all rank in ranks table
+     * @return array
+     */
     public function selectRanks() {
         $rank = [];
         $query = 'SELECT `id`, `rank` FROM `' .SALT. 'ranks`';

@@ -6,6 +6,10 @@ class ArtistsJobs extends Database {
     public $id_artists = null;
     public $id_jobs = null;
 
+    /**
+     * insert artist and job ids into table ArtistsJobs
+     * @return bool
+     */
     public function insertArtistsJobs(){
         $query = 'INSERT INTO `' .SALT. 'artistsJobs`'
         . '(`id_artists`, `id_jobs`)'
