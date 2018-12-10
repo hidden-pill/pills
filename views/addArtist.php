@@ -43,7 +43,7 @@ include_once '../controllers/addArtistController.php';
     <input name="birthDate" type="date" />
     <input name="deathDate" type="date" />
     <textarea id="textarea1" class="materialize-textarea" name="bio"></textarea>
-    <label for="textarea1">Textarea</label>
+    <label for="textarea1">Biographie</label>
     <div class="file-field input-field">
       <div class="btn">
         <span>image.png</span>

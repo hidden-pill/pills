@@ -70,8 +70,8 @@ class Reviews extends Database {
                         . ') `up` ON `up`.`upid_reviews` = `rv`.`id`'
                     . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `rv`.`id_artworks`'
                     . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
-                    . 'LEFT JOIN `aa` ON `aa`.`id_artworks` = `a`.`id`'
-                    . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `aa`.`id_artworks`'
+                    . 'LEFT JOIN `AA` ON `AA`.`id_artworks` = `a`.`id`'
+                    . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `AA`.`id_artworks`'
                     . 'WHERE `rv`.`title` LIKE :search OR `a`.`name` LIKE :search OR `ats`.`name` LIKE :search OR `t`.`tag` LIKE :search OR `us`.`pseudo` LIKE :search '
                 . 'GROUP BY `rv`.`id` '
                 . 'ORDER BY' .$order;
@@ -140,8 +140,8 @@ class Reviews extends Database {
                 . ') `upv` ON `upv`.`upid_reviews` = `rv`.`id`'
                 . 'LEFT JOIN `scores` AS `sc` ON `sc`.`id_artworks` = `rv`.`id_artworks`'
                 . 'LEFT JOIN `comments` AS `com` ON `com`.`id_reviews` = `rv`.`id`'
-                . 'LEFT JOIN `aa` ON `aa`.`id_artworks` = `a`.`id`'
-                . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `aa`.`id_artworks`'
+                . 'LEFT JOIN `AA` ON `AA`.`id_artworks` = `a`.`id`'
+                . 'LEFT JOIN `artists` AS `ats` ON `ats`.`id` = `AA`.`id_artworks`'
                 . 'WHERE `rv`.`title` LIKE :search OR `a`.`name` LIKE :search OR `ats`.`name` LIKE :search OR `t`.`tag` LIKE :search OR `us`.`pseudo` LIKE :search '
                 . 'GROUP BY `rv`.`id` '
             . 'ORDER BY' .$order;
