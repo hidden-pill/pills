@@ -516,6 +516,18 @@ ALTER TABLE `comments`
         CHANGE `id_artists` `id_artists` INT(11) NULL DEFAULT NULL,
         CHANGE `id_artworks` `id_artworks` INT(11) NULL DEFAULT NULL;
 
+ALTER TABLE `comments` DROP FOREIGN KEY `comments_artists1_FK`;
+ALTER TABLE `comments` ADD  CONSTRAINT `comments_artists1_FK` FOREIGN KEY (`id_artists`) REFERENCES `artists`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` DROP FOREIGN KEY `comments_artworks3_FK`;
+ALTER TABLE `comments` ADD  CONSTRAINT `comments_artworks3_FK` FOREIGN KEY (`id_artworks`) REFERENCES `artworks`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` DROP FOREIGN KEY `comments_proposals0_FK`;
+ALTER TABLE `comments` ADD  CONSTRAINT `comments_proposals0_FK` FOREIGN KEY (`id_proposals`) REFERENCES `proposals`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` DROP FOREIGN KEY `comments_reviews_FK`;
+ALTER TABLE `comments` ADD  CONSTRAINT `comments_reviews_FK` FOREIGN KEY (`id_reviews`) REFERENCES `reviews`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comments` DROP FOREIGN KEY `comments_users2_FK`;
+ALTER TABLE `comments` ADD  CONSTRAINT `comments_users2_FK` FOREIGN KEY (`id_users`) REFERENCES `users`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
 SET FOREIGN_KEY_CHECKS = 1;
 #------------------------------------------------------------
 # INSERT

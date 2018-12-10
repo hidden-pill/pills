@@ -56,7 +56,7 @@ include_once $path.'controllers/headerController.php';
           <?php } else { ?>
           <li>
             <a class="dropdown-button" href="#!" data-activates="dropdown1">
-              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/users/<?= $_SESSION['id']; ?>" alt="image utilisateur" onerror="this.onerror=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';"  onabort="this.onabort=null;this.src='<?= $path; ?>assets/images/users/default_profile.png';" />
+              <img title="<?= $_SESSION['pseudo']; ?>" class="userImage" src="<?= $path; ?>assets/images/users/<?= $_SESSION['id']; ?>" alt="image utilisateur" onerror="this.onerror=null;this.src='<?= $path; ?>assets/images/default/default_profile.png';"  onabort="this.onabort=null;this.src='<?= $path; ?>assets/images/default/default_profile.png';" />
               <span><?= $_SESSION['pseudo']; ?></span>
               <i class="material-icons right">arrow_drop_down</i>
             </a>
@@ -64,12 +64,6 @@ include_once $path.'controllers/headerController.php';
           <?php } ?>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li class="search">
-            <div class="search-wrapper card">
-              <input type="text" id="autocomplete-input2" class="autocomplete" />
-              <i class="material-icons">search</i>
-            </div>
-          </li>
           <?php if(!isset($_SESSION['isConnect'])){ ?>
           <li><a href="<?= $path; ?>views/register.php">S'inscrire</a></li>
           <li><a class="modal-trigger" href="#logIn">Se connecter</a></li>

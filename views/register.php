@@ -3,15 +3,12 @@ include_once '../config.php';
 include_once '../controllers/registerController.php';
 ?>
 <!DOCTYPE html>
-<html class="no-js" lang="fr">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../assets/css/foundation.css" />
-    <link rel="stylesheet" href="../assets/css/navbar.css" />
-    <link href="../assets/css/test.css" rel="stylesheet" />
     <link href="../assets/css/register.css" rel="stylesheet" />
 </head>
 
@@ -19,15 +16,9 @@ include_once '../controllers/registerController.php';
 
     <form method="POST" action="register.php">
         <h1>Inscription</h1>
-
-
-        <label class="" for="pseudo">pseudo</label>
         <input id="pseudo" class="" name="pseudo" placeholder="Pseudo" type="text" value="<?= $pseudo; ?>" />
 
         <div id="birthDate">
-            <label class="label" for="day">Jour</label>
-            <label class="label" for="month">Mois</label>
-            <label class="label" for="year">Année</label>
             <input id="day" class="birthDate" name="day" placeholder="Jour" type="text" value="<?= $day; ?>" />
             <select id="month" name="month">
                 <option selected disabled>Mois</option>
@@ -47,13 +38,10 @@ include_once '../controllers/registerController.php';
             <input id="year" class="birthDate" name="year" placeholder="Année" type="text" value="<?= $year; ?>" />
         </div>
 
-        <label class="" for="password">password</label>
-        <input id="password" class="birthDate" name="password" placeholder="Mot de passe" type="password" />
+        <input id="password" name="password" placeholder="Mot de passe" type="password" />
 
-        <label class="" for="email">email</label>
         <input id="email" class="" name="email" placeholder="email@email.com" type="mail" value="<?= $email; ?>" />
 
-        <label class="" for="secretQuestion">secret question</label>
         <select id="secretQuestion" name="secretQuestion">
             <option selected disabled>Choisir une question secrete</option>
             <?php foreach ($questionsList as $question) { ?>
@@ -61,13 +49,11 @@ include_once '../controllers/registerController.php';
             <?php } ?>
         </select>
 
-        <label class="" for="secretAnswer">secret answer</label>
         <input id="secretAnswer" class="" name="secretAnswer" placeholder="Réponse secrete" type="text" value="<?= $secretAnswer; ?>" />
 
-        <label class="" for="newsletter">Newsletter</label>
-        <p><input id="newsletter" class="" name="newsletter" type="checkbox" value="1" <?= $newsletter == 1? 'checked': '';?> /> S'inscrire à la newsletter</p>
-        <p>En appuyant sur le bouton "Créer un compte", vous acceptez notre <a>politique de confidencialité</a>.</p>
-        <input id="submitRegister" class="button expanded" name="submitRegister" type="submit" value="Créer un compte" />
+        <label><input id="newsletter" class="" name="newsletter" type="checkbox" value="1" <?= $newsletter == 1? 'checked': '';?> /> S'inscrire à la newsletter</label>
+        <p>En appuyant sur le bouton "Créer un compte", vous acceptez notre <a>politique de confidentialité</a>.</p>
+        <input id="submitRegister" name="submitRegister" type="submit" value="Créer un compte" />
 
     </form>
 </body>
