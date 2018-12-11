@@ -620,3 +620,23 @@ tbody a{
 .leaderboard tbody a{
     color : white;
 }
+
+#logIn{
+    padding: 20px;
+}
+#logIn h1{
+    text-align: center;
+}
+#logIn .loginCancel{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#logIn .register{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+#logIn .register a{
+    width: 100%;
+}

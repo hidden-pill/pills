@@ -13,11 +13,9 @@ include_once '../controllers/registerController.php';
 </head>
 
 <body>
-
     <form method="POST" action="register.php">
         <h1>Inscription</h1>
         <input id="pseudo" class="" name="pseudo" placeholder="Pseudo" type="text" value="<?= $pseudo; ?>" />
-
         <div id="birthDate">
             <input id="day" class="birthDate" name="day" placeholder="Jour" type="text" value="<?= $day; ?>" />
             <select id="month" name="month">
@@ -37,24 +35,24 @@ include_once '../controllers/registerController.php';
             </select>
             <input id="year" class="birthDate" name="year" placeholder="Année" type="text" value="<?= $year; ?>" />
         </div>
-
         <input id="password" name="password" placeholder="Mot de passe" type="password" />
-
         <input id="email" class="" name="email" placeholder="email@email.com" type="mail" value="<?= $email; ?>" />
-
         <select id="secretQuestion" name="secretQuestion">
             <option selected disabled>Choisir une question secrete</option>
             <?php foreach ($questionsList as $question) { ?>
             <option value="<?= $question->id; ?>" <?= $secretQuestion == $question->id? 'selected': '';?>><?= $question->question; ?></option>
             <?php } ?>
         </select>
-
         <input id="secretAnswer" class="" name="secretAnswer" placeholder="Réponse secrete" type="text" value="<?= $secretAnswer; ?>" />
-
         <label><input id="newsletter" class="" name="newsletter" type="checkbox" value="1" <?= $newsletter == 1? 'checked': '';?> /> S'inscrire à la newsletter</label>
         <p>En appuyant sur le bouton "Créer un compte", vous acceptez notre <a>politique de confidentialité</a>.</p>
         <input id="submitRegister" name="submitRegister" type="submit" value="Créer un compte" />
-
+        <?php if(!empty($_POST['submitRegister']) && count($formError) == 0){ ?>
+        <div class="success">
+            <p>Votre compte a été créé</p>
+            <a href="/">Retour à l'accueil</a>
+        </div>
+        <?php } ?>
     </form>
 </body>
 

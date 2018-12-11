@@ -74,9 +74,9 @@ if(isset($_POST['submitRegister'])){
         $user->newsletter = $newsletter;
         // if insert didn't work, error message
         if(!$user->userInsert()){
-            $message = 'Il y a eu un problème';
+            $message = 0;
         }else{ // else ok message
-            $message = 'Votre compte a bien été créé';
+            $message = 1;
         }
     }
 }

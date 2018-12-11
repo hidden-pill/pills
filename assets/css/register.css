@@ -123,3 +123,14 @@ select option:disabled {
     width: 100%;
     margin: 0 8px 8px 4px;
 }
+.success{
+    background-color: lightblue;
+    color: black;
+    text-align: center;
+}
+.success a{
+    background-color: black;
+    color: white;
+    height: 60px;
+    padding: 2px 20px;
+}
