@@ -35,8 +35,8 @@ include_once '../controllers/addReviewController.php';
       </div>
     </div>
 
-    <label class="" for="review">Critique</label>
-    <textarea id="review" class="" name="review" placeholder="Texte.." type="review"><?= $review; ?></textarea>
-<input type="submit" name="submitReview" />
+    <label for="review">Critique</label>
+    <textarea id="review" class="materialize-textarea" name="review" placeholder="Texte.." type="review"><?= $review; ?></textarea>
+<input type="submit" name="submitReview" class="btn" />
 </form>
 <?php include_once 'footer.php'; ?>
